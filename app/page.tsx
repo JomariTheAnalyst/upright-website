@@ -1,9 +1,22 @@
+<<<<<<< HEAD
 import { UprightNavigation } from "@/components/upright-navigation"
 import { HeroSection } from "@/components/sections/hero"
+=======
+import { ProfessionalNavbar } from "@/components/layout/navbar-professional"
+import { HeroSection } from "@/components/sections/hero"
+import { CompanyVideoSection } from "@/components/sections/company-video"
+import { WhyChooseUs } from "@/components/sections/why-choose-us"
+import { LogoMarquee } from "@/components/features/logo-marquee"
+import { CaseStudiesSection } from "@/components/sections/case-studies"
+import { TestimonialsSection } from "@/components/sections/testimonials"
+
+import { Footer } from "@/components/layout/footer"
+>>>>>>> upright-fix
 
 export default function Home() {
   return (
     <div className="relative min-h-screen">
+<<<<<<< HEAD
       {/* Full Page Background */}
       <div className="fixed inset-0 z-0">
         <div 
@@ -22,6 +35,16 @@ export default function Home() {
         <UprightNavigation />
         <HeroSection />
       </div>
+=======
+      <ProfessionalNavbar />
+      <HeroSection />
+      <CompanyVideoSection />
+      <WhyChooseUs />
+      <LogoMarquee />
+      <CaseStudiesSection />
+      <TestimonialsSection />
+      <Footer />
+>>>>>>> upright-fix
     </div>
   )
 }

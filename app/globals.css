@@ -6,8 +6,15 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+<<<<<<< HEAD
   --font-sans: var(--font-sans);
   --font-heading: var(--font-heading);
+=======
+  --font-display: var(--font-display);
+  --font-ui: var(--font-ui);
+  --font-heading: var(--font-heading);
+  --font-body: var(--font-body);
+>>>>>>> upright-fix
   --font-mono: var(--font-geist-mono);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -42,6 +49,86 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+<<<<<<< HEAD
+=======
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+  @keyframes accordion-down {
+  from {
+    height: 0;
+    }
+  to {
+    height: var(--radix-accordion-content-height);
+    }
+  }
+  @keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+    }
+  to {
+    height: 0;
+    }
+  }
+  --color-hightlight-light: #DADBF8;
+  --color-accent-light: #D9EAE3;
+  --color-primary-light: #FFCFE1;
+  --color-secondary-light: #FFFCE5;
+  --color-primary-content: #fff;
+  --color-secondary-content: #0A0A0A;
+  --color-accent-content: #0A0A0A;
+  --color-neutral: #222222;
+  --color-neutral-content: #FFFFFF;
+  --color-base-100: #f0f0f0;
+  --color-base-200: #ffffff;
+  --color-base-300: #F2F2F2;
+  --color-base-content: #0A0A0A;
+  --color-info: #3ABFF8;
+  --color-success: #36D399;
+  --color-warning: #FBBD23;
+  --color-error: #F87272;
+  --color-highlight: #454ADE;
+  --font-sans: var(----font-sans);
+  --color-color-muted: var(----color-muted);
+  --color-color-highlight: var(----color-highlight);
+  --color-color-error: var(----color-error);
+  --color-color-warning: var(----color-warning);
+  --color-color-success: var(----color-success);
+  --color-color-info: var(----color-info);
+  --color-color-base-content: var(----color-base-content);
+  --color-color-base-300: var(----color-base-300);
+  --color-color-base-200: var(----color-base-200);
+  --color-color-base-100: var(----color-base-100);
+  --color-color-neutral-content: var(----color-neutral-content);
+  --color-color-neutral: var(----color-neutral);
+  --color-color-accent-content: var(----color-accent-content);
+  --color-color-accent: var(----color-accent);
+  --color-color-secondary-content: var(----color-secondary-content);
+  --color-color-secondary: var(----color-secondary);
+  --color-color-primary-content: var(----color-primary-content);
+  --color-color-primary: var(----color-primary);
+  --color-color-secondary-light: var(----color-secondary-light);
+  --color-color-primary-light: var(----color-primary-light);
+  --color-color-accent-light: var(----color-accent-light);
+  --color-color-hightlight-light: var(----color-hightlight-light)
+>>>>>>> upright-fix
 }
 
 :root {
@@ -79,6 +166,14 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+<<<<<<< HEAD
+=======
+  --font-display: 'Outfit', sans-serif;
+  --font-sans: 'Inter Tight', sans-serif;
+  /* Sky color for moving border */
+  --sky-500: 14 165 233;
+  --yellow-500: 234 179 8;
+>>>>>>> upright-fix
 }
 
 .dark {
@@ -115,6 +210,12 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+<<<<<<< HEAD
+=======
+  /* Sky color for moving border */
+  --sky-500: 56 189 248;
+  --yellow-500: 234 179 8;
+>>>>>>> upright-fix
 }
 
 @layer base {
@@ -125,23 +226,39 @@
     @apply bg-background text-foreground;
   }
   html {
+<<<<<<< HEAD
     scroll-behavior: smooth;
     overflow-x: hidden;
   }
   
+=======
+    scroll-behavior: auto;
+    overflow-x: hidden;
+  }
+
+>>>>>>> upright-fix
   /* Custom scrollbar for webkit browsers */
   ::-webkit-scrollbar {
     width: 10px;
   }
+<<<<<<< HEAD
   
   ::-webkit-scrollbar-track {
     background: transparent;
   }
   
+=======
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+>>>>>>> upright-fix
   ::-webkit-scrollbar-thumb {
     background: rgba(255, 255, 255, 0.2);
     border-radius: 5px;
   }
+<<<<<<< HEAD
   
   ::-webkit-scrollbar-thumb:hover {
     background: rgba(255, 255, 255, 0.3);
@@ -155,3 +272,18 @@
     background: rgba(255, 255, 255, 0.2);
   }
 }
+=======
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+
+  .dark ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .dark ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+}
+>>>>>>> upright-fix
