@@ -15,12 +15,8 @@
 
 # next.js
 /.next/
-<<<<<<< HEAD
-/out/
-=======
 /out
 /dist
->>>>>>> upright-fix
 
 # production
 /build
@@ -44,8 +40,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-<<<<<<< HEAD
-=======
 
 # IDE
 .vscode/
@@ -56,4 +50,3 @@ next-env.d.ts
 .DS_Store
 Thumbs.db
  
->>>>>>> upright-fix
