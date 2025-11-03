@@ -50,23 +50,25 @@ const socialLinks = [
 ]
 
 const aboutLinks = [
-  { text: 'Company History', href: data.about.history },
-  { text: 'Our Mission', href: data.about.mission },
-  { text: 'Our Vision', href: data.about.vision },
-  { text: 'Core Values', href: data.about.values },
+  { text: 'About Us', href: '/about' },
+  { text: 'Our Services', href: '/#services' },
+  { text: 'Case Studies', href: '/blog' },
+  { text: 'Careers', href: '/careers' },
 ]
 
 const serviceLinks = [
-  { text: 'Education Solutions', href: data.services.education },
-  { text: 'Learning Management', href: data.services.lms },
-  { text: 'Maritime Training', href: data.services.maritime },
-  { text: 'IT Consulting', href: data.services.consulting },
+  { text: 'IT System Integration', href: '/services/it-system-integration' },
+  { text: 'Software Development', href: '/services/software-development' },
+  { text: 'Professional Services', href: '/services/professional-services' },
+  { text: 'Hardware Solutions', href: '/services/hardware-solutions' },
+  { text: 'Maritime Learning', href: '/services/maritime-learning' },
 ]
 
 const helpfulLinks = [
   { text: 'FAQs', href: '/faqs' },
-  { text: 'Support', href: data.help.support },
-  { text: 'Contact Us', href: data.help.contact, hasIndicator: true },
+  { text: 'Blog', href: '/blog' },
+  { text: 'Careers', href: '/careers' },
+  { text: 'Contact Us', href: '/contact', hasIndicator: true },
 ]
 
 const contactInfo = [

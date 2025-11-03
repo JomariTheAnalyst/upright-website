@@ -1,44 +1,52 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
 
 export function IntegrationHero() {
   const scrollToContact = () => {
-    window.location.href = "/#contact"
-  }
+    window.location.href = "/#contact";
+  };
 
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900">
       {/* Animated Background - Connecting Nodes */}
       <div className="absolute inset-0 overflow-hidden">
-        <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+        <svg
+          className="absolute inset-0 w-full h-full"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <defs>
-            <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+            <pattern
+              id="grid"
+              width="50"
+              height="50"
+              patternUnits="userSpaceOnUse"
+            >
               <circle cx="25" cy="25" r="1" fill="rgba(59, 130, 246, 0.3)" />
             </pattern>
           </defs>
           <rect width="100%" height="100%" fill="url(#grid)" />
-          
+
           {/* Animated connecting lines */}
           {[...Array(8)].map((_, i) => (
             <motion.line
               key={i}
               x1={`${(i * 15) % 100}%`}
               y1="0%"
-              x2={`${((i * 15) + 30) % 100}%`}
+              x2={`${(i * 15 + 30) % 100}%`}
               y2="100%"
               stroke="rgba(59, 130, 246, 0.2)"
               strokeWidth="1"
               initial={{ pathLength: 0, opacity: 0 }}
-              animate={{ 
+              animate={{
                 pathLength: [0, 1, 0],
-                opacity: [0, 0.5, 0]
+                opacity: [0, 0.5, 0],
               }}
               transition={{
                 duration: 3,
                 repeat: Infinity,
                 delay: i * 0.3,
-                ease: "easeInOut"
+                ease: "easeInOut",
               }}
             />
           ))}
@@ -58,7 +66,9 @@ export function IntegrationHero() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="inline-block mb-6 px-4 py-2 rounded-full bg-blue-500/20 border border-blue-400/30 backdrop-blur-sm"
           >
-            <span className="text-blue-300 font-semibold text-sm">IT System Integration</span>
+            <span className="text-blue-300 font-semibold text-sm">
+              IT System Integration
+            </span>
           </motion.div>
 
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
@@ -70,7 +80,8 @@ export function IntegrationHero() {
           </h1>
 
           <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-10 leading-relaxed">
-            Connecting technologies, platforms, and processes into one intelligent ecosystem.
+            Connecting technologies, platforms, and processes into one
+            intelligent ecosystem.
           </p>
 
           <motion.button
@@ -100,5 +111,5 @@ export function IntegrationHero() {
         </motion.div>
       </motion.div>
     </section>
-  )
+  );
 }

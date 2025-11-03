@@ -344,12 +344,14 @@ export function CaseStudiesSection({
           transition={{ delay: 0.4 }}
           className="text-center mt-12"
         >
-          <Button
-            size="lg"
-            className="bg-blue-600 hover:bg-blue-700 text-white px-10 py-6 text-lg font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
-          >
-            View All Articles
-          </Button>
+          <a href="/blog">
+            <Button
+              size="lg"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-10 py-6 text-lg font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+            >
+              View All Articles
+            </Button>
+          </a>
         </motion.div>
       </div>
     </section>

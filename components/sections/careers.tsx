@@ -70,12 +70,16 @@ export function CareersSection() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <button className="px-8 py-4 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold text-lg rounded-xl transition-all duration-300 hover:shadow-2xl hover:scale-105">
-                  Apply Now
-                </button>
-                <button className="px-8 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white font-semibold text-lg rounded-xl border-2 border-white/30 transition-all duration-300">
-                  View Open Positions
-                </button>
+                <a href="/careers">
+                  <button className="px-8 py-4 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold text-lg rounded-xl transition-all duration-300 hover:shadow-2xl hover:scale-105">
+                    Apply Now
+                  </button>
+                </a>
+                <a href="/careers">
+                  <button className="px-8 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white font-semibold text-lg rounded-xl border-2 border-white/30 transition-all duration-300">
+                    View Open Positions
+                  </button>
+                </a>
               </div>
             </motion.div>
           </div>

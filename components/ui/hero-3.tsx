@@ -10,16 +10,16 @@ interface AnimatedMarqueeHeroProps {
   title: React.ReactNode;
   description: string;
   ctaText: string;
-  images: string[];
+  images: Array<string | { image: string; title: string; subscribers: string }>;
   className?: string;
   onCtaClick?: () => void;
 }
 
 // Reusable Button component styled like in the image
-const ActionButton = ({ 
-  children, 
-  onClick 
-}: { 
+const ActionButton = ({
+  children,
+  onClick,
+}: {
   children: React.ReactNode;
   onClick?: () => void;
 }) => (
@@ -46,7 +46,11 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
   // Animation variants for the text content
   const FADE_IN_ANIMATION_VARIANTS = {
     hidden: { opacity: 0, y: 10 },
-    show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 100, damping: 20 } },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: { type: "spring" as const, stiffness: 100, damping: 20 },
+    },
   };
 
   // Duplicate images for a seamless loop
@@ -55,11 +59,11 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
   return (
     <section
       className={cn(
-        "relative w-full h-screen overflow-hidden bg-background flex flex-col items-center justify-center text-center px-4",
+        "relative w-full min-h-screen overflow-hidden flex flex-col items-start justify-center px-4 pt-24 pb-32 md:pb-40 max-w-7xl mx-auto",
         className
       )}
     >
-      <div className="z-10 flex flex-col items-center">
+      <div className="z-10 flex flex-col items-start">
         {/* Tagline */}
         <motion.div
           initial="hidden"
@@ -82,21 +86,19 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
               },
             },
           }}
-          className="text-5xl md:text-7xl font-bold tracking-tighter text-foreground"
+          className="text-5xl md:text-7xl font-bold tracking-tighter text-white drop-shadow-2xl text-left"
         >
-          {typeof title === 'string' ? (
-            title.split(" ").map((word, i) => (
-              <motion.span
-                key={i}
-                variants={FADE_IN_ANIMATION_VARIANTS}
-                className="inline-block"
-              >
-                {word}&nbsp;
-              </motion.span>
-            ))
-          ) : (
-            title
-          )}
+          {typeof title === "string"
+            ? title.split(" ").map((word, i) => (
+                <motion.span
+                  key={i}
+                  variants={FADE_IN_ANIMATION_VARIANTS}
+                  className="inline-block"
+                >
+                  {word}&nbsp;
+                </motion.span>
+              ))
+            : title}
         </motion.h1>
 
         {/* Description */}
@@ -105,7 +107,7 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
           animate="show"
           variants={FADE_IN_ANIMATION_VARIANTS}
           transition={{ delay: 0.5 }}
-          className="mt-6 max-w-xl text-lg text-muted-foreground"
+          className="mt-6 max-w-xl text-lg text-white/90 drop-shadow-lg text-left"
         >
           {description}
         </motion.p>
@@ -121,10 +123,10 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
         </motion.div>
       </div>
 
-      {/* Animated Image Marquee */}
-      <div className="absolute bottom-0 left-0 w-full h-1/3 md:h-2/5 [mask-image:linear-gradient(to_bottom,transparent,black_20%,black_80%,transparent)]">
+      {/* Animated Image Marquee - Positioned at bottom, overlapping next section */}
+      <div className="absolute -bottom-24 md:-bottom-32 left-0 right-0 w-full z-30 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]">
         <motion.div
-          className="flex gap-4"
+          className="flex gap-4 md:gap-6 items-center"
           animate={{
             x: ["-100%", "0%"],
             transition: {
@@ -134,21 +136,44 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
             },
           }}
         >
-          {duplicatedImages.map((src, index) => (
-            <div
-              key={index}
-              className="relative aspect-[3/4] h-48 md:h-64 flex-shrink-0"
-              style={{
-                rotate: `${(index % 2 === 0 ? -2 : 5)}deg`,
-              }}
-            >
-              <img
-                src={src}
-                alt={`Showcase image ${index + 1}`}
-                className="w-full h-full object-cover rounded-2xl shadow-md"
-              />
-            </div>
-          ))}
+          {duplicatedImages.map((item, index) => {
+            const data =
+              typeof item === "string"
+                ? { image: item, title: "", subscribers: "" }
+                : item;
+            return (
+              <div
+                key={index}
+                className="relative aspect-[3/4] h-56 md:h-72 flex-shrink-0 transform transition-transform hover:scale-105 overflow-hidden rounded-2xl shadow-2xl border-4 border-white/10"
+                style={{
+                  rotate: `${index % 2 === 0 ? -2 : 2}deg`,
+                }}
+              >
+                <img
+                  src={data.image}
+                  alt={data.title || `Showcase ${index + 1}`}
+                  className="w-full h-full object-cover"
+                />
+                {data.title && (
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-between p-4">
+                    <h3 className="text-white text-lg md:text-xl font-bold leading-tight drop-shadow-lg">
+                      {data.title}
+                    </h3>
+                    {data.subscribers && (
+                      <div className="text-white">
+                        <div className="text-2xl md:text-3xl font-bold drop-shadow-lg">
+                          {data.subscribers}
+                        </div>
+                        <div className="text-xs md:text-sm uppercase tracking-wider opacity-90">
+                          Clients
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </motion.div>
       </div>
     </section>

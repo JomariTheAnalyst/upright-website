@@ -242,3 +242,13 @@
     background: rgba(255, 255, 255, 0.2);
   }
 }
+/*
+ Prevent horizontal overflow on mobile */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+body {
+  position: relative;
+}

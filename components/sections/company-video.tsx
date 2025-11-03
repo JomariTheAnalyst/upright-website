@@ -5,7 +5,7 @@ import { HeroVideoDialog } from "@/components/ui/hero-video-dialog"
 
 export function CompanyVideoSection() {
   return (
-    <section className="py-20 px-6 bg-gradient-to-b from-background to-muted/20">
+    <section className="pt-32 md:pt-40 pb-20 px-6 bg-gradient-to-b from-background to-muted/20">
       <div className="container mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

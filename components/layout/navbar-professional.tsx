@@ -84,14 +84,14 @@ const menuItems: MenuItem[] = [
     ]
   },
   {
-    title: "Blogs",
-    url: "/blogs",
+    title: "Blog",
+    url: "/blog",
     icon: <Briefcase className="size-5 shrink-0" />,
     description: "Read our latest insights and updates"
   },
   {
     title: "Careers",
-    id: "careers",
+    url: "/careers",
     icon: <Briefcase className="size-5 shrink-0" />,
     description: "Join our team"
   },
@@ -107,7 +107,7 @@ const menuItems: MenuItem[] = [
       },
       {
         title: "Contact Us",
-        id: "contact",
+        url: "/contact",
         description: "Get in touch with our team"
       }
     ]
@@ -327,15 +327,16 @@ export function ProfessionalNavbar() {
           {/* Right Side Actions */}
           <div className="flex items-center gap-3">
             {/* Contact Button */}
-            <MovingButton
-              onClick={() => scrollToSection("contact")}
-              borderRadius="0.75rem"
-              className="bg-yellow-400 hover:bg-yellow-500 text-gray-900 border-yellow-500 transition-all duration-300 font-semibold"
-              containerClassName="h-9 w-28"
-              borderClassName="bg-[radial-gradient(var(--yellow-500)_40%,transparent_60%)]"
-            >
-              Contact Us
-            </MovingButton>
+            <Link href="/contact">
+              <MovingButton
+                borderRadius="0.75rem"
+                className="bg-yellow-400 hover:bg-yellow-500 text-gray-900 border-yellow-500 transition-all duration-300 font-semibold"
+                containerClassName="h-9 w-28"
+                borderClassName="bg-[radial-gradient(var(--yellow-500)_40%,transparent_60%)]"
+              >
+                Contact Us
+              </MovingButton>
+            </Link>
           </div>
         </nav>
 
@@ -380,12 +381,13 @@ export function ProfessionalNavbar() {
                   </Accordion>
 
                   <div className="flex flex-col gap-3 pt-4 border-t">
-                    <Button
-                      onClick={() => scrollToSection("contact")}
-                      className="w-full bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold"
-                    >
-                      Contact Us
-                    </Button>
+                    <Link href="/contact">
+                      <Button
+                        className="w-full bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold"
+                      >
+                        Contact Us
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               </SheetContent>
