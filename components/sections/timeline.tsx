@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { motion } from "motion/react"
-import { TextReveal } from "@/components/ui/text-reveal"
+import { motion } from "motion/react";
+import { TextRevealByWord } from "@/components/ui/text-reveal";
 
 const timelineContent = [
   {
@@ -46,7 +46,7 @@ const timelineContent = [
       </div>
     ),
   },
-]
+];
 
 export function TimelineSection() {
   return (
@@ -55,10 +55,14 @@ export function TimelineSection() {
       <div className="relative min-h-screen flex items-center justify-center py-20 bg-white dark:bg-gray-900">
         {/* Background Pattern */}
         <div className="absolute inset-0 z-0 opacity-30">
-          <div className="absolute inset-0" style={{
-            backgroundImage: 'radial-gradient(circle, rgba(59, 130, 246, 0.3) 2px, transparent 2px)',
-            backgroundSize: '30px 30px'
-          }} />
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage:
+                "radial-gradient(circle, rgba(59, 130, 246, 0.3) 2px, transparent 2px)",
+              backgroundSize: "30px 30px",
+            }}
+          />
         </div>
         <div className="relative container mx-auto px-4 sm:px-6 md:px-12 lg:px-16">
           <div className="max-w-5xl mx-auto text-center">
@@ -92,8 +96,10 @@ export function TimelineSection() {
               className="max-w-3xl mx-auto"
             >
               <p className="text-base sm:text-lg text-gray-500 dark:text-gray-500 leading-relaxed opacity-75">
-                Upright Systems Inc. is a Filipino technology company redefining how industries connect, integrate, and grow.
-                We deliver trusted, innovative IT solutions that transform complex operations into seamless, intelligent systems.
+                Upright Systems Inc. is a Filipino technology company redefining
+                how industries connect, integrate, and grow. We deliver trusted,
+                innovative IT solutions that transform complex operations into
+                seamless, intelligent systems.
               </p>
             </motion.div>
 
@@ -118,14 +124,15 @@ export function TimelineSection() {
                 Our Journey Through the Years
               </h2>
               <p className="text-base md:text-lg lg:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
-                Scroll to explore our evolution from a learning platform to an industry-leading IT solutions provider
+                Scroll to explore our evolution from a learning platform to an
+                industry-leading IT solutions provider
               </p>
             </div>
 
             {/* Timeline Items - Alternating Layout */}
             <div className="space-y-20">
               {timelineContent.map((item, index) => {
-                const isEven = index % 2 === 0
+                const isEven = index % 2 === 0;
 
                 return (
                   <motion.div
@@ -149,7 +156,7 @@ export function TimelineSection() {
                         <h3 className="text-xl md:text-2xl lg:text-3xl font-bold font-heading text-gray-900 dark:text-white mb-5">
                           {item.title}
                         </h3>
-                        <TextReveal
+                        <TextRevealByWord
                           text={item.description}
                           className="text-sm md:text-base lg:text-lg leading-relaxed text-justify"
                         />
@@ -175,12 +182,12 @@ export function TimelineSection() {
                       </motion.div>
                     </div>
                   </motion.div>
-                )
+                );
               })}
             </div>
           </div>
         </div>
       </div>
     </section>
-  )
+  );
 }

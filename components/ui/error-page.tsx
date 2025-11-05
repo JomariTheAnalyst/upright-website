@@ -1,30 +1,32 @@
-"use client"
+"use client";
 
-import React from 'react'
-import Link from 'next/link'
-import { motion } from 'motion/react'
-import { Home, ArrowLeft } from 'lucide-react'
+import React from "react";
+import Link from "next/link";
+import { motion } from "motion/react";
+import { Home, ArrowLeft } from "lucide-react";
 
 interface ErrorPageProps {
-  errorCode: number
-  title: string
-  message: string
-  imageSrc?: string
-  showBackButton?: boolean
+  errorCode: number;
+  title: string;
+  message: string;
+  imageSrc?: string;
+  showBackButton?: boolean;
 }
 
 export function ErrorPage({
   errorCode,
   title,
   message,
-  imageSrc = '/images/error-illustration.svg',
-  showBackButton = true
+  imageSrc = "/images/error-illustration.svg",
+  showBackButton = true,
 }: ErrorPageProps) {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-gray-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 px-4 sm:px-6 lg:px-8">
+    <div
+      className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8"
+      style={{ backgroundColor: "#faf8ed" }}
+    >
       <div className="max-w-6xl w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-          
           {/* Left Side - Text Content */}
           <motion.div
             className="text-center lg:text-left order-2 lg:order-1"
@@ -113,7 +115,7 @@ export function ErrorPage({
               transition={{
                 duration: 3,
                 repeat: Infinity,
-                ease: "easeInOut"
+                ease: "easeInOut",
               }}
             >
               {/* Fallback SVG Illustration */}
@@ -131,7 +133,7 @@ export function ErrorPage({
                   className="text-yellow-100 dark:text-yellow-900/30"
                   opacity="0.3"
                 />
-                
+
                 {/* Character Body */}
                 <ellipse
                   cx="250"
@@ -141,7 +143,7 @@ export function ErrorPage({
                   fill="currentColor"
                   className="text-yellow-400 dark:text-yellow-500"
                 />
-                
+
                 {/* Character Head */}
                 <circle
                   cx="250"
@@ -150,11 +152,23 @@ export function ErrorPage({
                   fill="currentColor"
                   className="text-yellow-400 dark:text-yellow-500"
                 />
-                
+
                 {/* Eyes */}
-                <circle cx="235" cy="195" r="8" fill="currentColor" className="text-gray-800 dark:text-gray-900" />
-                <circle cx="265" cy="195" r="8" fill="currentColor" className="text-gray-800 dark:text-gray-900" />
-                
+                <circle
+                  cx="235"
+                  cy="195"
+                  r="8"
+                  fill="currentColor"
+                  className="text-gray-800 dark:text-gray-900"
+                />
+                <circle
+                  cx="265"
+                  cy="195"
+                  r="8"
+                  fill="currentColor"
+                  className="text-gray-800 dark:text-gray-900"
+                />
+
                 {/* Sad Mouth */}
                 <path
                   d="M 230 220 Q 250 210 270 220"
@@ -164,7 +178,7 @@ export function ErrorPage({
                   strokeLinecap="round"
                   className="text-gray-800 dark:text-gray-900"
                 />
-                
+
                 {/* Arms */}
                 <ellipse
                   cx="180"
@@ -184,7 +198,7 @@ export function ErrorPage({
                   className="text-yellow-400 dark:text-yellow-500"
                   transform="rotate(30 320 300)"
                 />
-                
+
                 {/* Floating Question Marks */}
                 <motion.text
                   x="150"
@@ -214,5 +228,5 @@ export function ErrorPage({
         </div>
       </div>
     </div>
-  )
+  );
 }

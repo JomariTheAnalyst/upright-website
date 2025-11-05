@@ -1,11 +1,14 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { HeroVideoDialog } from "@/components/ui/hero-video-dialog"
+import { motion } from "framer-motion";
+import { HeroVideoDialog } from "@/components/ui/hero-video-dialog";
 
 export function CompanyVideoSection() {
   return (
-    <section className="pt-32 md:pt-40 pb-20 px-6 bg-gradient-to-b from-background to-muted/20">
+    <section
+      className="pt-32 md:pt-40 pb-20 px-6"
+      style={{ backgroundColor: "#fbf9ef" }}
+    >
       <div className="container mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -21,7 +24,8 @@ export function CompanyVideoSection() {
             </span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Discover how Upright Systems has been transforming businesses through innovative IT solutions since 2015
+            Discover how Upright Systems has been transforming businesses
+            through innovative IT solutions since 2015
           </p>
         </motion.div>
 
@@ -40,5 +44,5 @@ export function CompanyVideoSection() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }

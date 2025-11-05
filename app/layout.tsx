@@ -1,8 +1,14 @@
 import type { Metadata } from "next";
-import { Poppins, EB_Garamond, Merriweather, Playfair_Display } from "next/font/google";
+import {
+  Poppins,
+  EB_Garamond,
+  Merriweather,
+  Playfair_Display,
+} from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { PageTransitionProvider } from "@/components/providers/page-transition-provider";
+import Preloader from "@/components/preloader";
 
 // Playfair Display for hero display text (elegant alternative to Recoleta)
 const playfairDisplay = Playfair_Display({
@@ -38,8 +44,15 @@ const merriweather = Merriweather({
 
 export const metadata: Metadata = {
   title: "Upright Systems Inc. | IT Solutions & System Integration",
-  description: "Leading Philippine IT solutions provider specializing in system integration, software development, and professional services across multiple industries.",
-  keywords: ["IT solutions", "system integration", "software development", "Philippines", "IT consultancy"],
+  description:
+    "Leading Philippine IT solutions provider specializing in system integration, software development, and professional services across multiple industries.",
+  keywords: [
+    "IT solutions",
+    "system integration",
+    "software development",
+    "Philippines",
+    "IT consultancy",
+  ],
 };
 
 export default function RootLayout({
@@ -49,14 +62,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${playfairDisplay.variable} ${poppins.variable} ${ebGaramond.variable} ${merriweather.variable} font-body antialiased`}>
+      <body
+        className={`${playfairDisplay.variable} ${poppins.variable} ${ebGaramond.variable} ${merriweather.variable} font-body antialiased`}
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <Preloader>{children}</Preloader>
         </ThemeProvider>
       </body>
     </html>

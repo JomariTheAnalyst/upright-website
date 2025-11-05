@@ -1,224 +1,190 @@
-import {
-  Facebook,
-  Linkedin,
-  Mail,
-  MapPin,
-  Phone,
-  Twitter,
-  Globe,
-} from 'lucide-react'
-import Link from 'next/link'
-
-const data = {
-  facebookLink: 'https://facebook.com/uprightsystems',
-  linkedinLink: 'https://linkedin.com/company/upright-systems',
-  twitterLink: 'https://twitter.com/uprightsystems',
-  services: {
-    education: '#education',
-    lms: '#lms',
-    maritime: '#maritime',
-    consulting: '#consulting',
-  },
-  about: {
-    history: '#about',
-    mission: '#mission',
-    vision: '#vision',
-    values: '#values',
-  },
-  help: {
-    faqs: '#faqs',
-    support: '#support',
-    contact: '#contact',
-  },
-  contact: {
-    email: 'info@uprightsystems.com',
-    phone: '+63 (2) 8123-4567',
-    address: 'Metro Manila, Philippines',
-  },
-  company: {
-    name: 'Upright Systems Inc.',
-    description:
-      'Providing innovative IT solutions, educational platforms, and professional services since 2015. From online learning to enterprise systems, we deliver excellence across industries.',
-    logo: '/images/upright-logo.png',
-  },
-}
-
-const socialLinks = [
-  { icon: Facebook, label: 'Facebook', href: data.facebookLink },
-  { icon: Linkedin, label: 'LinkedIn', href: data.linkedinLink },
-  { icon: Twitter, label: 'Twitter', href: data.twitterLink },
-]
-
-const aboutLinks = [
-  { text: 'About Us', href: '/about' },
-  { text: 'Our Services', href: '/#services' },
-  { text: 'Case Studies', href: '/blog' },
-  { text: 'Careers', href: '/careers' },
-]
-
-const serviceLinks = [
-  { text: 'IT System Integration', href: '/services/it-system-integration' },
-  { text: 'Software Development', href: '/services/software-development' },
-  { text: 'Professional Services', href: '/services/professional-services' },
-  { text: 'Hardware Solutions', href: '/services/hardware-solutions' },
-  { text: 'Maritime Learning', href: '/services/maritime-learning' },
-]
-
-const helpfulLinks = [
-  { text: 'FAQs', href: '/faqs' },
-  { text: 'Blog', href: '/blog' },
-  { text: 'Careers', href: '/careers' },
-  { text: 'Contact Us', href: '/contact', hasIndicator: true },
-]
-
-const contactInfo = [
-  { icon: Mail, text: data.contact.email },
-  { icon: Phone, text: data.contact.phone },
-  { icon: MapPin, text: data.contact.address, isAddress: true },
-]
+import { Youtube, Linkedin, Instagram, Facebook } from "lucide-react";
+import Link from "next/link";
+import { FaTiktok } from "react-icons/fa";
 
 export function Footer() {
-  const currentYear = new Date().getFullYear()
+  const currentYear = new Date().getFullYear();
+
+  const footerLinks = {
+    column1: [
+      { text: "Homepage", href: "/" },
+      { text: "About Us", href: "/about" },
+      { text: "Our Services", href: "/#services" },
+      { text: "Case Studies", href: "/blog" },
+      { text: "Contact", href: "/contact" },
+    ],
+    column2: [
+      {
+        text: "IT System Integration",
+        href: "/services/it-system-integration",
+      },
+      { text: "Software Development", href: "/services/software-development" },
+      {
+        text: "Professional Services",
+        href: "/services/professional-services",
+      },
+      { text: "Hardware Solutions", href: "/services/hardware-solutions" },
+    ],
+    column3: [
+      { text: "Blog", href: "/blog" },
+      { text: "Careers", href: "/careers" },
+      { text: "Privacy Policy", href: "/privacy" },
+      { text: "Terms & Conditions", href: "/terms" },
+      { text: "FAQs", href: "/faqs" },
+    ],
+  };
 
   return (
-    <footer className="bg-gray-100 dark:bg-gray-900/50 mt-16 w-full rounded-t-xl">
-      <div className="mx-auto max-w-screen-xl px-4 pt-16 pb-6 sm:px-6 lg:px-8 lg:pt-24">
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+    <footer className="relative w-full overflow-hidden min-h-[750px] flex items-start">
+      {/* Gradient Background Image */}
+      <div className="absolute inset-0">
+        <img
+          src="/images/logo/gradientbottom.jpg"
+          alt=""
+          className="w-full h-full object-cover"
+        />
+      </div>
+
+      {/* Large Bottom Logo Watermark */}
+      <div className="absolute bottom-0 left-0 right-0 flex items-center justify-center pb-12 pointer-events-none">
+        <img
+          src="/images/logo/uprightrev.svg"
+          alt=""
+          className="w-full max-w-5xl h-auto object-contain opacity-80 brightness-0 invert"
+        />
+      </div>
+
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        {/* Top Section - Logo, Links, and Social Icons */}
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 mb-20">
+          {/* Logo */}
+          <div className="flex items-start">
+            <img
+              src="/images/logo/uprightlogorevised.png"
+              alt="Upright Systems"
+              className="h-14 w-auto"
+            />
+          </div>
+
+          {/* Column 1 */}
           <div>
-            <div className="flex justify-center items-center gap-2 sm:justify-start">
-              <img 
-                src="/images/logo/uprightlogoupdated.png" 
-                alt="Upright Logo" 
-                className="h-8 w-auto"
-              />
-              <img 
-                src="/images/logo/Upright Logo2.png" 
-                alt="Upright Systems Inc." 
-                className="h-7 w-auto"
-              />
-            </div>
-
-            <p className="mt-6 max-w-md text-center leading-relaxed text-gray-600 dark:text-gray-400 sm:max-w-xs sm:text-left font-body">
-              {data.company.description}
-            </p>
-
-            <ul className="mt-8 flex justify-center gap-6 sm:justify-start md:gap-8">
-              {socialLinks.map(({ icon: Icon, label, href }) => (
-                <li key={label}>
+            <ul className="space-y-3">
+              {footerLinks.column1.map((link) => (
+                <li key={link.text}>
                   <Link
-                    href={href}
-                    className="text-yellow-500 hover:text-yellow-600 dark:text-yellow-400 dark:hover:text-yellow-300 transition"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href={link.href}
+                    className="text-gray-700 hover:text-black transition-colors text-sm"
                   >
-                    <span className="sr-only">{label}</span>
-                    <Icon className="size-6" />
+                    {link.text}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4 lg:col-span-2">
-            <div className="text-center sm:text-left">
-              <p className="text-lg font-medium font-heading text-gray-900 dark:text-white">About Us</p>
-              <ul className="mt-8 space-y-4 text-sm">
-                {aboutLinks.map(({ text, href }) => (
-                  <li key={text}>
-                    <a
-                      className="text-gray-600 dark:text-gray-400 hover:text-yellow-500 dark:hover:text-yellow-400 transition font-ui"
-                      href={href}
-                    >
-                      {text}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          {/* Column 2 */}
+          <div>
+            <ul className="space-y-3">
+              {footerLinks.column2.map((link) => (
+                <li key={link.text}>
+                  <Link
+                    href={link.href}
+                    className="text-gray-700 hover:text-black transition-colors text-sm"
+                  >
+                    {link.text}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-            <div className="text-center sm:text-left">
-              <p className="text-lg font-medium font-heading text-gray-900 dark:text-white">Our Services</p>
-              <ul className="mt-8 space-y-4 text-sm">
-                {serviceLinks.map(({ text, href }) => (
-                  <li key={text}>
-                    <a
-                      className="text-gray-600 dark:text-gray-400 hover:text-yellow-500 dark:hover:text-yellow-400 transition font-ui"
-                      href={href}
-                    >
-                      {text}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          {/* Column 3 */}
+          <div>
+            <ul className="space-y-3">
+              {footerLinks.column3.map((link) => (
+                <li key={link.text}>
+                  <Link
+                    href={link.href}
+                    className="text-gray-700 hover:text-black transition-colors text-sm"
+                  >
+                    {link.text}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-            <div className="text-center sm:text-left">
-              <p className="text-lg font-medium font-heading text-gray-900 dark:text-white">Helpful Links</p>
-              <ul className="mt-8 space-y-4 text-sm">
-                {helpfulLinks.map(({ text, href, hasIndicator }) => (
-                  <li key={text}>
-                    <a
-                      href={href}
-                      className={`${
-                        hasIndicator
-                          ? 'group flex justify-center gap-1.5 sm:justify-start'
-                          : 'text-gray-600 dark:text-gray-400 hover:text-yellow-500 dark:hover:text-yellow-400 transition font-ui'
-                      }`}
-                    >
-                      <span className="text-gray-600 dark:text-gray-400 hover:text-yellow-500 dark:hover:text-yellow-400 transition font-ui">
-                        {text}
-                      </span>
-                      {hasIndicator && (
-                        <span className="relative flex size-2">
-                          <span className="bg-yellow-500 dark:bg-yellow-400 absolute inline-flex h-full w-full animate-ping rounded-full opacity-75" />
-                          <span className="bg-yellow-500 dark:bg-yellow-400 relative inline-flex size-2 rounded-full" />
-                        </span>
-                      )}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="text-center sm:text-left">
-              <p className="text-lg font-medium font-heading text-gray-900 dark:text-white">Contact Us</p>
-              <ul className="mt-8 space-y-4 text-sm">
-                {contactInfo.map(({ icon: Icon, text, isAddress }) => (
-                  <li key={text}>
-                    <a
-                      className="flex items-center justify-center gap-1.5 sm:justify-start"
-                      href="#"
-                    >
-                      <Icon className="text-yellow-500 dark:text-yellow-400 size-5 shrink-0" />
-                      {isAddress ? (
-                        <address className="text-gray-600 dark:text-gray-400 -mt-0.5 flex-1 not-italic transition font-ui">
-                          {text}
-                        </address>
-                      ) : (
-                        <span className="text-gray-600 dark:text-gray-400 flex-1 transition font-ui">
-                          {text}
-                        </span>
-                      )}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          {/* Social Icons Grid - 2x3 */}
+          <div className="grid grid-cols-3 gap-4 lg:justify-self-end">
+            <Link
+              href="https://youtube.com/@uprightsystems"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center w-10 h-10 text-gray-700 hover:text-black transition-colors"
+              aria-label="YouTube"
+            >
+              <Youtube className="w-5 h-5" />
+            </Link>
+            <Link
+              href="https://linkedin.com/company/upright-systems"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center w-10 h-10 text-gray-700 hover:text-black transition-colors"
+              aria-label="LinkedIn"
+            >
+              <Linkedin className="w-5 h-5" />
+            </Link>
+            <Link
+              href="https://instagram.com/uprightsystems"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center w-10 h-10 text-gray-700 hover:text-black transition-colors"
+              aria-label="Instagram"
+            >
+              <Instagram className="w-5 h-5" />
+            </Link>
+            <Link
+              href="https://facebook.com/uprightsystems"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center w-10 h-10 text-gray-700 hover:text-black transition-colors"
+              aria-label="Facebook"
+            >
+              <Facebook className="w-5 h-5" />
+            </Link>
+            <Link
+              href="https://tiktok.com/@uprightsystems"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center w-10 h-10 text-gray-700 hover:text-black transition-colors"
+              aria-label="TikTok"
+            >
+              <FaTiktok className="w-5 h-5" />
+            </Link>
+            <Link
+              href="https://twitter.com/uprightsystems"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center w-10 h-10 text-gray-700 hover:text-black transition-colors"
+              aria-label="X (Twitter)"
+            >
+              <svg
+                className="w-5 h-5"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+              </svg>
+            </Link>
           </div>
         </div>
 
-        <div className="mt-12 border-t border-gray-300 dark:border-gray-700 pt-6">
-          <div className="text-center sm:flex sm:justify-between sm:text-left">
-            <p className="text-sm text-gray-600 dark:text-gray-400 font-ui">
-              <span className="block sm:inline">Empowering businesses through innovative technology.</span>
-            </p>
-
-            <p className="text-gray-600 dark:text-gray-400 mt-4 text-sm transition sm:order-first sm:mt-0 font-ui">
-              &copy; {currentYear} {data.company.name}. All rights reserved.
-            </p>
-          </div>
+        {/* Copyright */}
+        <div className="text-sm text-gray-600">
+          © Upright Solutions and Systems. {currentYear}
         </div>
       </div>
     </footer>
-  )
+  );
 }

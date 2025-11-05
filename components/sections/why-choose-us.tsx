@@ -1,176 +1,181 @@
-"use client"
+"use client";
 
-import { motion } from "motion/react"
+import { motion } from "motion/react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useState, useRef } from "react";
+
+// Helper to render text with bold emphasis
+function BoldText({ children }: { children: string }) {
+  const parts = children.split(/(\*\*.*?\*\*)/g);
+  return (
+    <>
+      {parts.map((part, i) => {
+        if (part.startsWith("**") && part.endsWith("**")) {
+          return (
+            <strong key={i} className="font-bold text-black">
+              {part.slice(2, -2)}
+            </strong>
+          );
+        }
+        return <span key={i}>{part}</span>;
+      })}
+    </>
+  );
+}
 
 const features = [
   {
     id: 1,
-    title: "10+ Years",
-    description: "Proven IT expertise",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=2088&auto=format&fit=crop",
-    delay: 0.1
+    title: "From idea to system, in minutes.",
+    description:
+      "Upright's **streamlined process** helps businesses **design, build, and deploy** IT solutions quickly **without compromising quality**.",
+    image:
+      "https://images.unsplash.com/photo-1551650975-87deedd944c3?q=80&w=2074&auto=format&fit=crop",
   },
   {
     id: 2,
-    title: "End-to-End Solutions",
-    description: "Design to deployment",
-    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2034&auto=format&fit=crop",
-    delay: 0.2
+    title: "Modern by design.",
+    description:
+      "We replace **outdated systems** with **secure, scalable, and user-focused solutions** tailored to your business.",
+    image:
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop",
   },
   {
     id: 3,
-    title: "Innovation Driven",
-    description: "Powering the future",
-    image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2070&auto=format&fit=crop",
-    delay: 0.3
+    title: "Automate what slows you down.",
+    description:
+      "Upright builds **smart integrations and workflows** that **eliminate repetitive tasks** and boost efficiency.",
+    image:
+      "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=2070&auto=format&fit=crop",
   },
   {
     id: 4,
-    title: "24/7 Support",
-    description: "Always-on assistance",
-    image: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2032&auto=format&fit=crop",
-    delay: 0.4
+    title: "Connect and manage data with ease.",
+    description:
+      "**Integrate multiple platforms** and data sources through Upright's **seamless system architecture**.",
+    image:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop",
   },
   {
     id: 5,
-    title: "Client-Focused",
-    description: "Your success, our goal",
-    image: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=2087&auto=format&fit=crop",
-    delay: 0.5
+    title: "AI-powered solutions that deliver.",
+    description:
+      "Leverage **artificial intelligence** to automate complex tasks, **analyze data**, and make **smarter business decisions**.",
+    image:
+      "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=2070&auto=format&fit=crop",
   },
   {
     id: 6,
-    title: "Built on Trust",
-    description: "Integrity & collaboration",
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop",
-    delay: 0.6
-  }
-]
+    title: "Enterprise-grade security.",
+    description:
+      "Built with **security at its core**. Your data is protected with **industry-leading encryption** and compliance standards.",
+    image:
+      "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=2070&auto=format&fit=crop",
+  },
+];
 
 export function WhyChooseUs() {
+  const scrollContainerRef = useRef<HTMLDivElement | null>(null);
+
+  const scroll = (direction: "left" | "right") => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    // Get the width of one item plus gap
+    const itemWidth = container.scrollWidth / features.length;
+    const scrollAmount = itemWidth * 1; // Scroll exactly one item
+
+    if (direction === "right") {
+      container.scrollBy({
+        left: scrollAmount,
+        behavior: "smooth",
+      });
+    } else {
+      container.scrollBy({
+        left: -scrollAmount,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
-    <section className="relative py-16 md:py-24 bg-white dark:bg-gray-900">
-      <div className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-16 max-w-7xl">
-        {/* Header */}
-        <div className="text-center mb-16">
+    <section className="py-20 md:py-28" style={{ backgroundColor: "#fbf9ef" }}>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1600px]">
+        {/* Header with Navigation */}
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-16 gap-6">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-gray-900 dark:text-white mb-4"
+            className="text-4xl md:text-5xl lg:text-6xl font-black text-black max-w-3xl leading-tight"
           >
-            Built on Vision. Driven by People. Powered by Technology.
+            Upright is built for businesses that never stop growing
           </motion.h2>
-          {/* Hand-drawn swoosh underline - 2 lines */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="flex justify-center mt-3"
-          >
-            <svg
-              width="900"
-              height="60"
-              viewBox="0 0 900 60"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-full max-w-4xl"
+
+          {/* Navigation Arrows */}
+          <div className="flex gap-2 shrink-0">
+            <button
+              onClick={() => scroll("left")}
+              className="rounded-full border-2 border-black bg-transparent hover:bg-black hover:text-white text-black h-14 w-14 flex items-center justify-center transition-all duration-300 shadow-lg hover:shadow-xl"
+              aria-label="Previous"
             >
-              {/* Top swoosh line */}
-              <motion.path
-                d="M 50 20 Q 200 12 350 18 Q 500 24 650 15 Q 750 10 850 18"
-                stroke="#000000"
-                strokeWidth="4"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                initial={{ pathLength: 0, opacity: 0 }}
-                whileInView={{ pathLength: 1, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1.0, delay: 0.3, ease: "easeInOut" }}
-              />
-              
-              {/* Bottom swoosh line */}
-              <motion.path
-                d="M 30 38 Q 180 45 330 40 Q 480 35 630 42 Q 730 48 850 40"
-                stroke="#000000"
-                strokeWidth="4"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                initial={{ pathLength: 0, opacity: 0 }}
-                whileInView={{ pathLength: 1, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1.0, delay: 0.5, ease: "easeInOut" }}
-              />
-            </svg>
-          </motion.div>
+              <ChevronLeft className="h-6 w-6" />
+            </button>
+            <button
+              onClick={() => scroll("right")}
+              className="rounded-full border-2 border-black bg-transparent hover:bg-black hover:text-white text-black h-14 w-14 flex items-center justify-center transition-all duration-300 shadow-lg hover:shadow-xl"
+              aria-label="Next"
+            >
+              <ChevronRight className="h-6 w-6" />
+            </button>
+          </div>
         </div>
 
-        {/* Compact 2x3 Grid - No Spacing */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0">
-          {features.map((feature, index) => {
-            // Determine which corners need radius
-            const isTopLeft = index === 0
-            const isTopRight = index === 2
-            const isBottomLeft = index === 3
-            const isBottomRight = index === 5
-            
-            let cornerClass = ""
-            if (isTopLeft) cornerClass = "rounded-tl-3xl"
-            else if (isTopRight) cornerClass = "rounded-tr-3xl"
-            else if (isBottomLeft) cornerClass = "rounded-bl-3xl"
-            else if (isBottomRight) cornerClass = "rounded-br-3xl"
-            
-            return (
-              <motion.div
-                key={feature.id}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ 
-                  duration: 0.6, 
-                  delay: feature.delay,
-                  ease: "easeOut"
-                }}
-                className={`group relative overflow-hidden ${cornerClass}`}
-              >
-              {/* Background Image - Taller */}
-              <div className="relative h-[450px] md:h-[500px]">
-                <motion.img
+        {/* Horizontal Scrollable Row - 4 Items Visible */}
+        <div
+          ref={scrollContainerRef}
+          className="flex gap-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory pb-4"
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        >
+          {features.map((feature, index) => (
+            <motion.div
+              key={feature.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className="flex-none w-[calc(100%-2rem)] md:w-[calc(50%-1rem)] lg:w-[calc(25%-1.125rem)] snap-start group"
+            >
+              {/* Large Dominant Image */}
+              <div className="relative h-[400px] md:h-[450px] lg:h-[500px] rounded-2xl overflow-hidden mb-6 shadow-xl hover:shadow-2xl transition-all duration-500">
+                <img
                   src={feature.image}
                   alt={feature.title}
-                  className="absolute inset-0 w-full h-full object-cover"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.6, ease: "easeOut" }}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
-                
-                {/* Subtle Dark Gradient for Text Readability */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-                
-                {/* Content - Smaller Text */}
-                <div className="absolute inset-0 flex flex-col justify-end p-4 md:p-6">
-                  <motion.div
-                    initial={{ y: 20, opacity: 0 }}
-                    whileInView={{ y: 0, opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: feature.delay + 0.2, duration: 0.5 }}
-                  >
-                    <h3 className="text-xl md:text-2xl font-bold text-white mb-1">
-                      {feature.title}
-                    </h3>
-                    <p className="text-xs md:text-sm text-gray-200">
-                      {feature.description}
-                    </p>
-                  </motion.div>
-                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              </div>
+
+              {/* Text Below - No Card Background */}
+              <div className="space-y-3 px-2">
+                <h3 className="text-xl md:text-2xl font-bold text-black leading-tight">
+                  {feature.title}
+                </h3>
+                <p className="text-gray-700 leading-relaxed text-base">
+                  <BoldText>{feature.description}</BoldText>
+                </p>
               </div>
             </motion.div>
-            )
-          })}
+          ))}
         </div>
       </div>
+
+      <style jsx>{`
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+      `}</style>
     </section>
-  )
+  );
 }

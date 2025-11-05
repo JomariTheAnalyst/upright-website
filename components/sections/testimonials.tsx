@@ -1,93 +1,105 @@
-"use client"
+"use client";
 
-import React from "react"
-import { motion } from "motion/react"
+import React from "react";
+import { motion } from "motion/react";
 
 const testimonials = [
   {
     text: "Upright Systems transformed our banking infrastructure with their innovative solutions. Their expertise and dedication exceeded expectations.",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop",
     name: "Maria Santos",
-    role: "CTO, BDO Unibank"
+    role: "CTO, BDO Unibank",
   },
   {
     text: "The maritime training platform revolutionized how we train our crew. It's intuitive, powerful, and significantly improved our outcomes.",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop",
     name: "Captain Roberto Cruz",
-    role: "Training Director, Magsaysay Maritime"
+    role: "Training Director, Magsaysay Maritime",
   },
   {
     text: "Their cybersecurity solutions gave us peace of mind. Professional, responsive, and truly understands enterprise security needs.",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&auto=format&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&auto=format&fit=crop",
     name: "Jennifer Reyes",
-    role: "IT Director, DICT Philippines"
+    role: "IT Director, DICT Philippines",
   },
   {
     text: "Working with Upright Systems was a game-changer for our digital transformation. Delivered on time and exceeded quality expectations.",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200&auto=format&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200&auto=format&fit=crop",
     name: "Michael Tan",
-    role: "VP Technology, Ayala Corporation"
-  }
-]
+    role: "VP Technology, Ayala Corporation",
+  },
+];
 
 const testimonials2 = [
   {
     text: "The cloud migration project was seamless. We saw immediate improvements in performance and significant cost savings.",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200&auto=format&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200&auto=format&fit=crop",
     name: "Angela Lopez",
-    role: "Operations Manager, PLDT"
+    role: "Operations Manager, PLDT",
   },
   {
     text: "Their healthcare EHR system transformed patient care at our hospital network. Implementation was smooth and support outstanding.",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop",
     name: "Dr. Ramon Garcia",
-    role: "Medical Director, St. Luke's Medical Center"
+    role: "Medical Director, St. Luke's Medical Center",
   },
   {
     text: "Upright Systems doesn't just deliver technology—they deliver solutions that drive real business value. Highly recommended!",
-    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop",
     name: "Sofia Mendoza",
-    role: "VP Technology, SM Retail"
+    role: "VP Technology, SM Retail",
   },
   {
     text: "Their commitment to community through scholarship programs shows they're more than a tech company—they're making a real difference.",
-    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=200&auto=format&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=200&auto=format&fit=crop",
     name: "Carlos Villanueva",
-    role: "Dean, Ateneo de Manila University"
-  }
-]
+    role: "Dean, Ateneo de Manila University",
+  },
+];
 
 const testimonials3 = [
   {
     text: "Their green technology initiative aligns perfectly with our sustainability goals. A forward-thinking partner.",
-    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop",
     name: "Patricia Ramos",
-    role: "Sustainability Officer, San Miguel Corporation"
+    role: "Sustainability Officer, San Miguel Corporation",
   },
   {
     text: "The AI-powered solutions they developed have given us a competitive edge. Their innovation is world-class.",
-    image: "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?q=80&w=200&auto=format&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?q=80&w=200&auto=format&fit=crop",
     name: "David Chen",
-    role: "Innovation Lead, Jollibee Foods Corporation"
+    role: "Innovation Lead, Jollibee Foods Corporation",
   },
   {
     text: "From consultation to deployment, Upright Systems demonstrated exceptional professionalism and technical expertise.",
-    image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=200&auto=format&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=200&auto=format&fit=crop",
     name: "Isabel Torres",
-    role: "Project Manager, GCash"
+    role: "Project Manager, GCash",
   },
   {
     text: "Their 24/7 support team is incredible. Any issue we've had was resolved quickly and professionally. True partners in success.",
-    image: "https://images.unsplash.com/photo-1463453091185-61582044d556?q=80&w=200&auto=format&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1463453091185-61582044d556?q=80&w=200&auto=format&fit=crop",
     name: "Mark Johnson",
-    role: "CIO, Shangri-La Hotels"
-  }
-]
+    role: "CIO, Shangri-La Hotels",
+  },
+];
 
 const TestimonialsColumn = (props: {
-  className?: string
-  testimonials: typeof testimonials
-  duration?: number
+  className?: string;
+  testimonials: typeof testimonials;
+  duration?: number;
 }) => {
   return (
     <div className={props.className}>
@@ -138,12 +150,15 @@ const TestimonialsColumn = (props: {
         ]}
       </motion.div>
     </div>
-  )
-}
+  );
+};
 
 export function TestimonialsSection() {
   return (
-    <section className="py-16 md:py-20 bg-white dark:bg-gray-900 overflow-hidden">
+    <section
+      className="py-16 md:py-20 overflow-hidden"
+      style={{ backgroundColor: "#fbf9ef" }}
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 mb-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -174,5 +189,5 @@ export function TestimonialsSection() {
         />
       </div>
     </section>
-  )
+  );
 }

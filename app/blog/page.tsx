@@ -3,13 +3,15 @@ import { ProfessionalNavbar } from "@/components/layout/navbar-professional";
 import { Footer } from "@/components/layout/footer";
 
 export const metadata = {
-  title: "Blog Demo - Upright Systems Inc.",
-  description: "Demo of the new blog section component",
+  title: "Blogs - Upright",
 };
 
 export default function BlogDemoPage() {
   return (
-    <div className="relative min-h-screen bg-white dark:bg-gray-900">
+    <div
+      className="relative min-h-screen"
+      style={{ backgroundColor: "#faf8ed" }}
+    >
       <ProfessionalNavbar />
       <main className="pt-24 pb-16">
         <BlogSection />

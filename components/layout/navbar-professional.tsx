@@ -1,18 +1,18 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import Link from "next/link"
-import { Menu, Building2, Briefcase, Mail, Home } from "lucide-react"
-import { motion } from "framer-motion"
-import { Button as MovingButton } from "@/components/ui/moving-border"
-import { Button } from "@/components/ui/button"
-import { SmoothLink } from "@/components/ui/smooth-link"
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { Menu, Building2, Briefcase, Mail, Home } from "lucide-react";
+import { motion } from "framer-motion";
+import { Button as MovingButton } from "@/components/ui/moving-border";
+import { Button } from "@/components/ui/button";
+import { SmoothLink } from "@/components/ui/smooth-link";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion"
+} from "@/components/ui/accordion";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -20,80 +20,53 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu"
+} from "@/components/ui/navigation-menu";
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet"
-
+} from "@/components/ui/sheet";
 
 interface MenuItem {
-  title: string
-  url?: string
-  id?: string
-  description?: string
-  icon?: React.ReactNode
-  items?: MenuItem[]
+  title: string;
+  url?: string;
+  id?: string;
+  description?: string;
+  icon?: React.ReactNode;
+  items?: MenuItem[];
 }
 
 const menuItems: MenuItem[] = [
   {
     title: "Home",
     url: "/",
-    icon: <Home className="size-5 shrink-0" />
+    icon: <Home className="size-5 shrink-0" />,
   },
   {
     title: "About",
     url: "/about",
     icon: <Building2 className="size-5 shrink-0" />,
-    description: "Learn about our company history and mission"
+    description: "Learn about our company history and mission",
   },
   {
     title: "Services",
+    url: "/services",
     icon: <Briefcase className="size-5 shrink-0" />,
     description: "Explore our IT solutions and services",
-    items: [
-      {
-        title: "IT System Integration",
-        url: "/services/it-system-integration",
-        description: "Enterprise-grade system integration solutions"
-      },
-      {
-        title: "Software Development",
-        url: "/services/software-development",
-        description: "Custom software and application development"
-      },
-      {
-        title: "Professional Services",
-        url: "/services/professional-services",
-        description: "IT consulting and professional expertise"
-      },
-      {
-        title: "Hardware Solutions",
-        url: "/services/hardware-solutions",
-        description: "Hardware procurement and deployment"
-      },
-      {
-        title: "Maritime Learning",
-        url: "/services/maritime-learning",
-        description: "Online maritime training and certification"
-      }
-    ]
   },
   {
     title: "Blog",
     url: "/blog",
     icon: <Briefcase className="size-5 shrink-0" />,
-    description: "Read our latest insights and updates"
+    description: "Read our latest insights and updates",
   },
   {
     title: "Careers",
     url: "/careers",
     icon: <Briefcase className="size-5 shrink-0" />,
-    description: "Join our team"
+    description: "Join our team",
   },
   {
     title: "Support",
@@ -103,55 +76,72 @@ const menuItems: MenuItem[] = [
       {
         title: "FAQs",
         url: "/faqs",
-        description: "Frequently asked questions"
+        description: "Frequently asked questions",
       },
       {
         title: "Contact Us",
         url: "/contact",
-        description: "Get in touch with our team"
-      }
-    ]
+        description: "Get in touch with our team",
+      },
+    ],
   },
-]
+];
 
 export function ProfessionalNavbar() {
-  const [scrolled, setScrolled] = useState(false)
+  const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20)
-    }
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+      const currentScrollY = window.scrollY;
+
+      setScrolled(currentScrollY > 20);
+
+      // Hide navbar when scrolling down, show when scrolling up
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setHidden(true);
+      } else {
+        setHidden(false);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
 
   const scrollToSection = (id: string) => {
-    const element = document.getElementById(id)
+    const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
+      element.scrollIntoView({ behavior: "smooth" });
     }
-  }
+  };
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" })
-  }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     // Check if we're on the home page
     if (window.location.pathname === "/") {
-      e.preventDefault()
-      scrollToTop()
+      e.preventDefault();
+      scrollToTop();
     }
     // Otherwise, let the Link component handle navigation
-  }
+  };
 
-  const handleHomeClick = (e: React.MouseEvent<HTMLAnchorElement>, url?: string) => {
+  const handleHomeClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    url?: string
+  ) => {
     // Check if clicking home button while on home page
     if (url === "/" && window.location.pathname === "/") {
-      e.preventDefault()
-      scrollToTop()
+      e.preventDefault();
+      scrollToTop();
     }
-  }
+  };
 
   const renderMenuItem = (item: MenuItem) => {
     // Dropdown menu with sub-items
@@ -167,12 +157,14 @@ export function ProfessionalNavbar() {
                 <li key={subItem.title}>
                   {subItem.url ? (
                     <NavigationMenuLink asChild>
-                      <SmoothLink 
+                      <SmoothLink
                         href={subItem.url}
-                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-yellow-200 hover:text-black focus:bg-gray-200 focus:text-black"
                       >
-                        <div className="text-sm font-medium leading-none">{subItem.title}</div>
-                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                        <div className="text-sm font-medium leading-none text-gray-900">
+                          {subItem.title}
+                        </div>
+                        <p className="line-clamp-2 text-sm leading-snug text-gray-600">
                           {subItem.description}
                         </p>
                       </SmoothLink>
@@ -181,10 +173,12 @@ export function ProfessionalNavbar() {
                     <NavigationMenuLink asChild>
                       <button
                         onClick={() => scrollToSection(subItem.id!)}
-                        className="block w-full text-left select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                        className="block w-full text-left select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-yellow-200 hover:text-black focus:bg-gray-200 focus:text-black"
                       >
-                        <div className="text-sm font-medium leading-none">{subItem.title}</div>
-                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                        <div className="text-sm font-medium leading-none text-gray-900">
+                          {subItem.title}
+                        </div>
+                        <p className="line-clamp-2 text-sm leading-snug text-gray-600">
                           {subItem.description}
                         </p>
                       </button>
@@ -195,7 +189,7 @@ export function ProfessionalNavbar() {
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
-      )
+      );
     }
 
     // Regular link
@@ -203,16 +197,16 @@ export function ProfessionalNavbar() {
       return (
         <NavigationMenuItem key={item.title}>
           <NavigationMenuLink asChild>
-            <SmoothLink 
+            <SmoothLink
               href={item.url}
               onClick={(e) => handleHomeClick(e, item.url)}
-              className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
+              className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-transparent px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-200 hover:text-black"
             >
               {item.title}
             </SmoothLink>
           </NavigationMenuLink>
         </NavigationMenuItem>
-      )
+      );
     }
 
     // Scroll to section button
@@ -221,16 +215,16 @@ export function ProfessionalNavbar() {
         <NavigationMenuItem key={item.title}>
           <button
             onClick={() => scrollToSection(item.id!)}
-            className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
+            className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-transparent px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-200 hover:text-black"
           >
             {item.title}
           </button>
         </NavigationMenuItem>
-      )
+      );
     }
 
-    return null
-  }
+    return null;
+  };
 
   const renderMobileMenuItem = (item: MenuItem) => {
     // Dropdown with sub-items
@@ -247,7 +241,9 @@ export function ProfessionalNavbar() {
                   {subItem.url ? (
                     <SmoothLink href={subItem.url} className="block py-2">
                       <div className="font-medium text-sm">{subItem.title}</div>
-                      <div className="text-xs text-muted-foreground">{subItem.description}</div>
+                      <div className="text-xs text-muted-foreground">
+                        {subItem.description}
+                      </div>
                     </SmoothLink>
                   ) : subItem.id ? (
                     <button
@@ -255,7 +251,9 @@ export function ProfessionalNavbar() {
                       className="block w-full text-left py-2"
                     >
                       <div className="font-medium text-sm">{subItem.title}</div>
-                      <div className="text-xs text-muted-foreground">{subItem.description}</div>
+                      <div className="text-xs text-muted-foreground">
+                        {subItem.description}
+                      </div>
                     </button>
                   ) : null}
                 </div>
@@ -263,21 +261,21 @@ export function ProfessionalNavbar() {
             </div>
           </AccordionContent>
         </AccordionItem>
-      )
+      );
     }
 
     // Regular link
     if (item.url) {
       return (
-        <SmoothLink 
-          key={item.title} 
-          href={item.url} 
+        <SmoothLink
+          key={item.title}
+          href={item.url}
           onClick={(e) => handleHomeClick(e, item.url)}
           className="font-semibold"
         >
           {item.title}
         </SmoothLink>
-      )
+      );
     }
 
     // Scroll to section button
@@ -290,24 +288,29 @@ export function ProfessionalNavbar() {
         >
           {item.title}
         </button>
-      )
+      );
     }
 
-    return null
-  }
+    return null;
+  };
 
   return (
     <motion.section
       initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="fixed top-0 left-0 right-0 z-50 py-2 bg-white dark:bg-gray-900 shadow-md border-b border-gray-200 dark:border-gray-700 transition-all duration-500"
+      animate={{ y: hidden ? -100 : 0 }}
+      transition={{ duration: 0.3, ease: "easeInOut" }}
+      className="fixed top-0 left-0 right-0 z-50 py-2 shadow-md border-b border-gray-200 dark:border-gray-700"
+      style={{ backgroundColor: "#faf8ed" }}
     >
       <div className="container mx-auto px-6">
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex justify-between items-center">
           {/* Logo - Left */}
-          <Link href="/" onClick={handleLogoClick} className="flex items-center">
+          <Link
+            href="/"
+            onClick={handleLogoClick}
+            className="flex items-center"
+          >
             <img
               src="/images/logo/Upright Logo2.png"
               alt="Upright Systems Inc."
@@ -343,7 +346,11 @@ export function ProfessionalNavbar() {
         {/* Mobile Navigation */}
         <div className="flex lg:hidden items-center justify-between">
           {/* Logo */}
-          <Link href="/" onClick={handleLogoClick} className="flex items-center">
+          <Link
+            href="/"
+            onClick={handleLogoClick}
+            className="flex items-center"
+          >
             <img
               src="/images/logo/Upright Logo2.png"
               alt="Upright Systems Inc."
@@ -362,7 +369,11 @@ export function ProfessionalNavbar() {
               <SheetContent className="overflow-y-auto">
                 <SheetHeader>
                   <SheetTitle>
-                    <Link href="/" onClick={handleLogoClick} className="flex items-center">
+                    <Link
+                      href="/"
+                      onClick={handleLogoClick}
+                      className="flex items-center"
+                    >
                       <img
                         src="/images/logo/Upright Logo2.png"
                         alt="Upright Systems Inc."
@@ -382,9 +393,7 @@ export function ProfessionalNavbar() {
 
                   <div className="flex flex-col gap-3 pt-4 border-t">
                     <Link href="/contact">
-                      <Button
-                        className="w-full bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold"
-                      >
+                      <Button className="w-full bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold">
                         Contact Us
                       </Button>
                     </Link>
@@ -396,5 +405,5 @@ export function ProfessionalNavbar() {
         </div>
       </div>
     </motion.section>
-  )
+  );
 }

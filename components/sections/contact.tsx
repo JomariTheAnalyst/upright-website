@@ -1,17 +1,17 @@
-"use client"
+"use client";
 
-import React from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Label } from "@/components/ui/label"
+import React from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
 
 interface ContactSectionProps {
-  title?: string
-  mainMessage?: string
-  contactEmail?: string
-  backgroundImageSrc?: string
-  onSubmit?: (data: any) => void
+  title?: string;
+  mainMessage?: string;
+  contactEmail?: string;
+  backgroundImageSrc?: string;
+  onSubmit?: (data: any) => void;
 }
 
 export function ContactSection({
@@ -27,21 +27,26 @@ export function ContactSection({
     company: "",
     phone: "",
     message: "",
-  })
+  });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    onSubmit?.(formData)
-    console.log("Form submitted:", formData)
-  }
+    e.preventDefault();
+    onSubmit?.(formData);
+    console.log("Form submitted:", formData);
+  };
 
   return (
-    <section className="relative min-h-screen w-full overflow-hidden bg-white dark:bg-gray-900">
+    <section
+      className="relative min-h-screen w-full overflow-hidden"
+      style={{ backgroundColor: "#faf8ed" }}
+    >
       <div
         className="absolute inset-0 bg-cover bg-center transition-all duration-500 ease-in-out opacity-5"
         style={{ backgroundImage: `url(${backgroundImageSrc})` }}
@@ -72,92 +77,115 @@ export function ContactSection({
                 {title}
               </h1>
               <p className="text-xl text-muted-foreground max-w-lg leading-relaxed">
-                Upright Systems Inc. has been delivering enterprise-scale IT solutions since 2015. 
-                Let us help transform your business with cutting-edge technology.
+                Upright Systems Inc. has been delivering enterprise-scale IT
+                solutions since 2015. Let us help transform your business with
+                cutting-edge technology.
               </p>
             </div>
-            
+
             <div className="space-y-6 pt-8">
               <div className="space-y-2">
-                <p className="text-sm text-muted-foreground uppercase tracking-wider">Email</p>
-                <a 
-                  href={`mailto:${contactEmail}`} 
+                <p className="text-sm text-muted-foreground uppercase tracking-wider">
+                  Email
+                </p>
+                <a
+                  href={`mailto:${contactEmail}`}
                   className="text-2xl text-foreground hover:text-yellow-600 dark:hover:text-yellow-400 transition-colors font-medium"
                 >
                   {contactEmail}
                 </a>
               </div>
-              
+
               <div className="space-y-2">
-                <p className="text-sm text-muted-foreground uppercase tracking-wider">Phone</p>
-                <p className="text-2xl text-foreground font-medium">+63 XXX XXX XXXX</p>
+                <p className="text-sm text-muted-foreground uppercase tracking-wider">
+                  Phone
+                </p>
+                <p className="text-2xl text-foreground font-medium">
+                  +63 XXX XXX XXXX
+                </p>
               </div>
-              
+
               <div className="space-y-2">
-                <p className="text-sm text-muted-foreground uppercase tracking-wider">Location</p>
-                <p className="text-2xl text-foreground font-medium">Philippines</p>
+                <p className="text-sm text-muted-foreground uppercase tracking-wider">
+                  Location
+                </p>
+                <p className="text-2xl text-foreground font-medium">
+                  Philippines
+                </p>
               </div>
             </div>
           </div>
 
           <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm p-8 md:p-12 rounded-2xl shadow-2xl border-2 border-yellow-400/50">
-            <h2 className="text-3xl font-bold text-foreground mb-8">{mainMessage}</h2>
+            <h2 className="text-3xl font-bold text-foreground mb-8">
+              {mainMessage}
+            </h2>
 
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-2">
-                <Label htmlFor="name" className="text-base">Full Name</Label>
-                <Input 
-                  id="name" 
-                  name="name" 
-                  placeholder="John Doe" 
-                  value={formData.name} 
+                <Label htmlFor="name" className="text-base">
+                  Full Name
+                </Label>
+                <Input
+                  id="name"
+                  name="name"
+                  placeholder="John Doe"
+                  value={formData.name}
                   onChange={handleChange}
                   className="h-12 text-base border-yellow-200 focus-visible:ring-yellow-400"
-                  required 
+                  required
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="email" className="text-base">Email</Label>
-                <Input 
-                  id="email" 
-                  name="email" 
-                  type="email" 
-                  placeholder="john@company.com" 
-                  value={formData.email} 
+                <Label htmlFor="email" className="text-base">
+                  Email
+                </Label>
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="john@company.com"
+                  value={formData.email}
                   onChange={handleChange}
                   className="h-12 text-base border-yellow-200 focus-visible:ring-yellow-400"
-                  required 
+                  required
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="company" className="text-base">Company</Label>
-                <Input 
-                  id="company" 
-                  name="company" 
-                  placeholder="Your Company" 
-                  value={formData.company} 
-                  onChange={handleChange}
-                  className="h-12 text-base border-yellow-200 focus-visible:ring-yellow-400"
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="phone" className="text-base">Phone Number</Label>
-                <Input 
-                  id="phone" 
-                  name="phone" 
-                  type="tel" 
-                  placeholder="+63 XXX XXX XXXX" 
-                  value={formData.phone} 
+                <Label htmlFor="company" className="text-base">
+                  Company
+                </Label>
+                <Input
+                  id="company"
+                  name="company"
+                  placeholder="Your Company"
+                  value={formData.company}
                   onChange={handleChange}
                   className="h-12 text-base border-yellow-200 focus-visible:ring-yellow-400"
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="message" className="text-base">Message</Label>
+                <Label htmlFor="phone" className="text-base">
+                  Phone Number
+                </Label>
+                <Input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  placeholder="+63 XXX XXX XXXX"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  className="h-12 text-base border-yellow-200 focus-visible:ring-yellow-400"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="message" className="text-base">
+                  Message
+                </Label>
                 <Textarea
                   id="message"
                   name="message"
@@ -169,7 +197,11 @@ export function ContactSection({
                 />
               </div>
 
-              <Button type="submit" className="w-full h-12 text-base bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold" size="lg">
+              <Button
+                type="submit"
+                className="w-full h-12 text-base bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold"
+                size="lg"
+              >
                 Send Message
               </Button>
             </form>
@@ -177,5 +209,5 @@ export function ContactSection({
         </div>
       </div>
     </section>
-  )
+  );
 }

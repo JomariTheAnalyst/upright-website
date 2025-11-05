@@ -59,7 +59,7 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
   return (
     <section
       className={cn(
-        "relative w-full min-h-screen overflow-hidden flex flex-col items-start justify-center px-4 pt-24 pb-32 md:pb-40 max-w-7xl mx-auto",
+        "relative w-full min-h-screen overflow-hidden flex flex-col items-start justify-center px-4 pt-24 pb-64 md:pb-80 max-w-7xl mx-auto",
         className
       )}
     >
@@ -123,8 +123,8 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
         </motion.div>
       </div>
 
-      {/* Animated Image Marquee - Positioned at bottom, overlapping next section */}
-      <div className="absolute -bottom-24 md:-bottom-32 left-0 right-0 w-full z-30 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]">
+      {/* Animated Image Marquee - Positioned at bottom */}
+      <div className="absolute bottom-0 left-0 right-0 w-full z-30 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]">
         <motion.div
           className="flex gap-4 md:gap-6 items-center"
           animate={{

@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { motion } from "motion/react"
-import Image from "next/image"
+import { motion } from "motion/react";
+import Image from "next/image";
 
 // Leading Philippine companies using actual logo files
 const logos = [
@@ -15,11 +15,14 @@ const logos = [
   { name: "Meralco", file: "Meralco.svg" },
   { name: "San Miguel Corporation", file: "sanmiguelcorp.png" },
   { name: "SM Group", file: "sm.jpg" },
-]
+];
 
 export function LogoMarquee() {
   return (
-    <section className="relative py-16 md:py-20 bg-white dark:bg-gray-900 overflow-hidden">
+    <section
+      className="relative py-16 md:py-20 overflow-hidden"
+      style={{ backgroundColor: "#fbf9ef" }}
+    >
       <div className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-16 mb-12">
         {/* Centered Title */}
         <motion.h2
@@ -35,7 +38,7 @@ export function LogoMarquee() {
       {/* Gradient Fade Edges */}
       <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-white dark:from-gray-900 to-transparent z-10 pointer-events-none" />
       <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-white dark:from-gray-900 to-transparent z-10 pointer-events-none" />
-      
+
       <div className="relative flex overflow-hidden">
         {/* First Set - Seamless Horizontal Scroll */}
         <motion.div
@@ -122,5 +125,5 @@ export function LogoMarquee() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }
