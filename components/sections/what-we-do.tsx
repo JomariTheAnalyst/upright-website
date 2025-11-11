@@ -45,7 +45,7 @@ const features = [
 
 export function WhatWeDoSection() {
   return (
-    <section className="py-24 md:py-32" style={{ backgroundColor: "#fbf9ef" }}>
+    <section className="py-24 md:py-32" style={{ backgroundColor: "#f1f0ee" }}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1400px]">
         {/* 2x2 Grid Layout with offset right column */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20">

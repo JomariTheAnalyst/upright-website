@@ -300,7 +300,7 @@ export function ProfessionalNavbar() {
       animate={{ y: hidden ? -100 : 0 }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
       className="fixed top-0 left-0 right-0 z-50 py-2 shadow-md border-b border-gray-200 dark:border-gray-700"
-      style={{ backgroundColor: "#faf8ed" }}
+      style={{ backgroundColor: "#f1f0ee" }}
     >
       <div className="container mx-auto px-6">
         {/* Desktop Navigation */}

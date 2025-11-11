@@ -1,5 +1,6 @@
-import { ProfessionalNavbar } from "@/components/layout/navbar-professional";
+import { TransparentNavbar } from "@/components/layout/navbar-transparent";
 import { Footer } from "@/components/layout/footer";
+import { FAQsHeroSection } from "@/components/sections/faqs/faqs-hero";
 import { FAQSection } from "@/components/sections/faq";
 
 export const metadata = {
@@ -18,12 +19,12 @@ export const metadata = {
 
 export default function FAQPage() {
   return (
-    <div
-      className="relative min-h-screen"
-      style={{ backgroundColor: "#faf8ed" }}
-    >
-      <ProfessionalNavbar />
-      <FAQSection />
+    <div className="relative min-h-screen">
+      <TransparentNavbar />
+      <FAQsHeroSection />
+      <div style={{ backgroundColor: "#faf8ed" }}>
+        <FAQSection />
+      </div>
       <Footer />
     </div>
   );

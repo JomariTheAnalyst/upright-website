@@ -179,7 +179,7 @@ export function CaseStudiesSection({
   const displayedArticles = articles.slice(0, 3);
 
   return (
-    <section className="py-20 md:py-28" style={{ backgroundColor: "#fbf9ef" }}>
+    <section className="py-20 md:py-28" style={{ backgroundColor: "#f1f0ee" }}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1600px]">
         {/* Header with View All Button */}
         <div className="mb-16">
@@ -320,7 +320,7 @@ export function CaseStudiesSection({
           {/* CEO Details */}
           <div className="text-center">
             <div className="text-base md:text-lg font-bold text-black">
-              Greg Sevilla
+              Capt. Gregory Nick Sevilla
             </div>
             <div className="text-sm md:text-base text-black/70">
               CEO & Founder, Upright Soultions and Systems corp.

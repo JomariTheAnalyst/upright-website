@@ -184,7 +184,7 @@ export const AboutUsTestimonials: React.FC = () => {
   return (
     <section
       className="py-20 px-4 sm:px-6 lg:px-8"
-      style={{ backgroundColor: "#faf8ed" }}
+      style={{ backgroundColor: "#f1f0ee" }}
     >
       <div className="max-w-7xl mx-auto mb-12">
         <h2 className="text-5xl md:text-6xl font-bold text-black text-center mb-4">
@@ -197,7 +197,7 @@ export const AboutUsTestimonials: React.FC = () => {
 
       <div
         className="relative w-full overflow-hidden"
-        style={{ height: 600, backgroundColor: "#faf8ed" }}
+        style={{ height: 600, backgroundColor: "#f1f0ee" }}
       >
         {testimonialsList.map((testimonial, index) => {
           const position =

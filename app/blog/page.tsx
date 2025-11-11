@@ -1,6 +1,7 @@
 import { BlogSection } from "@/components/ui/blog-section";
-import { ProfessionalNavbar } from "@/components/layout/navbar-professional";
+import { TransparentNavbar } from "@/components/layout/navbar-transparent";
 import { Footer } from "@/components/layout/footer";
+import { BlogHeroSection } from "@/components/sections/blogs/blog-hero";
 
 export const metadata = {
   title: "Blogs - Upright",
@@ -8,14 +9,12 @@ export const metadata = {
 
 export default function BlogDemoPage() {
   return (
-    <div
-      className="relative min-h-screen"
-      style={{ backgroundColor: "#faf8ed" }}
-    >
-      <ProfessionalNavbar />
-      <main className="pt-24 pb-16">
+    <div className="relative min-h-screen">
+      <TransparentNavbar />
+      <BlogHeroSection />
+      <div style={{ backgroundColor: "#f1f0ee" }}>
         <BlogSection />
-      </main>
+      </div>
       <Footer />
     </div>
   );

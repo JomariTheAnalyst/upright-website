@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { opacity, slideUp } from "./anim";
 import { usePreloader } from ".";
 import WordLoader from "@/components/word-loader";
-import { MorphingSpinner } from "@/components/morphing-spinner";
+import { LumaSpin } from "@/components/ui/luma-spin";
 
 const steps = [
   "10%",
@@ -85,10 +85,7 @@ export default function Index() {
                 />
               ) : (
                 <div className="flex flex-col items-center gap-6">
-                  <MorphingSpinner size="lg" className="w-24 h-24" />
-                  <p className="text-3xl md:text-4xl font-bold text-black">
-                    Loading...
-                  </p>
+                  <LumaSpin />
                 </div>
               )}
             </motion.div>
@@ -100,7 +97,7 @@ export default function Index() {
             animate="enter"
             className="absolute bottom-8 right-8 md:bottom-12 md:right-12 z-10"
           >
-            <p className="text-5xl md:text-6xl font-black text-black">
+            <p className="text-4xl md:text-6xl font-black text-black">
               {(loadingPercent - (loadingPercent % 5)).toFixed(0)}%
             </p>
           </motion.div>

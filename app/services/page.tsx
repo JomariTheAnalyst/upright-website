@@ -4,12 +4,18 @@ import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { ProfessionalNavbar } from "@/components/layout/navbar-professional";
+import { TransparentNavbar } from "@/components/layout/navbar-transparent";
+import { ServicesHeroSection } from "@/components/sections/services/services-hero";
 import { Footer } from "@/components/layout/footer";
-import { StackedCards } from "@/components/ui/glass-cards";
 import { BentoGrid, BentoGridItem } from "@/components/bento-grid";
 import { CtaBanner } from "@/components/sections/cta-banner";
 import { ImagePlayer } from "@/components/ui/image-player";
+import { GetQuoteSection } from "@/components/sections/get-quote";
+import { ServicesTabs } from "@/components/sections/services-tabs";
+import { HowWeWorkSection } from "@/components/sections/how-we-work";
+import { OurTeamSection } from "@/components/sections/our-team";
+import { ClientTestimonialsSection } from "@/components/sections/client-testimonials";
+import FAQSections from "@/components/sections/faqs/faq-sections";
 
 // Animation variants
 const fadeInUp = {
@@ -204,10 +210,16 @@ export default function SystemIntegrationPage() {
       className="relative min-h-screen"
       style={{ backgroundColor: "#f1f0ee" }}
     >
-      <ProfessionalNavbar />
+      <TransparentNavbar />
 
-      {/* 1️⃣ Hero Section - Premium Animated Gradient */}
-      <section className="relative overflow-hidden pt-20 pb-24">
+      {/* New Hero Section with Background Image */}
+      <ServicesHeroSection />
+
+      {/* Original Hero Section - Now as Content Section */}
+      <section
+        className="relative overflow-hidden py-24"
+        style={{ backgroundColor: "#f1f0ee" }}
+      >
         {/* Smooth Horizontal Gradient Animation */}
         <style jsx global>{`
           @keyframes gradientFlow {
@@ -476,183 +488,32 @@ export default function SystemIntegrationPage() {
         </div>
       </section>
 
+      <GetQuoteSection />
+
       {/* Spacer for next section */}
       <div id="solutions"></div>
 
-      {/* 2️⃣ Core Service Categories - Bento Grid */}
-      <section
-        className="py-24 px-4 sm:px-6 lg:px-8"
-        style={{ backgroundColor: "#f1f0ee" }}
-      >
-        <div className="max-w-7xl mx-auto">
-          {/* Section Header */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeInUp}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-black">
-              Core Service Categories
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Comprehensive IT solutions tailored to your business needs
-            </p>
-          </motion.div>
-
-          {/* Bento Grid Layout */}
-          <BentoGrid className="max-w-7xl mx-auto md:auto-rows-[20rem]">
-            <BentoGridItem
-              className="md:col-span-2"
-              title="IT System Integration"
-              description="Connecting platforms, automating workflows, and ensuring data continuity across your entire technology ecosystem."
-              header={
-                <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-violet-500 to-purple-600">
-                  <img
-                    src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&auto=format&fit=crop&q=80"
-                    alt="System Integration"
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-              }
-            />
-            <BentoGridItem
-              title="Custom Software Development"
-              description="Tailor-made software to fit your exact business needs and drive innovation."
-              header={
-                <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-pink-500 to-rose-600">
-                  <img
-                    src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&auto=format&fit=crop&q=80"
-                    alt="Software Development"
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-              }
-            />
-
-            <BentoGridItem
-              title="Enterprise Infrastructure"
-              description="Setting up secure, scalable networks and IT foundations for long-term growth."
-              header={
-                <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-cyan-500 to-blue-600">
-                  <img
-                    src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&auto=format&fit=crop&q=80"
-                    alt="Enterprise Infrastructure"
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-              }
-            />
-            <BentoGridItem
-              className="md:col-span-2"
-              title="Consulting & Technical Support"
-              description="Expert guidance, audits, and ongoing tech assistance to keep your systems running at peak performance."
-              header={
-                <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-orange-500 to-yellow-500">
-                  <img
-                    src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&auto=format&fit=crop&q=80"
-                    alt="Consulting & Support"
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-              }
-            />
-          </BentoGrid>
-        </div>
-      </section>
+      {/* 2️⃣ Core Service Categories - Interactive Tabs */}
+      <ServicesTabs />
 
       {/* 3️⃣ Industries We Serve - Interactive Showcase */}
       <IndustriesSection data={industriesData} />
 
-      {/* 4️⃣ Feature Highlights - Stacked Glass Cards */}
-      <StackedCards />
+      {/* 4️⃣ Process / How We Work */}
+      <HowWeWorkSection />
 
-      {/* 4️⃣ FAQ Section */}
+      {/* 5️⃣ Our Team is Your Team */}
+      <OurTeamSection />
+
+      {/* 6️⃣ Client Testimonials */}
+      <ClientTestimonialsSection />
+
+      {/* 7️⃣ FAQ Section */}
       <section
         className="py-24 px-4 sm:px-6 lg:px-8"
         style={{ backgroundColor: "#f1f0ee" }}
       >
-        <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeInUp}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-black">
-              Frequently Asked Questions
-            </h2>
-            <p className="text-xl text-gray-600">
-              Everything you need to know about our IT System Integration
-              services
-            </p>
-          </motion.div>
-
-          <div className="space-y-4">
-            {[
-              {
-                question:
-                  "How long does a typical system integration project take?",
-                answer:
-                  "The timeline varies based on complexity and scope. A standard integration project typically takes 8-16 weeks, including discovery, design, development, testing, and deployment phases. We provide a detailed project timeline during our initial consultation, with clear milestones and deliverables. For urgent requirements, we offer accelerated implementation options.",
-              },
-              {
-                question:
-                  "Will system integration disrupt our current operations?",
-                answer:
-                  "We design our integration solutions to minimize operational disruption. Our phased implementation approach allows your team to continue working while we integrate systems in the background. We schedule critical transitions during off-peak hours and provide comprehensive rollback plans. Most clients experience zero downtime during the integration process.",
-              },
-              {
-                question: "What types of systems can you integrate?",
-                answer:
-                  "We integrate a wide range of systems including ERP (SAP, Oracle, Microsoft Dynamics), CRM platforms (Salesforce, HubSpot), legacy databases, cloud applications, custom software, and third-party APIs. Our technology-agnostic approach means we can connect virtually any system, regardless of age or platform. We specialize in both modern cloud-based and legacy on-premise systems.",
-              },
-              {
-                question:
-                  "What ongoing support do you provide after integration?",
-                answer:
-                  "We offer comprehensive post-integration support including 24/7 monitoring, regular system health checks, performance optimization, security updates, and dedicated technical support. Our support packages include SLA guarantees, proactive maintenance, and continuous improvement recommendations. We also provide training for your team and detailed documentation for all integrated systems.",
-              },
-            ].map((faq, index) => (
-              <motion.details
-                key={index}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={fadeInUp}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="group rounded-xl shadow-sm hover:shadow-md transition-all duration-300"
-                style={{ backgroundColor: "#ffffff" }}
-              >
-                <summary className="flex items-center justify-between cursor-pointer p-6 font-semibold text-lg text-black list-none">
-                  <span className="pr-8">{faq.question}</span>
-                  <svg
-                    className="w-6 h-6 text-gray-500 transition-transform duration-300 group-open:rotate-180 flex-shrink-0"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M19 9l-7 7-7-7"
-                    />
-                  </svg>
-                </summary>
-                <div className="px-6 pb-6 text-gray-700 leading-relaxed">
-                  {faq.answer}
-                </div>
-              </motion.details>
-            ))}
-          </div>
-
-          {/* CTA Below FAQ */}
-        </div>
+        <FAQSections />
       </section>
 
       {/* 5️⃣ CTA Banner */}

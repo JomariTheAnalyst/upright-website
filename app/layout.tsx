@@ -53,6 +53,39 @@ export const metadata: Metadata = {
     "Philippines",
     "IT consultancy",
   ],
+  icons: {
+    icon: [
+      {
+        url: "/images/favicons/favicon-16x16.png",
+        sizes: "16x16",
+        type: "image/png",
+      },
+      {
+        url: "/images/favicons/favicon-32x32.png",
+        sizes: "32x32",
+        type: "image/png",
+      },
+      { url: "/images/favicons/favicon.ico", sizes: "any" },
+    ],
+    apple: [
+      {
+        url: "/images/favicons/apple-touch-icon.png",
+        sizes: "180x180",
+        type: "image/png",
+      },
+    ],
+    other: [
+      {
+        rel: "android-chrome-192x192",
+        url: "/images/favicons/android-chrome-192x192.png",
+      },
+      {
+        rel: "android-chrome-512x512",
+        url: "/images/favicons/android-chrome-512x512.png",
+      },
+    ],
+  },
+  manifest: "/images/favicons/site.webmanifest",
 };
 
 export default function RootLayout({

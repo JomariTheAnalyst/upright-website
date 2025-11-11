@@ -182,7 +182,7 @@ export function Footer() {
 
         {/* Copyright */}
         <div className="text-sm text-gray-600">
-          © Upright Solutions and Systems. {currentYear}
+          © Upright Solutions and System Consultancy Corp. {currentYear}
         </div>
       </div>
     </footer>

@@ -2,7 +2,8 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { ProfessionalNavbar } from "@/components/layout/navbar-professional";
+import { TransparentNavbar } from "@/components/layout/navbar-transparent";
+import { AboutHeroSection } from "@/components/sections/about/about-hero";
 import { Footer } from "@/components/layout/footer";
 import { Target, Users, Lightbulb, Shield } from "lucide-react";
 import { TextRevealByWord } from "@/components/ui/text-reveal";
@@ -123,16 +124,16 @@ export default function AboutPage() {
           -webkit-backface-visibility: hidden;
         }
       `}</style>
-      <div
-        className="relative min-h-screen"
-        style={{ backgroundColor: "#faf8ed" }}
-      >
-        <ProfessionalNavbar />
+      <div className="relative min-h-screen">
+        <TransparentNavbar />
 
-        {/* Hero Section - Updated Layout */}
+        {/* New Hero Section with Background Image */}
+        <AboutHeroSection />
+
+        {/* Original Hero Section - Now as Content Section */}
         <section
-          className="pt-32 pb-16 px-4 sm:px-6 lg:px-8"
-          style={{ backgroundColor: "#faf8ed" }}
+          className="pt-20 pb-16 px-4 sm:px-6 lg:px-8"
+          style={{ backgroundColor: "#f1f0ee" }}
         >
           <div className="max-w-6xl mx-auto">
             {/* About Us Badge */}
@@ -197,7 +198,7 @@ export default function AboutPage() {
         {/* Who We Are Section */}
         <section
           className="py-20 px-4 sm:px-6 lg:px-8"
-          style={{ backgroundColor: "#faf8ed" }}
+          style={{ backgroundColor: "#f1f0ee" }}
         >
           <div className="max-w-7xl mx-auto">
             {/* Label */}
@@ -252,7 +253,7 @@ export default function AboutPage() {
         </section>
 
         {/* Text Reveal Section - Our Mission */}
-        <section className="relative" style={{ backgroundColor: "#faf8ed" }}>
+        <section className="relative" style={{ backgroundColor: "#f1f0ee" }}>
           <div className="flex items-center justify-center pt-12 pb-4">
             <span className="inline-block px-6 py-2 border-2 border-black rounded-full text-sm font-semibold text-black">
               Our Mission
@@ -320,7 +321,7 @@ export default function AboutPage() {
         {/* Our Values Section */}
         <section
           className="py-20 px-4 sm:px-6 lg:px-8"
-          style={{ backgroundColor: "#faf8ed" }}
+          style={{ backgroundColor: "#f1f0ee" }}
         >
           <div className="max-w-7xl mx-auto mb-16">
             {/* Label */}
@@ -385,7 +386,7 @@ export default function AboutPage() {
         {/* Meet the Team Section */}
         <section
           className="py-20 px-4 sm:px-6 lg:px-8"
-          style={{ backgroundColor: "#faf8ed" }}
+          style={{ backgroundColor: "#f1f0ee" }}
         >
           <div className="max-w-7xl mx-auto">
             {/* Title */}
@@ -445,7 +446,7 @@ export default function AboutPage() {
         {/* Our Founder Section */}
         <section
           className="py-20 px-4 sm:px-6 lg:px-8"
-          style={{ backgroundColor: "#faf8ed" }}
+          style={{ backgroundColor: "#f1f0ee" }}
         >
           <div className="max-w-7xl mx-auto">
             {/* Title - Centered */}
@@ -555,7 +556,7 @@ export default function AboutPage() {
         {/* Founder Quote Section with Text Reveal */}
         <section
           className="relative py-16 px-4 sm:px-6 lg:px-8"
-          style={{ backgroundColor: "#faf8ed" }}
+          style={{ backgroundColor: "#f1f0ee" }}
         >
           <div className="max-w-6xl mx-auto">
             <QuoteReveal
@@ -570,7 +571,7 @@ export default function AboutPage() {
         <AboutUsTestimonials />
 
         {/* CTA Banner */}
-        <section style={{ backgroundColor: "#faf8ed" }}>
+        <section style={{ backgroundColor: "#f1f0ee" }}>
           <CtaBanner />
         </section>
 

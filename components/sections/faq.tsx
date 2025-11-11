@@ -168,7 +168,7 @@ export function FAQSection() {
   return (
     <section
       className="relative py-20 sm:py-24 md:py-32"
-      style={{ backgroundColor: "#faf8ed" }}
+      style={{ backgroundColor: "#f1f0ee" }}
     >
       <div className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-16 max-w-5xl">
         {/* Header */}

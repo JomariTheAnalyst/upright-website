@@ -100,7 +100,7 @@ export function WhyChooseUs() {
   };
 
   return (
-    <section className="py-20 md:py-28" style={{ backgroundColor: "#fbf9ef" }}>
+    <section className="py-20 md:py-28" style={{ backgroundColor: "#f1f0ee" }}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1600px]">
         {/* Header with Navigation */}
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-16 gap-6">
@@ -110,7 +110,7 @@ export function WhyChooseUs() {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl lg:text-6xl font-black text-black max-w-3xl leading-tight"
           >
-            Upright is built for businesses that never stop growing
+            Why choose Upright
           </motion.h2>
 
           {/* Navigation Arrows */}

@@ -1,6 +1,6 @@
 "use client";
 
-import { ProfessionalNavbar } from "@/components/layout/navbar-professional";
+import { TransparentNavbar } from "@/components/layout/navbar-transparent";
 import { ContactSection } from "@/components/sections/contact";
 import { Footer } from "@/components/layout/footer";
 
@@ -17,7 +17,7 @@ export default function ContactPage() {
       className="relative min-h-screen"
       style={{ backgroundColor: "#faf8ed" }}
     >
-      <ProfessionalNavbar />
+      <TransparentNavbar />
       <ContactSection onSubmit={handleFormSubmit} />
       <Footer />
     </div>
