@@ -10,7 +10,7 @@ export function CareersHeroSection() {
       {/* Background Image */}
       <div className="absolute inset-0 bg-gradient-to-r from-blue-900/20 to-blue-800/10">
         <Image
-          src="/images/services-tabs/upright-building.png"
+          src="/images/services-tabs/building-upright.png"
           alt="Upright Building"
           fill
           className="object-cover object-right"

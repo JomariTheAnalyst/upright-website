@@ -1,8 +1,8 @@
 import { TransparentNavbar } from "@/components/layout/navbar-transparent";
 import { HeroSection } from "@/components/sections/home/hero";
 import { VideoSection } from "@/components/sections/home/video-section";
-import { WhyChooseUs } from "@/components/sections/why-choose-us";
-import CompaniesPoweredSection from "@/components/sections/companies-powered";
+import { WhyChooseUs } from "@/components/sections/home/why-choose-us";
+import JoinUsSection from "@/components/sections/home/join-us";
 import { WhatWeDoSection } from "@/components/sections/what-we-do";
 import { LogoMarquee } from "@/components/features/logo-marquee";
 import { CaseStudiesSection } from "@/components/sections/home/case-studies";
@@ -15,18 +15,16 @@ export default function Home() {
     <div className="relative min-h-screen overflow-x-hidden">
       <TransparentNavbar />
       <HeroSection />
-      <div style={{ backgroundColor: "#f1f0ee" }}>
+      <div style={{ backgroundColor: "#fafafa" }}>
         <VideoSection />
       </div>
-      <div style={{ backgroundColor: "#f1f0ee" }}>
+      <div style={{ backgroundColor: "#fafafa" }}>
         <LogoMarquee />
       </div>
       <div style={{ backgroundColor: "#f1f0ee" }}>
         <WhyChooseUs />
       </div>
-      <div style={{ backgroundColor: "#f1f0ee" }}>
-        <CompaniesPoweredSection />
-      </div>
+      <JoinUsSection />
       <div style={{ backgroundColor: "#f1f0ee" }}>
         <WhatWeDoSection />
       </div>

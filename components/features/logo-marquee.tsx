@@ -21,7 +21,7 @@ export function LogoMarquee() {
   return (
     <section
       className="relative py-16 md:py-20 overflow-hidden"
-      style={{ backgroundColor: "#f1f0ee" }}
+      style={{ backgroundColor: "#fafafa" }}
     >
       <div className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-16 mb-12">
         {/* Centered Title */}

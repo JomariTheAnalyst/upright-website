@@ -13,8 +13,8 @@ export function ServicesHeroSection() {
           backgroundImage: "url('/images/homepage/dam.jpg')",
         }}
       >
-        {/* Optional overlay for better text readability */}
-        <div className="absolute inset-0 bg-black/40" />
+        {/* Subtle overlay for better text readability */}
+        <div className="absolute inset-0 bg-black/15" />
       </div>
 
       {/* Hero Content - Left Aligned */}
@@ -34,13 +34,6 @@ export function ServicesHeroSection() {
           <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 leading-tight">
             Comprehensive IT Solutions for Your Business
           </h1>
-
-          {/* Description */}
-          <p className="text-base md:text-lg lg:text-xl text-white/90 mb-8 leading-relaxed">
-            From system integration to custom software development, we deliver
-            end-to-end technology solutions that drive efficiency and growth
-            across your organization.
-          </p>
 
           {/* CTA Button */}
           <Link href="/contact">

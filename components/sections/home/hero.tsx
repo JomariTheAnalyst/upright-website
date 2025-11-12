@@ -10,11 +10,12 @@ export function HeroSection() {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: "url('/images/homepage/skyscrapers (1) (1).png')",
+          backgroundImage:
+            "url('https://cdn.builder.io/api/v1/image/assets%2Fdf86a2c927524359b1806962d7ea4653%2Fb261f7095ab74ea484cc4cf493b21031')",
         }}
       >
-        {/* Optional overlay for better text readability */}
-        <div className="absolute inset-0 bg-black/30" />
+        {/* Subtle overlay for better text readability */}
+        <div className="absolute inset-0 bg-black/15" />
       </div>
 
       {/* Hero Content - Left Aligned */}
@@ -26,19 +27,15 @@ export function HeroSection() {
           className="max-w-2xl"
         >
           {/* Small heading */}
-          <p className="text-sm md:text-base text-white/90 mb-4 font-medium tracking-wide">
+          <p className="text-sm md:text-base text-white/90 mb-4 font-medium tracking-wide drop-shadow-lg">
             Upright Solutions and Systems Consultancy Corp.
           </p>
 
           {/* Main Title */}
-          <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 leading-tight">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-2xl">
             Elevate What’s Possible.
           </h1>
-
-          {/* Description */}
-          <p className="text-base md:text-lg lg:text-xl text-white/90 mb-8 leading-relaxed">
-            We build technology that empowers industries to go beyond limits.
-          </p>
+       
 
           {/* CTA Button */}
           <Link href="/contact">

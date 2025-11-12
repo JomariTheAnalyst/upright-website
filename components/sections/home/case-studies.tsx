@@ -279,7 +279,7 @@ export function CaseStudiesSection({
       <div
         className="relative w-full py-20 md:py-24 lg:py-28"
         style={{
-          backgroundColor: "#FBDB93",
+          backgroundColor: "#f5f591",
           borderRadius: "60px",
         }}
       >

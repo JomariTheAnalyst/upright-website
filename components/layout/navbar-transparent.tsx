@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { MenuIcon, Briefcase, Users, FileText } from "lucide-react";
+import { MenuIcon } from "lucide-react";
 import { Menu, MenuItem, HoveredLink } from "@/components/ui/navbar-menu";
 import {
   Sheet,
@@ -34,25 +34,21 @@ const companyLinks: NavItemType[] = [
     href: "/about",
     description:
       "Discover our story, mission, and the team behind Upright Systems",
-    icon: Users,
   },
   {
     title: "Careers",
     href: "/careers",
     description: "Explore opportunities and join our innovative team",
-    icon: Briefcase,
   },
   {
     title: "Blog",
     href: "/blog",
     description: "Industry insights, tech trends, and company updates",
-    icon: FileText,
   },
   {
     title: "FAQs",
     href: "/faqs",
     description: "Quick answers to your most common questions",
-    icon: FileText,
   },
 ];
 
@@ -66,24 +62,15 @@ function NavItemMobile({
   return (
     <a
       className={cn(
-        "data-[active=true]:focus:bg-accent data-[active=true]:hover:bg-accent data-[active=true]:bg-accent/50 data-[active=true]:text-accent-foreground hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus-visible:ring-ring/50 [&_svg:not([class*='text-'])]:text-muted-foreground group relative flex gap-1 gap-x-2 rounded-sm p-2 text-sm transition-all outline-none focus-visible:ring-[3px] focus-visible:outline-1 [&_svg:not([class*='size-'])]:size-4",
+        "hover:bg-gray-100 focus:bg-gray-100 group relative flex flex-col gap-1 rounded-sm p-3 text-sm transition-all outline-none",
         className
       )}
       {...props}
     >
-      <div
-        className={cn(
-          "bg-muted/20 flex size-10 items-center justify-center rounded-lg border"
-        )}
-      >
-        {item.icon && <item.icon />}
-      </div>
-      <div className={cn("flex h-10 flex-col justify-center")}>
-        <p className="text-sm">{item.title}</p>
-        <span className="text-muted-foreground line-clamp-1 text-xs leading-snug">
-          {item.description}
-        </span>
-      </div>
+      <p className="text-sm font-medium text-gray-900">{item.title}</p>
+      <span className="text-gray-600 text-xs leading-snug">
+        {item.description}
+      </span>
     </a>
   );
 }
@@ -104,7 +91,7 @@ export function TransparentNavbar() {
     <nav
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled ? "bg-white/95 backdrop-blur-md shadow-lg" : "bg-transparent"
+        isScrolled ? "bg-white/80 backdrop-blur-md shadow-lg" : "bg-transparent"
       )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -157,23 +144,15 @@ export function TransparentNavbar() {
               >
                 <div className="grid grid-cols-2 gap-4 p-4 w-[600px]">
                   {companyLinks.map((link) => {
-                    const IconComponent = link.icon;
                     return (
                       <Link
                         key={link.href}
                         href={link.href}
                         className="group flex flex-col gap-3 p-4 rounded-lg border border-gray-200 bg-white hover:bg-gray-50 hover:border-gray-300 transition-all duration-200 hover:shadow-md"
                       >
-                        <div className="flex items-center gap-3">
-                          {IconComponent && (
-                            <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-yellow-100 text-yellow-600 group-hover:bg-yellow-200 transition-colors">
-                              <IconComponent className="w-5 h-5" />
-                            </div>
-                          )}
-                          <h3 className="text-base font-semibold text-gray-900 group-hover:text-yellow-600 transition-colors">
-                            {link.title}
-                          </h3>
-                        </div>
+                        <h3 className="text-base font-semibold text-gray-900 group-hover:text-yellow-600 transition-colors">
+                          {link.title}
+                        </h3>
                         <p className="text-sm text-gray-600 leading-relaxed">
                           {link.description}
                         </p>
@@ -226,15 +205,15 @@ function MobileNav({ isScrolled }: { isScrolled: boolean }) {
           <MenuIcon className="size-5" />
         </Button>
       </SheetTrigger>
-      <SheetContent className="bg-background/95 supports-[backdrop-filter]:bg-background/80 w-full gap-0 backdrop-blur-lg p-0">
-        <div className="flex h-14 items-center justify-between border-b px-4 pt-4">
-          <span className="font-semibold">Menu</span>
+      <SheetContent className="bg-white/80 supports-[backdrop-filter]:bg-white/90 w-full gap-0 backdrop-blur-lg p-0">
+        <div className="flex h-14 items-center justify-between border-b border-gray-200 px-4 pt-4">
+          <span className="font-semibold text-gray-900">Menu</span>
         </div>
         <div className="container grid gap-y-2 overflow-y-auto px-4 pt-5 pb-12">
           <SheetClose asChild>
             <Link
               href="/"
-              className="hover:bg-accent rounded-sm p-2 text-base font-medium transition-colors"
+              className="hover:bg-gray-100 rounded-sm p-2 text-base font-medium transition-colors text-gray-900"
             >
               Home
             </Link>
@@ -243,7 +222,7 @@ function MobileNav({ isScrolled }: { isScrolled: boolean }) {
           <SheetClose asChild>
             <Link
               href="/services"
-              className="hover:bg-accent rounded-sm p-2 text-base font-medium transition-colors"
+              className="hover:bg-gray-100 rounded-sm p-2 text-base font-medium transition-colors text-gray-900"
             >
               Services
             </Link>
@@ -251,8 +230,12 @@ function MobileNav({ isScrolled }: { isScrolled: boolean }) {
 
           <Accordion type="single" collapsible>
             {sections.map((section) => (
-              <AccordionItem key={section.id} value={section.id}>
-                <AccordionTrigger className="capitalize hover:no-underline">
+              <AccordionItem
+                key={section.id}
+                value={section.id}
+                className="border-gray-200"
+              >
+                <AccordionTrigger className="capitalize hover:no-underline text-gray-900">
                   {section.name}
                 </AccordionTrigger>
                 <AccordionContent className="space-y-1">
