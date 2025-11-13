@@ -2,106 +2,122 @@
 
 import React from "react";
 import { motion } from "motion/react";
-import { FeatureCard } from "@/components/ui/feature-card";
-import { Search, Lightbulb, CheckCircle, Headphones } from "lucide-react";
+import Image from "next/image";
 
 // Data for the process steps
 const processSteps = [
   {
-    icon: <Search className="h-12 w-12 text-primary" />,
-    title: "Lorem Ipsum",
+    title: "Discovery & Research",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "We begin by understanding your business goals, challenges, and requirements through comprehensive research and stakeholder interviews.",
+    imageUrl:
+      "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80",
+    imageAlt: "Discovery and Research",
   },
   {
-    icon: <Lightbulb className="h-12 w-12 text-primary" />,
-    title: "Dolor Sit Amet",
+    title: "Strategy & Planning",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Our team develops a detailed roadmap and strategy tailored to your specific needs, ensuring alignment with your business objectives.",
+    imageUrl:
+      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80",
+    imageAlt: "Strategy and Planning",
   },
   {
-    icon: <CheckCircle className="h-12 w-12 text-primary" />,
-    title: "Consectetur Adipiscing",
+    title: "Design & Development",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "We bring your vision to life through innovative design and robust development, following industry best practices and agile methodologies.",
+    imageUrl:
+      "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&q=80",
+    imageAlt: "Design and Development",
   },
   {
-    icon: <Headphones className="h-12 w-12 text-primary" />,
-    title: "Eiusmod Tempor",
+    title: "Support & Maintenance",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Our commitment continues beyond launch with ongoing support, maintenance, and optimization to ensure long-term success.",
+    imageUrl:
+      "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&q=80",
+    imageAlt: "Support and Maintenance",
   },
 ];
-
-// Animation variants for the container and items
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { y: 20, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      duration: 0.5,
-      ease: "easeOut" as const,
-    },
-  },
-};
 
 /**
  * How We Work section component displaying the professional workflow process
  */
 export function HowWeWorkSection() {
   return (
-    <section
-      className="py-24 px-4 sm:px-6 lg:px-8"
-      style={{ backgroundColor: "#f1f0ee" }}
-    >
-      <div className="max-w-7xl mx-auto">
-        {/* Section Header - Left Aligned */}
+    <section className="py-24 md:py-32" style={{ backgroundColor: "#fafafa" }}>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1400px]">
+        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-left mb-16"
+          className="text-center mb-20"
         >
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-black">
             How We Work
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+            Our proven process ensures successful delivery of every project,
+            from initial concept to ongoing support.
           </p>
         </motion.div>
 
-        {/* Process Steps Grid */}
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={containerVariants}
-        >
-          {processSteps.map((step, index) => (
-            <motion.div key={index} variants={itemVariants}>
-              <FeatureCard
-                icon={step.icon}
-                title={step.title}
-                description={step.description}
-                className="h-full bg-white"
-              />
-            </motion.div>
-          ))}
-        </motion.div>
+        {/* Alternating Layout */}
+        <div className="space-y-32">
+          {processSteps.map((step, index) => {
+            const isEven = index % 2 === 0;
+
+            return (
+              <motion.div
+                key={step.title}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center ${
+                  isEven ? "" : "lg:flex-row-reverse"
+                }`}
+              >
+                {/* Text Content */}
+                <div
+                  className={`space-y-4 ${
+                    isEven ? "lg:order-1" : "lg:order-2"
+                  }`}
+                >
+                
+                  <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-black leading-tight">
+                    {step.title}
+                  </h3>
+                  <p className="text-base md:text-lg text-gray-600 leading-relaxed">
+                    {step.description}
+                  </p>
+                </div>
+
+                {/* Image */}
+                <motion.div
+                  className={`${isEven ? "lg:order-2" : "lg:order-1"}`}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                >
+                  <div className="relative overflow-hidden rounded-3xl aspect-[3/3.5] group">
+                    <Image
+                      src={step.imageUrl}
+                      alt={step.imageAlt}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                  </div>
+                </motion.div>
+              </motion.div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

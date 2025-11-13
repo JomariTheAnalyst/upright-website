@@ -1,202 +1,245 @@
 "use client";
 
 import { motion } from "motion/react";
-import { CircularGallery, GalleryItem } from "@/components/ui/circular-gallery";
+import Image from "next/image";
 
-// Team members data for circular gallery
-const teamMembers: GalleryItem[] = [
+interface PersonItem {
+  type: "person";
+  name: string;
+  role: string;
+  image: string;
+  overlayColor?: string;
+}
+
+interface StatItem {
+  type: "stat";
+  value: string;
+  label: string;
+  gradient: string;
+}
+
+interface GroupItem {
+  type: "group";
+  layout: "two-row" | "single-column";
+  rowPattern?: "image-card" | "card-image"; // Only for two-row groups
+  items: (PersonItem | StatItem)[];
+}
+
+// Define 6 groups with alternating patterns
+const groups: GroupItem[] = [
+  // Group 1: Two-row (stat top, image bottom)
   {
-    common: "Sarah Johnson",
-    binomial: "Chief Technology Officer",
-    photo: {
-      url: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&auto=format&fit=crop&q=80",
-      text: "Sarah Johnson - CTO",
-      pos: "50% 30%",
-      by: "Upright Systems",
-    },
+    type: "group",
+    layout: "two-row",
+    rowPattern: "card-image",
+    items: [
+      {
+        type: "stat",
+        value: "100K+",
+        label: "BUSINESSES BUILT BY CREATORS",
+        gradient: "from-teal-400 to-cyan-500",
+      },
+      {
+        type: "person",
+        name: "Tyler Tometich",
+        role: "Design & Art",
+        image:
+          "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=800&auto=format&fit=crop&q=80",
+        overlayColor: "from-yellow-500/80 via-yellow-500/40",
+      },
+    ],
   },
+  // Group 2: Single-column (full height image) - ALWAYS IMAGE
   {
-    common: "Michael Chen",
-    binomial: "Lead Software Architect",
-    photo: {
-      url: "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&auto=format&fit=crop&q=80",
-      text: "Michael Chen - Lead Architect",
-      pos: "50% 25%",
-      by: "Upright Systems",
-    },
+    type: "group",
+    layout: "single-column",
+    items: [
+      {
+        type: "person",
+        name: "Eno Eka",
+        role: "Education",
+        image:
+          "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=800&auto=format&fit=crop&q=80",
+        overlayColor: "from-purple-500/80 via-purple-500/40",
+      },
+    ],
   },
+  // Group 3: Two-row (image top, stat bottom) - ALTERNATING PATTERN
   {
-    common: "Emily Rodriguez",
-    binomial: "Head of Operations",
-    photo: {
-      url: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=800&auto=format&fit=crop&q=80",
-      text: "Emily Rodriguez - Operations",
-      pos: "50% 30%",
-      by: "Upright Systems",
-    },
+    type: "group",
+    layout: "two-row",
+    rowPattern: "image-card",
+    items: [
+      {
+        type: "person",
+        name: "Spencer Russell",
+        role: "Education",
+        image:
+          "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&auto=format&fit=crop&q=80",
+        overlayColor: "from-cyan-500/80 via-cyan-500/40",
+      },
+      {
+        type: "stat",
+        value: "$10B+",
+        label: "EARNED BY CREATORS IN REVENUE",
+        gradient: "from-purple-500 via-red-500 to-orange-500",
+      },
+    ],
   },
+  // Group 4: Single-column (full height image) - ALWAYS IMAGE
   {
-    common: "David Kim",
-    binomial: "Senior DevOps Engineer",
-    photo: {
-      url: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&auto=format&fit=crop&q=80",
-      text: "David Kim - DevOps",
-      pos: "50% 20%",
-      by: "Upright Systems",
-    },
+    type: "group",
+    layout: "single-column",
+    items: [
+      {
+        type: "person",
+        name: "Patricia Nikole",
+        role: "Beauty & Lifestyle",
+        image:
+          "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&auto=format&fit=crop&q=80",
+        overlayColor: "from-pink-500/80 via-pink-500/40",
+      },
+    ],
   },
+  // Group 5: Two-row (stat top, image bottom)
   {
-    common: "Jessica Martinez",
-    binomial: "UX/UI Design Lead",
-    photo: {
-      url: "https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=800&auto=format&fit=crop&q=80",
-      text: "Jessica Martinez - Design Lead",
-      pos: "50% 30%",
-      by: "Upright Systems",
-    },
+    type: "group",
+    layout: "two-row",
+    rowPattern: "card-image",
+    items: [
+      {
+        type: "stat",
+        value: "75M+",
+        label: "CUSTOMERS SERVED BY OUR CREATORS",
+        gradient: "from-pink-400 to-purple-500",
+      },
+      {
+        type: "person",
+        name: "Action Jacquelyn",
+        role: "Fitness",
+        image:
+          "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&auto=format&fit=crop&q=80",
+        overlayColor: "from-orange-500/80 via-orange-500/40",
+      },
+    ],
   },
+  // Group 6: Single-column (full height image) - ALWAYS IMAGE
   {
-    common: "Robert Taylor",
-    binomial: "Project Manager",
-    photo: {
-      url: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=800&auto=format&fit=crop&q=80",
-      text: "Robert Taylor - PM",
-      pos: "50% 25%",
-      by: "Upright Systems",
-    },
-  },
-  {
-    common: "Amanda Foster",
-    binomial: "Quality Assurance Lead",
-    photo: {
-      url: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=800&auto=format&fit=crop&q=80",
-      text: "Amanda Foster - QA Lead",
-      pos: "50% 30%",
-      by: "Upright Systems",
-    },
-  },
-  {
-    common: "James Wilson",
-    binomial: "Security Specialist",
-    photo: {
-      url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&auto=format&fit=crop&q=80",
-      text: "James Wilson - Security",
-      pos: "50% 25%",
-      by: "Upright Systems",
-    },
+    type: "group",
+    layout: "single-column",
+    items: [
+      {
+        type: "person",
+        name: "Robert Blake",
+        role: "Business",
+        image:
+          "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=800&auto=format&fit=crop&q=80",
+        overlayColor: "from-blue-500/80 via-blue-500/40",
+      },
+    ],
   },
 ];
 
+const renderCard = (
+  item: PersonItem | StatItem,
+  height: string,
+  className?: string
+) => {
+  if (item.type === "stat") {
+    return (
+      <div
+        className={`${height} ${className} rounded-2xl overflow-hidden relative shadow-lg bg-gradient-to-br ${item.gradient} p-6 flex flex-col justify-center items-center text-white`}
+      >
+        <h3 className="text-5xl md:text-6xl font-black mb-4">{item.value}</h3>
+        <p className="text-xs font-bold text-center uppercase leading-tight">
+          {item.label}
+        </p>
+      </div>
+    );
+  }
+
+  const overlayGradient = item.overlayColor || "from-black/70 via-black/20";
+
+  return (
+    <div
+      className={`${height} ${className} rounded-2xl overflow-hidden relative shadow-lg`}
+    >
+      <Image src={item.image} alt={item.name} fill className="object-cover" />
+      <div
+        className={`absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t ${overlayGradient} to-transparent`}
+      />
+      <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+        <h3 className="text-xl md:text-2xl font-bold mb-2 italic leading-tight">
+          {item.name}
+        </h3>
+        <span className="inline-block px-3 py-1 bg-transparent border border-white rounded-full text-xs font-medium">
+          {item.role}
+        </span>
+      </div>
+    </div>
+  );
+};
+
 export function OurTeamSection() {
   return (
-    <section className="relative w-full" style={{ backgroundColor: "#f1f0ee" }}>
-      {/* Circular Gallery Section */}
-      <div className="relative py-20">
-        <div className="text-center mb-12">
-          <motion.h2
-            initial={{ opacity: 0, y: -20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
-          >
-            Our Team is Your Team
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: -10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-xl text-gray-600"
-          >
-            Dedicated Professionals Working For Your Success
-          </motion.p>
-        </div>
-
-        <div className="w-full h-[600px] overflow-hidden">
-          <CircularGallery
-            items={teamMembers}
-            radius={500}
-            autoRotateSpeed={0.015}
-          />
-        </div>
+    <section
+      className="relative w-full py-16 overflow-hidden"
+      style={{ backgroundColor: "#fafafa" }}
+    >
+      {/* Header */}
+      <div className="text-center mb-12 px-4">
+        <motion.h2
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4"
+        >
+          Our Team is Your Team
+        </motion.h2>
+        <motion.p
+          initial={{ opacity: 0, y: -10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="text-lg md:text-xl text-gray-600"
+        >
+          Dedicated Professionals Working For Your Success
+        </motion.p>
       </div>
 
-      {/* Two Column Text Block with Button */}
-      <div className="relative py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-12"
-          ></motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
-            {/* Left Column */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="space-y-4"
+      {/* Continuous Marquee with 6 Groups */}
+      <div className="relative">
+        <motion.div
+          animate={{ x: [0, -2100] }}
+          transition={{
+            duration: 55,
+            repeat: Infinity,
+            ease: "linear",
+            repeatType: "loop",
+          }}
+          className="flex gap-4"
+        >
+          {[...groups, ...groups, ...groups].map((group, groupIndex) => (
+            <div
+              key={`group-${groupIndex}`}
+              className="flex-shrink-0 w-[340px]"
             >
-              <p className="text-lg text-gray-700 leading-relaxed">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat.
-              </p>
-              <p className="text-lg text-gray-700 leading-relaxed">
-                Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                cupidatat non proident, sunt in culpa qui officia deserunt
-                mollit anim id est laborum.
-              </p>
-            </motion.div>
-
-            {/* Right Column */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="space-y-4"
-            >
-              <p className="text-lg text-gray-700 leading-relaxed">
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-                quae ab illo inventore veritatis et quasi architecto beatae
-                vitae dicta sunt explicabo.
-              </p>
-              <p className="text-lg text-gray-700 leading-relaxed">
-                Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit
-                aut fugit, sed quia consequuntur magni dolores eos qui ratione
-                voluptatem sequi nesciunt.
-              </p>
-            </motion.div>
-          </div>
-
-          {/* Contact Button */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex justify-center"
-          >
-            <a href="/contact">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-yellow-300 hover:bg-yellow-500 text-black text-lg font-semibold rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300"
-              >
-                Contact Us Now
-              </motion.button>
-            </a>
-          </motion.div>
-        </div>
+              {group.layout === "two-row" ? (
+                // Two-row group: much taller (700px total)
+                <div className="flex flex-col gap-4 h-[700px]">
+                  {renderCard(group.items[0], "h-[340px]", "w-full")}
+                  {renderCard(group.items[1], "h-[340px]", "w-full")}
+                </div>
+              ) : (
+                // Single-column group: centered vertically (500px card in 700px container)
+                <div className="h-[700px] flex items-center justify-center">
+                  {renderCard(group.items[0], "h-[500px]", "w-full")}
+                </div>
+              )}
+            </div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );

@@ -7,85 +7,68 @@ import { useState, useRef } from "react";
 const features = [
   {
     id: 1,
-    title: "HARDWARE",
-    description: "Manage checkout and payments with industry-leading tools.",
+    title: "EXPERTISE",
+    description:
+      "Decades of combined experience in IT solutions and enterprise technology.",
     bgColor: "#a8f0c8",
     image:
-      "https://images.unsplash.com/photo-1551650975-87deedd944c3?q=80&w=2074&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop",
     details:
-      "Seamlessly connect your existing systems with our powerful integration platform. Automate workflows, sync data in real-time, and eliminate manual processes.",
+      "Our team brings deep technical expertise across multiple domains. From legacy system modernization to cutting-edge cloud solutions, we've successfully delivered hundreds of projects since 2015.",
   },
   {
     id: 2,
-    title: "MOBILE APP",
-    description: "A custom branded app that goes where they go.",
+    title: "INNOVATION",
+    description:
+      "Cutting-edge technology solutions that keep you ahead of the curve.",
     bgColor: "#d4ccff",
     image:
-      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop",
     details:
-      "Build native iOS and Android applications with your brand identity. Push notifications, offline functionality, and seamless user experiences.",
+      "We stay at the forefront of technology trends, implementing AI, cloud computing, and automation to give your business a competitive edge. Innovation isn't just a buzzword—it's how we work.",
   },
   {
     id: 3,
-    title: "ANALYTICS",
+    title: "TRUST",
     description:
-      "Find the numbers that matter for reports you'll actually use.",
+      "Proven track record with leading organizations across the Philippines.",
     bgColor: "#b8e8e8",
     image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2070&auto=format&fit=crop",
     details:
-      "Transform raw data into actionable insights with our advanced analytics dashboard. Real-time reporting and custom metrics included.",
+      "Built on a foundation of transparency and reliability. Our clients trust us with their most critical systems because we deliver on our promises, every single time.",
   },
   {
     id: 4,
-    title: "CONTACTS",
+    title: "END-TO-END SUPPORT",
     description:
-      "Grow 1:1 relationships with your followers off social platforms.",
+      "Comprehensive service from consultation to deployment and beyond.",
     bgColor: "#ffb8d4",
     image:
       "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2070&auto=format&fit=crop",
     details:
-      "Build meaningful connections with intelligent contact management. Segment audiences and personalize communications at scale.",
+      "We're with you every step of the way. From initial planning and implementation to ongoing maintenance and support, our dedicated team ensures your success at every stage.",
   },
   {
     id: 5,
-    title: "PAGES",
-    description: "Fast and gorgeous landing pages for your website.",
+    title: "EXPERIENCE",
+    description: "Over a decade of delivering enterprise-scale IT solutions.",
     bgColor: "#ffe8a8",
     image:
       "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop",
     details:
-      "Create stunning, conversion-optimized landing pages in minutes. Drag-and-drop builder with mobile-responsive templates.",
+      "Since 2015, we've been transforming businesses through technology. Our extensive portfolio spans multiple industries, giving us unique insights into what works and what doesn't.",
   },
   {
     id: 6,
-    title: "E-COMMERCE",
-    description: "Sell products and services with powerful commerce tools.",
-    bgColor: "#d4ccff",
-    image:
-      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=2070&auto=format&fit=crop",
-    details:
-      "Complete e-commerce solution with inventory management, payment processing, and shipping integration included.",
-  },
-  {
-    id: 7,
-    title: "AUTOMATION",
-    description: "Automate repetitive tasks and save countless hours.",
-    bgColor: "#b8e8e8",
-    image:
-      "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=2070&auto=format&fit=crop",
-    details:
-      "Set up intelligent workflows that run on autopilot. Trigger actions based on user behavior without writing code.",
-  },
-  {
-    id: 8,
     title: "SECURITY",
-    description: "Enterprise-grade security protecting your data 24/7.",
-    bgColor: "#ffb8d4",
+    description:
+      "Enterprise-grade security protecting your data and systems 24/7.",
+    bgColor: "#d4ccff",
     image:
       "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=2070&auto=format&fit=crop",
     details:
-      "Bank-level encryption, SOC 2 compliance, and regular security audits. Two-factor authentication and automated backups.",
+      "Your security is our priority. We implement industry-leading security protocols, regular audits, and compliance standards to protect your business from threats. Bank-level encryption and multi-factor authentication come standard.",
   },
 ];
 

@@ -323,7 +323,7 @@ export function CaseStudiesSection({
               Capt. Gregory Nick Sevilla
             </div>
             <div className="text-sm md:text-base text-black/70">
-              CEO & Founder, Upright Soultions and Systems corp.
+              CEO & Founder, Upright Soultions and Systems Consultancy corp.
             </div>
           </div>
         </motion.div>

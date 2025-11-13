@@ -3,7 +3,7 @@ import { HeroSection } from "@/components/sections/home/hero";
 import { VideoSection } from "@/components/sections/home/video-section";
 import { WhyChooseUs } from "@/components/sections/home/why-choose-us";
 import JoinUsSection from "@/components/sections/home/join-us";
-import { WhatWeDoSection } from "@/components/sections/what-we-do";
+import { WhatWeDoSection } from "@/components/sections/home/what-we-do";
 import { LogoMarquee } from "@/components/features/logo-marquee";
 import { CaseStudiesSection } from "@/components/sections/home/case-studies";
 import { TestimonialsSection } from "@/components/sections/testimonials";
@@ -34,7 +34,9 @@ export default function Home() {
       <div style={{ backgroundColor: "#f1f0ee" }}>
         <TestimonialsSection />
       </div>
+      <div style={{ backgroundColor: "#f1f0ee" }}>
       <CtaBanner />
+      </div>
       <Footer />
     </div>
   );

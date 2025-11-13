@@ -44,7 +44,7 @@ export function ClientTestimonialsSection() {
   return (
     <section
       className="py-24 px-4 sm:px-6 lg:px-8"
-      style={{ backgroundColor: "#f1f0ee" }}
+      style={{ backgroundColor: "#fafafa" }}
     >
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
@@ -86,9 +86,6 @@ export function ClientTestimonialsSection() {
               <p className="text-2xl md:text-3xl lg:text-4xl font-bold text-black leading-tight">
                 {testimonials[0].quote}
               </p>
-              <button className="px-6 py-2 bg-white text-black font-medium rounded-lg hover:bg-gray-100 transition-all duration-300">
-                Read their story
-              </button>
             </div>
             <div className="relative h-64 lg:h-96">
               <Image
@@ -127,9 +124,6 @@ export function ClientTestimonialsSection() {
               <p className="text-2xl md:text-3xl font-bold text-white leading-tight">
                 {testimonials[1].quote}
               </p>
-              <button className="px-6 py-2 bg-white text-black font-medium rounded-lg hover:bg-gray-100 transition-all duration-300">
-                Read their story
-              </button>
             </div>
           </motion.div>
 

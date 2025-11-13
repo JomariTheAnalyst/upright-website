@@ -92,7 +92,7 @@ function IndustriesSection({
   return (
     <section
       className="py-24 px-4 sm:px-6 lg:px-8"
-      style={{ backgroundColor: "#f1f0ee" }}
+      style={{ backgroundColor: "#fafafa" }}
     >
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
@@ -342,7 +342,7 @@ export default function SystemIntegrationPage() {
                 adding complexity to your team's workload.
               </p>
               <p className="text-xl font-semibold text-black">
-                That's where Upright Systems comes in.
+                That's where Upright comes in.
               </p>
             </motion.div>
 

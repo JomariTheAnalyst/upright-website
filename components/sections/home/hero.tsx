@@ -32,10 +32,9 @@ export function HeroSection() {
           </p>
 
           {/* Main Title */}
-          <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-2xl">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl text-yellow-200 xl:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-2xl">
             Elevate What’s Possible.
           </h1>
-       
 
           {/* CTA Button */}
           <Link href="/contact">
