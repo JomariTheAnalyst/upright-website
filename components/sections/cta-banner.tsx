@@ -38,7 +38,7 @@ export function CtaBanner() {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-amber-300 hover:bg-emerald-600 text-black text-base font-bold rounded-full shadow-lg hover:shadow-xl transition-all"
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-amber-300 text-black text-base font-bold rounded-full shadow-lg hover:shadow-xl transition-all"
                 >
                   Contact us
                   <svg

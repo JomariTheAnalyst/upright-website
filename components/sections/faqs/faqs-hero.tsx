@@ -10,11 +10,12 @@ export function FAQsHeroSection() {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: "url('/images/homepage/team.jpg')",
+          backgroundImage:
+            "url('https://cdn.builder.io/api/v1/image/assets%2Fdf86a2c927524359b1806962d7ea4653%2F872401eba5e74fd48be0ede0005a9925')",
         }}
       >
         {/* Optional overlay for better text readability */}
-        <div className="absolute inset-0 bg-black/40" />
+        <div className="absolute inset-0 bg-black/20" />
       </div>
 
       {/* Hero Content - Left Aligned */}
