@@ -10,7 +10,7 @@ const BentoGrid = React.forwardRef<
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, children, ...props }, ref) => {
   return (
-    <div
+    <div 
       ref={ref}
       className={cn(
         "grid w-full auto-rows-[22rem] grid-cols-1 gap-4 md:grid-cols-3",

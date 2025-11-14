@@ -157,7 +157,7 @@ export function TestimonialsSection() {
   return (
     <section
       className="py-16 md:py-20 overflow-hidden"
-      style={{ backgroundColor: "#f1f0ee" }}
+      style={{ backgroundColor: "#fafafa" }}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 mb-12">
         <motion.div

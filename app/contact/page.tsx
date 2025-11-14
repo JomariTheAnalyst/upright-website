@@ -10,12 +10,11 @@ export default function ContactPage() {
     console.log("Contact form submitted:", data);
     // You can add API call here, e.g.:
     // fetch('/api/contact', { method: 'POST', body: JSON.stringify(data) })
-  };
-
+  }; 
   return (
     <div
       className="relative min-h-screen"
-      style={{ backgroundColor: "#faf8ed" }}
+      style={{ backgroundColor: "#fafafa" }}
     >
       <TransparentNavbar />
       <ContactSection onSubmit={handleFormSubmit} />

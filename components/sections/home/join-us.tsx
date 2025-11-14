@@ -71,7 +71,7 @@ export default function JoinUsSection() {
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <Button
                 size="lg"
-                className="bg-yellow-300 text-black hover:bg-white/90 px-8 py-6 text-base font-semibold rounded-lg"
+                className="bg-yellow-300 text-black hover:bg-amber-400 px-8 py-6 text-base font-semibold rounded-lg"
               >
                 Become a Partner
               </Button>

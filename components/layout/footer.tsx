@@ -28,7 +28,7 @@ export function Footer() {
     column3: [
       { text: "Blog", href: "/blog" },
       { text: "Careers", href: "/careers" },
-      { text: "Privacy Policy", href: "/privacy" },
+      { text: "Privacy Policy", href: "/privacy-policy" },
       { text: "Terms & Conditions", href: "/terms" },
       { text: "FAQs", href: "/faqs" },
     ],
