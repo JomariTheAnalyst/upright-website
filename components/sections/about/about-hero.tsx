@@ -28,7 +28,7 @@ export function AboutHeroSection() {
         >
           {/* Small heading */}
           <p className="text-sm md:text-base text-white/90 mb-4 font-medium tracking-wide">
-            About Us
+            Home
           </p>
 
           {/* Main Title */}

@@ -1,113 +1,33 @@
 "use client";
 
-import { FC, ReactNode, useRef } from "react";
-import { motion, MotionValue, useScroll, useTransform } from "motion/react";
 import Link from "next/link";
-
-interface LetterProps {
-  children: ReactNode;
-  progress: MotionValue<number>;
-  range: [number, number];
-}
-
-const Letter: FC<LetterProps> = ({ children, progress, range }) => {
-  const opacity = useTransform(progress, range, [0, 1]);
-  const scale = useTransform(progress, range, [0.8, 1]);
-
-  return (
-    <span className="relative inline-block">
-      <span className="absolute opacity-20 blur-[0.5px]">{children}</span>
-      <motion.span style={{ opacity, scale }} className="text-black">
-        {children}
-      </motion.span>
-    </span>
-  );
-};
+import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 
 export function GetQuoteSection() {
-  const targetRef = useRef<HTMLDivElement | null>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: targetRef,
-    offset: ["start 0.6", "start 0.1"],
-  });
-
-  const text =
-    "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
-  const words = text.split(" ");
-
   return (
-    <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      {/* Slanted Striped Background */}
-      <div
-        className="absolute inset-0 -z-10"
-        style={{
-          background: `repeating-linear-gradient(
-            45deg,
-            #ffffff,
-            #ffffff 80px,
-            #f5f5f5 80px,
-            #f5f5f5 160px
-          )`,
-        }}
-      />
-
-      <div className="max-w-7xl mx-auto">
-        {/* Text Block */}
-        <div ref={targetRef} className="relative z-0 max-w-5xl">
-          <p
-            className="text-justify text-3xl font-bold text-black/20 md:text-4xl lg:text-5xl xl:text-6xl leading-tight"
-            style={{ textAlignLast: "left" }}
-          >
-            {words.map((word, wordIndex) => {
-              const letters = word.split("");
-              const totalWords = words.length;
-
-              return (
-                <span key={wordIndex} className="inline-flex mr-2 lg:mr-3">
-                  {letters.map((letter, letterIndex) => {
-                    const totalLettersInWord = letters.length;
-                    const letterProgress = letterIndex / totalLettersInWord;
-                    const wordProgress = wordIndex / totalWords;
-
-                    const overallProgress =
-                      wordProgress + letterProgress / totalWords;
-
-                    const start = Math.max(0, overallProgress - 0.1);
-                    const end = Math.min(1, overallProgress + 0.1);
-
-                    return (
-                      <Letter
-                        key={letterIndex}
-                        progress={scrollYProgress}
-                        range={[start, end]}
-                      >
-                        {letter}
-                      </Letter>
-                    );
-                  })}
-                </span>
-              );
-            })}
-          </p>
-        </div>
-
-        {/* Button - Below text with closer spacing */}
+    <section className="py-16 md:py-24 bg-[#0a1628]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-6 max-w-5xl"
+          transition={{ duration: 0.6 }}
+          className="text-center"
         >
-          <Link href="/contact/services">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-yellow-400 hover:bg-yellow-500 text-black font-semibold rounded-full shadow-lg transition-all duration-300 text-lg"
-            >
-              Get a Quote
-            </motion.button>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
+            Ready to Transform Your Business?
+          </h2>
+          <p className="text-lg text-white/70 max-w-2xl mx-auto mb-8">
+            Get a free consultation and discover how our IT solutions can help
+            streamline your operations and drive growth.
+          </p>
+          <Link
+            href="/contact"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-[#ffdf20] hover:bg-yellow-500 text-black font-semibold rounded-full transition-all duration-300"
+          >
+            Get a Quote
+            <ArrowRight className="w-5 h-5" />
           </Link>
         </motion.div>
       </div>

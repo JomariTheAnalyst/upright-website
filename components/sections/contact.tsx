@@ -126,9 +126,9 @@ export function ContactSection({
                 {title}
               </h1>
               <p className="text-xl text-white/90 max-w-lg leading-relaxed drop-shadow-md">
-                Upright Systems Inc. has been delivering enterprise-scale IT
-                solutions since 2015. Let us help transform your business with
-                cutting-edge technology.
+                Upright Solutions and Systems Consultancy Corp. has been
+                delivering enterprise-scale IT solutions since 2015. Let us help
+                transform your business with cutting-edge technology.
               </p>
             </div>
 

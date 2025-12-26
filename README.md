@@ -1,4 +1,4 @@
-# Upright Systems Inc. - Corporate Website
+# Upright Solutions and Systems Consultancy Corp. - Corporate Website
 
 <div align="center">
 
@@ -7,7 +7,7 @@
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.0-38bdf8?style=for-the-badge&logo=tailwind-css)
 ![License](https://img.shields.io/badge/License-Proprietary-red?style=for-the-badge)
 
-A modern, enterprise-grade corporate website for Upright Systems Inc., a Philippine-based IT solutions company specializing in system integration, software development, and enterprise technology services since 2015.
+A modern, enterprise-grade corporate website for Upright Solutions and Systems Consultancy Corp., a Philippine-based IT solutions company specializing in system integration, software development, and enterprise technology services since 2015.
 
 [View Live Demo](https://upright-rosy.vercel.app) • [Report Bug](https://github.com/yourusername/upright-website/issues) • [Request Feature](https://github.com/yourusername/upright-website/issues)
 
@@ -153,7 +153,7 @@ Create a `.env.local` file in the root directory:
 
 ```env
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
-NEXT_PUBLIC_SITE_NAME="Upright Systems Inc."
+NEXT_PUBLIC_SITE_NAME="Upright Solutions and Systems Consultancy Corp."
 ```
 
 4. **Run the development server**
@@ -372,11 +372,11 @@ NEXT_PUBLIC_SITE_URL=https://yourdomain.com
 
 ## 📄 License
 
-© 2025 Upright Systems Inc. All rights reserved.
+© 2025 Upright Solutions and Systems Consultancy Corp. All rights reserved.
 
 ## 👥 Credits
 
-Built with ❤️ by the Upright Systems team.
+Built with ❤️ by the Upright Solutions and Systems Consultancy Corp. team.
 
 ## 📞 Support
 
@@ -482,7 +482,7 @@ Create `.env.local`:
 
 ```env
 NEXT_PUBLIC_SITE_URL=https://yourdomain.com
-NEXT_PUBLIC_SITE_NAME="Upright Systems Inc."
+NEXT_PUBLIC_SITE_NAME="Upright Solutions and Systems Consultancy Corp."
 ```
 
 ### Path Aliases
@@ -535,7 +535,7 @@ Configured in `next.config.ts`:
 
 ## 📄 License
 
-© 2025 Upright Systems Inc. All rights reserved.
+© 2025 Upright Solutions and Systems Consultancy Corp. All rights reserved.
 
 This is proprietary software. Unauthorized copying, modification, distribution, or use of this software is strictly prohibited.
 
@@ -543,11 +543,11 @@ This is proprietary software. Unauthorized copying, modification, distribution, 
 
 ## 👥 Credits
 
-**Built with ❤️ by the Upright Systems Development Team**
+**Built with ❤️ by the Upright Solutions and Systems Consultancy Corp. Development Team**
 
-- **Design**: Upright Systems Design Team
-- **Development**: Upright Systems Engineering Team
-- **Content**: Upright Systems Marketing Team
+- **Design**: Upright Solutions and Systems Consultancy Corp. Design Team
+- **Development**: Upright Solutions and Systems Consultancy Corp. Engineering Team
+- **Content**: Upright Solutions and Systems Consultancy Corp. Marketing Team
 
 ---
 

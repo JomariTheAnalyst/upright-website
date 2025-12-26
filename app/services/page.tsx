@@ -7,11 +7,10 @@ import Image from "next/image";
 import { TransparentNavbar } from "@/components/layout/navbar-transparent";
 import { ServicesHeroSection } from "@/components/sections/services/services-hero";
 import { Footer } from "@/components/layout/footer";
-import { BentoGrid, BentoGridItem } from "@/components/bento-grid";
-import { CtaBanner } from "@/components/sections/cta-banner";
+import { CtaBanner } from "@/components/sections/home/cta-banner";
 import { ImagePlayer } from "@/components/ui/image-player";
 import { GetQuoteSection } from "@/components/sections/get-quote";
-import { ServicesTabs } from "@/components/sections/services-tabs";
+import { ServicesTabs } from "@/components/sections/services/services-tabs";
 import { HowWeWorkSection } from "@/components/sections/how-we-work";
 import { OurTeamSection } from "@/components/sections/our-team";
 import { ClientTestimonialsSection } from "@/components/sections/client-testimonials";
@@ -396,92 +395,94 @@ export default function SystemIntegrationPage() {
             <h3 className="text-center text-sm font-semibold text-gray-600 mb-8 uppercase tracking-wider">
               Trusted by Leading Organizations
             </h3>
-            <div className="flex items-center justify-center gap-16 logo-scroll">
-              {/* First set of company logos */}
-              <div className="flex items-center gap-16">
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg"
-                  alt="Google"
-                  className="h-8 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all"
-                />
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg"
-                  alt="Microsoft"
-                  className="h-8 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all"
-                />
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg"
-                  alt="Apple"
-                  className="h-10 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all"
-                />
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/9/96/Samsung_Logo.svg"
-                  alt="Samsung"
-                  className="h-6 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all"
-                />
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"
-                  alt="Amazon"
-                  className="h-8 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all"
-                />
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/0/08/Cisco_logo_blue_2016.svg"
-                  alt="Cisco"
-                  className="h-8 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all"
-                />
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg"
-                  alt="IBM"
-                  className="h-8 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all"
-                />
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg"
-                  alt="Oracle"
-                  className="h-10 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all"
-                />
-              </div>
-              {/* Duplicate set for seamless loop */}
-              <div className="flex items-center gap-16">
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg"
-                  alt="Google"
-                  className="h-8 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all"
-                />
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg"
-                  alt="Microsoft"
-                  className="h-8 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all"
-                />
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg"
-                  alt="Apple"
-                  className="h-10 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all"
-                />
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/9/96/Samsung_Logo.svg"
-                  alt="Samsung"
-                  className="h-6 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all"
-                />
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"
-                  alt="Amazon"
-                  className="h-8 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all"
-                />
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/0/08/Cisco_logo_blue_2016.svg"
-                  alt="Cisco"
-                  className="h-8 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all"
-                />
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg"
-                  alt="IBM"
-                  className="h-8 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all"
-                />
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg"
-                  alt="Oracle"
-                  className="h-10 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all"
-                />
+            <div className="relative w-full overflow-hidden">
+              <div className="flex logo-scroll-animation">
+                {/* First set of company logos */}
+                <div className="flex items-center gap-12 px-6 shrink-0">
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg"
+                    alt="Google"
+                    className="h-8 w-auto grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all"
+                  />
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg"
+                    alt="Microsoft"
+                    className="h-8 w-auto grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all"
+                  />
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg"
+                    alt="Apple"
+                    className="h-8 w-auto grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all"
+                  />
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/9/96/Samsung_Logo.svg"
+                    alt="Samsung"
+                    className="h-8 w-auto grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all"
+                  />
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"
+                    alt="Amazon"
+                    className="h-8 w-auto grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all"
+                  />
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/0/08/Cisco_logo_blue_2016.svg"
+                    alt="Cisco"
+                    className="h-8 w-auto grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all"
+                  />
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg"
+                    alt="IBM"
+                    className="h-8 w-auto grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all"
+                  />
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Oracle_logo.svg"
+                    alt="Oracle"
+                    className="h-8 w-auto grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all"
+                  />
+                </div>
+                {/* Duplicate set for seamless loop */}
+                <div className="flex items-center gap-12 px-6 shrink-0">
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg"
+                    alt="Google"
+                    className="h-8 w-auto grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all"
+                  />
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg"
+                    alt="Microsoft"
+                    className="h-8 w-auto grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all"
+                  />
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg"
+                    alt="Apple"
+                    className="h-8 w-auto grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all"
+                  />
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/9/96/Samsung_Logo.svg"
+                    alt="Samsung"
+                    className="h-8 w-auto grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all"
+                  />
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"
+                    alt="Amazon"
+                    className="h-8 w-auto grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all"
+                  />
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/0/08/Cisco_logo_blue_2016.svg"
+                    alt="Cisco"
+                    className="h-8 w-auto grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all"
+                  />
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg"
+                    alt="IBM"
+                    className="h-8 w-auto grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all"
+                  />
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Oracle_logo.svg"
+                    alt="Oracle"
+                    className="h-8 w-auto grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all"
+                  />
+                </div>
               </div>
             </div>
           </motion.div>
@@ -511,7 +512,7 @@ export default function SystemIntegrationPage() {
       {/* 7️⃣ FAQ Section */}
       <section
         className="py-24 px-4 sm:px-6 lg:px-8"
-        style={{ backgroundColor: "#f1f0ee" }}
+        style={{ backgroundColor: "#fafafa" }}
       >
         <FAQSections />
       </section>

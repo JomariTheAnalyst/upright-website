@@ -1,190 +1,189 @@
-import { Youtube, Linkedin, Instagram, Facebook } from "lucide-react";
+"use client";
+
+import { Linkedin, Facebook } from "lucide-react";
 import Link from "next/link";
-import { FaTiktok } from "react-icons/fa";
 
 export function Footer() {
-  const currentYear = new Date().getFullYear();
+  const quickLinks = [
+    { text: "About Us", href: "/about" },
+    { text: "Our Services", href: "/#services" },
+    { text: "Projects", href: "/projects" },
+    { text: "Careers", href: "/careers" },
+    { text: "Contact", href: "/contact" },
+  ];
 
-  const footerLinks = {
-    column1: [
-      { text: "Homepage", href: "/" },
-      { text: "About Us", href: "/about" },
-      { text: "Our Services", href: "/#services" },
-      { text: "Case Studies", href: "/blog" },
-      { text: "Contact", href: "/contact" },
-    ],
-    column2: [
-      {
-        text: "IT System Integration",
-        href: "/services/it-system-integration",
-      },
-      { text: "Software Development", href: "/services/software-development" },
-      {
-        text: "Professional Services",
-        href: "/services/professional-services",
-      },
-      { text: "Hardware Solutions", href: "/services/hardware-solutions" },
-    ],
-    column3: [
-      { text: "Blog", href: "/blog" },
-      { text: "Careers", href: "/careers" },
-      { text: "Privacy Policy", href: "/privacy-policy" },
-      { text: "Terms & Conditions", href: "/terms" },
-      { text: "FAQs", href: "/faqs" },
-    ],
-  };
+  // Client logos from public/images/logo/client-logos
+  const clientLogos = [
+    { name: "BOQ", src: "/images/logo/client-logos/BOQ.png" },
+    { name: "Avior", src: "/images/logo/client-logos/avior.png" },
+    { name: "Gerrys", src: "/images/logo/client-logos/gerrys.png" },
+    { name: "LBC", src: "/images/logo/client-logos/lbc.png" },
+  ];
 
   return (
-    <footer className="relative w-full overflow-hidden min-h-[750px] flex items-start">
-      {/* Gradient Background Image */}
-      <div className="absolute inset-0">
-        <img
-          src="/images/logo/gradientbottom.jpg"
-          alt=""
-          className="w-full h-full object-cover"
-        />
+    <footer className="w-full bg-white" style={{ fontFamily: "'FooterFont', sans-serif" }}>
+      {/* Main Footer Content with complete outline border - no margins */}
+      <div className="border border-gray-300">
+        {/* 4 Column Grid with vertical dividers */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+          {/* Column 1 - Quick Links */}
+          <div className="px-6 lg:px-8 py-8 lg:py-10 border-b lg:border-b-0 lg:border-r border-gray-300">
+            <h3 className="text-xs font-semibold tracking-wider text-gray-500 uppercase mb-5">
+              Quick Links
+            </h3>
+            <ul className="space-y-2">
+              {quickLinks.map((link) => (
+                <li key={link.text}>
+                  <Link
+                    href={link.href}
+                    className="text-gray-600 hover:text-black transition-colors text-sm"
+                  >
+                    {link.text}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 2 - Contact Us */}
+          <div className="px-6 lg:px-8 py-8 lg:py-10 border-b lg:border-b-0 lg:border-r border-gray-300">
+            <h3 className="text-xs font-semibold tracking-wider text-gray-500 uppercase mb-5">
+              Contact Us
+            </h3>
+            <ul className="space-y-2 text-sm text-gray-600">
+              <li>
+                <a href="tel:+639175551234" className="hover:text-black transition-colors">
+                  +63 917 555 1234
+                </a>
+              </li>
+              <li>
+                <a href="mailto:info@uprightsystems.ph" className="hover:text-black transition-colors">
+                  info@uprightsystems.ph
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 3 - Main Office + Branch Office */}
+          <div className="px-6 lg:px-8 py-8 lg:py-10 border-b lg:border-b-0 lg:border-r border-gray-300">
+            <h3 className="text-xs font-semibold tracking-wider text-gray-500 uppercase mb-5">
+              Main Office
+            </h3>
+            <p className="text-sm text-gray-600 leading-relaxed mb-6">
+              Elias St., Manila City,<br />
+              Metro Manila 2100, PH
+            </p>
+
+            <h3 className="text-xs font-semibold tracking-wider text-gray-500 uppercase mb-3">
+              Branch Office
+            </h3>
+            <p className="text-sm text-gray-600 leading-relaxed">
+              Bacoor, Cavite 4102,<br />
+              Philippines
+            </p>
+          </div>
+
+          {/* Column 4 - Our Clients with logo dividers */}
+          <div className="px-6 lg:px-8 py-8 lg:py-10">
+            <h3 className="text-xs font-semibold tracking-wider text-gray-500 uppercase mb-5">
+              Our Clients
+            </h3>
+            <div className="flex flex-wrap border-t border-l border-gray-300">
+              {clientLogos.map((client, index) => (
+                <div
+                  key={client.name}
+                  className="w-1/2 flex items-center justify-center p-4 border-r border-b border-gray-300 aspect-square"
+                >
+                  <img
+                    src={client.src}
+                    alt={client.name}
+                    className="w-full h-full object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Divider */}
+        <div className="border-t border-gray-300" />
+
+        {/* Bottom Bar - Social & Legal */}
+        <div className="px-6 lg:px-8 py-5">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            {/* Left - Follow Us */}
+            <div className="flex items-center gap-4">
+              <span className="text-xs font-semibold tracking-wider text-gray-500 uppercase">
+                Follow Us
+              </span>
+              <div className="flex items-center gap-3">
+                <Link
+                  href="https://linkedin.com/company/upright-systems"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-500 hover:text-black transition-colors"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin className="w-4 h-4" />
+                </Link>
+                <Link
+                  href="https://facebook.com/uprightsystems"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-500 hover:text-black transition-colors"
+                  aria-label="Facebook"
+                >
+                  <Facebook className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Right - Legal Links */}
+            <div className="flex items-center gap-6 text-xs text-gray-500">
+              <Link href="/privacy-policy" className="hover:text-black transition-colors">
+                Privacy Policy
+              </Link>
+              <Link href="/cookie-policy" className="hover:text-black transition-colors">
+                Cookie Policy
+              </Link>
+              <Link href="/terms" className="hover:text-black transition-colors">
+                Terms and Conditions
+              </Link>
+            </div>
+          </div>
+        </div>
       </div>
 
-      {/* Large Bottom Logo Watermark */}
-      <div className="absolute bottom-0 left-0 right-0 flex items-center justify-center pb-12 pointer-events-none">
-        <img
-          src="/images/logo/uprightrev.svg"
-          alt=""
-          className="w-full max-w-5xl h-auto object-contain opacity-80 brightness-0 invert"
-        />
-      </div>
-
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        {/* Top Section - Logo, Links, and Social Icons */}
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 mb-20">
+      {/* Very Bottom Bar - Logo & Copyright (outside the border) */}
+      <div className="py-6 px-6 lg:px-8">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           {/* Logo */}
-          <div className="flex items-start">
+          <div className="flex items-center">
             <img
               src="/images/logo/uprightlogorevised.png"
               alt="Upright Systems"
-              className="h-14 w-auto"
+              className="h-20 md:h-24 w-auto"
             />
           </div>
 
-          {/* Column 1 */}
-          <div>
-            <ul className="space-y-3">
-              {footerLinks.column1.map((link) => (
-                <li key={link.text}>
-                  <Link
-                    href={link.href}
-                    className="text-gray-700 hover:text-black transition-colors text-sm"
-                  >
-                    {link.text}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Column 2 */}
-          <div>
-            <ul className="space-y-3">
-              {footerLinks.column2.map((link) => (
-                <li key={link.text}>
-                  <Link
-                    href={link.href}
-                    className="text-gray-700 hover:text-black transition-colors text-sm"
-                  >
-                    {link.text}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Column 3 */}
-          <div>
-            <ul className="space-y-3">
-              {footerLinks.column3.map((link) => (
-                <li key={link.text}>
-                  <Link
-                    href={link.href}
-                    className="text-gray-700 hover:text-black transition-colors text-sm"
-                  >
-                    {link.text}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Social Icons Grid - 2x3 */}
-          <div className="grid grid-cols-3 gap-4 lg:justify-self-end">
-            <Link
-              href="https://youtube.com/@uprightsystems"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center w-10 h-10 text-gray-700 hover:text-black transition-colors"
-              aria-label="YouTube"
-            >
-              <Youtube className="w-5 h-5" />
-            </Link>
-            <Link
-              href="https://linkedin.com/company/upright-systems"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center w-10 h-10 text-gray-700 hover:text-black transition-colors"
-              aria-label="LinkedIn"
-            >
-              <Linkedin className="w-5 h-5" />
-            </Link>
-            <Link
-              href="https://instagram.com/uprightsystems"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center w-10 h-10 text-gray-700 hover:text-black transition-colors"
-              aria-label="Instagram"
-            >
-              <Instagram className="w-5 h-5" />
-            </Link>
-            <Link
-              href="https://facebook.com/uprightsystems"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center w-10 h-10 text-gray-700 hover:text-black transition-colors"
-              aria-label="Facebook"
-            >
-              <Facebook className="w-5 h-5" />
-            </Link>
-            <Link
-              href="https://tiktok.com/@uprightsystems"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center w-10 h-10 text-gray-700 hover:text-black transition-colors"
-              aria-label="TikTok"
-            >
-              <FaTiktok className="w-5 h-5" />
-            </Link>
-            <Link
-              href="https://twitter.com/uprightsystems"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center w-10 h-10 text-gray-700 hover:text-black transition-colors"
-              aria-label="X (Twitter)"
-            >
-              <svg
-                className="w-5 h-5"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-              </svg>
-            </Link>
-          </div>
-        </div>
-
-        {/* Copyright */}
-        <div className="text-sm text-gray-600">
-          © Upright Solutions and System Consultancy Corp. {currentYear}
+          {/* Copyright / Tagline */}
+          <p className="text-[10px] text-gray-400 text-center md:text-right max-w-xl leading-relaxed">
+            Upright Solutions and Systems Consultancy Corp. is a trusted IT consultancy and technology solutions 
+            provider, committed to delivering innovation, reliability, and excellence since 2015.
+          </p>
         </div>
       </div>
+
+      {/* Custom Font */}
+      <style jsx global>{`
+        @font-face {
+          font-family: 'FooterFont';
+          src: url('/fonts/woffwoff.woff2') format('woff2');
+          font-weight: normal;
+          font-style: normal;
+          font-display: swap;
+        }
+      `}</style>
     </footer>
   );
 }

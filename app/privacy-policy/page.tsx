@@ -3,9 +3,9 @@ import { Footer } from "@/components/layout/footer";
 import { privacyPolicyData } from "@/data/privacy-policy";
 
 export const metadata = {
-  title: "Privacy Policy - Upright Systems Inc.",
+  title: "Privacy Policy - Upright Solutions and Systems Consultancy Corp.",
   description:
-    "Privacy Policy for Upright Systems Inc. - Learn how we collect, use, and protect your personal data.",
+    "Privacy Policy for Upright Solutions and Systems Consultancy Corp. - Learn how we collect, use, and protect your personal data.",
 };
 
 export default function PrivacyPolicyPage() {

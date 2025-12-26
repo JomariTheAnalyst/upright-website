@@ -5,10 +5,18 @@ import {
   Merriweather,
   Playfair_Display,
 } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { PageTransitionProvider } from "@/components/providers/page-transition-provider";
 import Preloader from "@/components/preloader";
+
+// Sentient Bold for hero heading
+const sentientBold = localFont({
+  src: "../public/fonts/sentient-family/Sentient-Bold.otf",
+  variable: "--font-sentient",
+  display: "swap",
+});
 
 // Playfair Display for hero display text (elegant alternative to Recoleta)
 const playfairDisplay = Playfair_Display({
@@ -97,7 +105,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${playfairDisplay.variable} ${poppins.variable} ${ebGaramond.variable} ${merriweather.variable} font-body antialiased`}
+        className={`${sentientBold.variable} ${playfairDisplay.variable} ${poppins.variable} ${ebGaramond.variable} ${merriweather.variable} font-body antialiased`}
       >
         <ThemeProvider
           attribute="class"

@@ -1,6 +1,6 @@
 # Product Requirements Document (PRD)
 
-## Upright Systems Inc. Corporate Website
+## Upright Solutions and Systems Consultancy Corp. Corporate Website
 
 ---
 
@@ -30,7 +30,7 @@
 
 ## Executive Summary
 
-The Upright Systems Inc. corporate website is a modern, enterprise-grade web application designed to showcase the company's IT solutions, services, and expertise. Built with Next.js 16 and TypeScript, the website provides an exceptional user experience while maintaining high performance, accessibility, and SEO standards.
+The Upright Solutions and Systems Consultancy Corp. corporate website is a modern, enterprise-grade web application designed to showcase the company's IT solutions, services, and expertise. Built with Next.js 16 and TypeScript, the website provides an exceptional user experience while maintaining high performance, accessibility, and SEO standards.
 
 ### Key Highlights
 
@@ -46,13 +46,13 @@ The Upright Systems Inc. corporate website is a modern, enterprise-grade web app
 
 ### Vision
 
-To create a world-class digital presence that reflects Upright Systems' position as a leading IT solutions provider in the Philippines, while providing an intuitive and engaging experience for potential clients, partners, and job seekers.
+To create a world-class digital presence that reflects Upright Solutions and Systems Consultancy Corp.'s position as a leading IT solutions provider in the Philippines, while providing an intuitive and engaging experience for potential clients, partners, and job seekers.
 
 ### Mission
 
 Deliver a high-performance, accessible, and conversion-optimized website that:
 
-- Showcases Upright Systems' expertise and services
+- Showcases Upright Solutions and Systems Consultancy Corp.'s expertise and services
 - Generates qualified business leads
 - Attracts top talent for career opportunities
 - Establishes thought leadership in the IT industry
@@ -742,8 +742,8 @@ Home
 
 <div align="center">
 
-**Upright Systems Inc. - Product Requirements Document**
+**Upright Solutions and Systems Consultancy Corp. - Product Requirements Document**
 
-_This document is confidential and proprietary to Upright Systems Inc._
+_This document is confidential and proprietary to Upright Solutions and Systems Consultancy Corp._
 
 </div>

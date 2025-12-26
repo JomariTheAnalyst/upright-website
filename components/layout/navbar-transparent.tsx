@@ -3,8 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { MenuIcon } from "lucide-react";
-import { Menu, MenuItem, HoveredLink } from "@/components/ui/navbar-menu";
+import { MenuIcon, ChevronDown } from "lucide-react";
 import {
   Sheet,
   SheetClose,
@@ -24,27 +23,10 @@ type NavItemType = {
   title: string;
   href: string;
   description?: string;
-  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
 };
 
-// Company navigation items with enhanced descriptions
+// Company dropdown items
 const companyLinks: NavItemType[] = [
-  {
-    title: "About Us",
-    href: "/about",
-    description:
-      "Discover our story, mission, and the team behind Upright Systems",
-  },
-  {
-    title: "Careers",
-    href: "/careers",
-    description: "Explore opportunities and join our innovative team",
-  },
-  {
-    title: "Blog",
-    href: "/blog",
-    description: "Industry insights, tech trends, and company updates",
-  },
   {
     title: "FAQs",
     href: "/faqs",
@@ -52,32 +34,39 @@ const companyLinks: NavItemType[] = [
   },
 ];
 
-function NavItemMobile({
-  item,
-  className,
-  ...props
-}: React.ComponentProps<"a"> & {
-  item: NavItemType;
+// NavLink component with sliding underline animation
+function NavLink({
+  href,
+  children,
+  isScrolled,
+}: {
+  href: string;
+  children: React.ReactNode;
+  isScrolled: boolean;
 }) {
   return (
-    <a
+    <Link
+      href={href}
       className={cn(
-        "hover:bg-gray-100 focus:bg-gray-100 group relative flex flex-col gap-1 rounded-sm p-3 text-sm transition-all outline-none",
-        className
+        "relative px-4 py-2 text-sm font-medium transition-colors group",
+        isScrolled ? "text-gray-800" : "text-white"
       )}
-      {...props}
     >
-      <p className="text-sm font-medium text-gray-900">{item.title}</p>
-      <span className="text-gray-600 text-xs leading-snug">
-        {item.description}
-      </span>
-    </a>
+      {children}
+      {/* Sliding underline */}
+      <span
+        className={cn(
+          "absolute bottom-0 left-4 right-4 h-0.5 origin-left scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100",
+          isScrolled ? "bg-gray-800" : "bg-yellow-400"
+        )}
+      />
+    </Link>
   );
 }
 
 export function TransparentNavbar() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [active, setActive] = useState<string | null>(null);
+  const [isCompanyOpen, setIsCompanyOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -91,91 +80,119 @@ export function TransparentNavbar() {
     <nav
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled ? "bg-white/80 backdrop-blur-md shadow-lg" : "bg-transparent"
+        isScrolled ? "bg-white/95 backdrop-blur-md shadow-lg" : "bg-transparent"
       )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          {/* Logo */}
+          {/* Logo - Left */}
           <Link href="/" className="flex items-center">
             <Image
               src="/images/logo/Upright Logo2.png"
               alt="Upright Logo"
               width={150}
               height={50}
-              className="h-12 w-auto"
+              className="h-10 md:h-12 w-auto"
               priority
             />
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:block">
-            <Menu setActive={setActive}>
-              <Link href="/">
-                <MenuItem
-                  setActive={setActive}
-                  active={active}
-                  item="Home"
-                  className={cn(
-                    "cursor-pointer text-base font-bold transition-colors duration-200 hover:opacity-90",
-                    isScrolled ? "text-gray-900" : "text-white drop-shadow-lg"
-                  )}
-                />
-              </Link>
-              <Link href="/services">
-                <MenuItem
-                  setActive={setActive}
-                  active={active}
-                  item="Services"
-                  className={cn(
-                    "cursor-pointer text-base font-bold transition-colors duration-200 hover:opacity-90",
-                    isScrolled ? "text-gray-900" : "text-white drop-shadow-lg"
-                  )}
-                />
-              </Link>
-              <MenuItem
-                setActive={setActive}
-                active={active}
-                item="Company"
+          {/* Desktop Navigation - Right */}
+          <div className="hidden lg:flex items-center gap-1">
+            <NavLink href="/about" isScrolled={isScrolled}>
+              About us
+            </NavLink>
+
+            <NavLink href="/services" isScrolled={isScrolled}>
+              Our Services
+            </NavLink>
+
+            <NavLink href="/projects" isScrolled={isScrolled}>
+              Projects
+            </NavLink>
+
+            <NavLink href="/use-cases" isScrolled={isScrolled}>
+              Use Cases
+            </NavLink>
+
+            {/* Company Dropdown */}
+            <div
+              className="relative"
+              onMouseEnter={() => setIsCompanyOpen(true)}
+              onMouseLeave={() => setIsCompanyOpen(false)}
+            >
+              <button
                 className={cn(
-                  "cursor-pointer text-base font-bold transition-colors duration-200 hover:opacity-90",
-                  isScrolled ? "text-gray-900" : "text-white drop-shadow-lg"
+                  "relative flex items-center gap-1 px-4 py-2 text-sm font-medium transition-colors group",
+                  isScrolled ? "text-gray-800" : "text-white"
                 )}
               >
-                <div className="grid grid-cols-2 gap-4 p-4 w-[600px]">
-                  {companyLinks.map((link) => {
-                    return (
-                      <Link
-                        key={link.href}
-                        href={link.href}
-                        className="group flex flex-col gap-3 p-4 rounded-lg border border-gray-200 bg-white hover:bg-gray-50 hover:border-gray-300 transition-all duration-200 hover:shadow-md"
-                      >
-                        <h3 className="text-base font-semibold text-gray-900 group-hover:text-yellow-600 transition-colors">
-                          {link.title}
-                        </h3>
-                        <p className="text-sm text-gray-600 leading-relaxed">
-                          {link.description}
-                        </p>
-                      </Link>
-                    );
-                  })}
-                </div>
-              </MenuItem>
-            </Menu>
-          </div>
+                Company
+                <ChevronDown
+                  className={cn(
+                    "w-4 h-4 transition-transform",
+                    isCompanyOpen && "rotate-180"
+                  )}
+                />
+                {/* Sliding underline */}
+                <span
+                  className={cn(
+                    "absolute bottom-0 left-4 right-4 h-0.5 origin-left scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100",
+                    isScrolled ? "bg-gray-800" : "bg-yellow-400"
+                  )}
+                />
+              </button>
 
-          {/* CTA Button & Mobile Menu */}
-          <div className="flex items-center gap-2">
-            <Link href="/contact">
-              <Button
-                className="hidden md:inline-flex"
-                style={{ backgroundColor: "#ffe319", color: "#000" }}
-              >
-                Contact Us
+              {/* Dropdown Menu */}
+              {isCompanyOpen && (
+                <div className="absolute top-full left-0 pt-2">
+                  <div className="w-72 bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden">
+                    <div className="p-2">
+                      {companyLinks.map((link) => (
+                        <Link
+                          key={link.href}
+                          href={link.href}
+                          className="block px-4 py-3 rounded-lg hover:bg-gray-50 transition-colors"
+                        >
+                          <p className="text-sm font-semibold text-gray-900">
+                            {link.title}
+                          </p>
+                          <p className="text-xs text-gray-500 mt-0.5">
+                            {link.description}
+                          </p>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Contact Button */}
+            <Link href="/contact" className="ml-4">
+              <Button className="bg-[#ffdf20] hover:bg-[#ffbf00] text-black px-5 py-2 rounded-md text-sm font-medium flex items-center gap-2">
+                Contact
+                <span className="bg-white/20 rounded p-0.5">
+                  <svg
+                    className="w-3 h-3"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M7 17L17 7M17 7H7M17 7V17"
+                    />
+                  </svg>
+                </span>
               </Button>
             </Link>
-            <MobileNav isScrolled={isScrolled} />
           </div>
+
+          {/* Mobile Menu */}
+          <MobileNav isScrolled={isScrolled} />
         </div>
       </div>
     </nav>
@@ -183,14 +200,6 @@ export function TransparentNavbar() {
 }
 
 function MobileNav({ isScrolled }: { isScrolled: boolean }) {
-  const sections = [
-    {
-      id: "company",
-      name: "Company",
-      list: companyLinks,
-    },
-  ];
-
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -205,15 +214,15 @@ function MobileNav({ isScrolled }: { isScrolled: boolean }) {
           <MenuIcon className="size-5" />
         </Button>
       </SheetTrigger>
-      <SheetContent className="bg-white/80 supports-[backdrop-filter]:bg-white/90 w-full gap-0 backdrop-blur-lg p-0">
+      <SheetContent className="bg-white w-full gap-0 p-0">
         <div className="flex h-14 items-center justify-between border-b border-gray-200 px-4 pt-4">
           <span className="font-semibold text-gray-900">Menu</span>
         </div>
-        <div className="container grid gap-y-2 overflow-y-auto px-4 pt-5 pb-12">
+        <div className="grid gap-y-2 overflow-y-auto px-4 pt-5 pb-12">
           <SheetClose asChild>
             <Link
               href="/"
-              className="hover:bg-gray-100 rounded-sm p-2 text-base font-medium transition-colors text-gray-900"
+              className="hover:bg-gray-100 rounded-lg p-3 text-base font-medium transition-colors text-gray-900"
             >
               Home
             </Link>
@@ -221,44 +230,73 @@ function MobileNav({ isScrolled }: { isScrolled: boolean }) {
 
           <SheetClose asChild>
             <Link
+              href="/about"
+              className="hover:bg-gray-100 rounded-lg p-3 text-base font-medium transition-colors text-gray-900"
+            >
+              About
+            </Link>
+          </SheetClose>
+
+          <SheetClose asChild>
+            <Link
               href="/services"
-              className="hover:bg-gray-100 rounded-sm p-2 text-base font-medium transition-colors text-gray-900"
+              className="hover:bg-gray-100 rounded-lg p-3 text-base font-medium transition-colors text-gray-900"
             >
               Services
             </Link>
           </SheetClose>
 
+          <SheetClose asChild>
+            <Link
+              href="/projects"
+              className="hover:bg-gray-100 rounded-lg p-3 text-base font-medium transition-colors text-gray-900"
+            >
+              Projects
+            </Link>
+          </SheetClose>
+
+          <SheetClose asChild>
+            <Link
+              href="/use-cases"
+              className="hover:bg-gray-100 rounded-lg p-3 text-base font-medium transition-colors text-gray-900"
+            >
+              Use Cases
+            </Link>
+          </SheetClose>
+
           <Accordion type="single" collapsible>
-            {sections.map((section) => (
-              <AccordionItem
-                key={section.id}
-                value={section.id}
-                className="border-gray-200"
-              >
-                <AccordionTrigger className="capitalize hover:no-underline text-gray-900">
-                  {section.name}
-                </AccordionTrigger>
-                <AccordionContent className="space-y-1">
-                  <ul className="grid gap-1">
-                    {section.list.map((link) => (
-                      <li key={link.href}>
-                        <SheetClose asChild>
-                          <NavItemMobile item={link} href={link.href} />
-                        </SheetClose>
-                      </li>
-                    ))}
-                  </ul>
-                </AccordionContent>
-              </AccordionItem>
-            ))}
+            <AccordionItem value="company" className="border-none">
+              <AccordionTrigger className="hover:no-underline text-gray-900 p-3 hover:bg-gray-100 rounded-lg">
+                Company
+              </AccordionTrigger>
+              <AccordionContent className="pl-4">
+                <ul className="grid gap-1">
+                  {companyLinks.map((link) => (
+                    <li key={link.href}>
+                      <SheetClose asChild>
+                        <Link
+                          href={link.href}
+                          className="block p-3 rounded-lg hover:bg-gray-100"
+                        >
+                          <p className="text-sm font-medium text-gray-900">
+                            {link.title}
+                          </p>
+                          <p className="text-xs text-gray-500">
+                            {link.description}
+                          </p>
+                        </Link>
+                      </SheetClose>
+                    </li>
+                  ))}
+                </ul>
+              </AccordionContent>
+            </AccordionItem>
           </Accordion>
+
 
           <SheetClose asChild>
             <Link href="/contact" className="mt-4">
-              <Button
-                className="w-full"
-                style={{ backgroundColor: "#ffe319", color: "#000" }}
-              >
+              <Button className="w-full bg-[#ffdf20] hover:bg-[#ffbf00] text-black">
                 Contact Us
               </Button>
             </Link>

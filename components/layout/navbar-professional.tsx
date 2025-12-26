@@ -313,7 +313,7 @@ export function ProfessionalNavbar() {
           >
             <img
               src="/images/logo/Upright Logo2.png"
-              alt="Upright Systems Inc."
+              alt="Upright Solutions and Systems Consultancy Corp."
               className="h-12 w-auto"
             />
           </Link>
@@ -353,7 +353,7 @@ export function ProfessionalNavbar() {
           >
             <img
               src="/images/logo/Upright Logo2.png"
-              alt="Upright Systems Inc."
+              alt="Upright Solutions and Systems Consultancy Corp."
               className="h-10 w-auto"
             />
           </Link>
@@ -376,7 +376,7 @@ export function ProfessionalNavbar() {
                     >
                       <img
                         src="/images/logo/Upright Logo2.png"
-                        alt="Upright Systems Inc."
+                        alt="Upright Solutions and Systems Consultancy Corp."
                         className="h-8 w-auto"
                       />
                     </Link>
