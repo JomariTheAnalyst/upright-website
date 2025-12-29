@@ -59,9 +59,20 @@ const impactCards = [
 export function ImpactSection() {
   return (
     <section className="relative bg-white py-16 md:py-24 lg:py-32">
+      {/* Custom Font */}
+      <style jsx global>{`
+        @font-face {
+          font-family: "NewFont";
+          src: url("/fonts/newfont.woff2") format("woff2");
+          font-weight: 100 900;
+          font-style: normal;
+          font-display: swap;
+        }
+      `}</style>
+
       {/* Outer container with border outline */}
-      <div className="mx-4 lg:mx-8 border border-gray-200">
-        <div className="px-8 lg:px-16 py-12 lg:py-16">
+      <div className="mx-4 md:mx-6 lg:mx-8 border border-gray-200">
+        <div className="px-5 sm:px-8 lg:px-16 py-12 lg:py-16">
           {/* Header Section */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 mb-12 lg:mb-16">
             {/* Left - Section Pill & Headline */}
@@ -71,13 +82,19 @@ export function ImpactSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              {/* Section Name Pill - matching who-we-are and our-services */}
-              <span className="inline-flex items-center px-4 py-1.5 mb-8 text-xs font-medium tracking-wider uppercase border border-gray-300 rounded-full text-gray-600">
+              {/* Section Name Pill */}
+              <span
+                className="inline-flex items-center px-4 py-1.5 mb-8 text-xs font-semibold tracking-wider uppercase border-2 border-black rounded-full text-black"
+                style={{ fontFamily: "NewFont, sans-serif" }}
+              >
                 Impact & Responsibility
               </span>
 
               {/* Main Headline */}
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-gray-900 leading-[1.1]">
+              <h2
+                className="text-4xl md:text-5xl lg:text-6xl font-light text-gray-900 leading-[1.1]"
+                style={{ fontFamily: "NewFont, sans-serif" }}
+              >
                 Building Technology
                 <br />
                 <span className="font-normal">That Matters.</span>
@@ -92,10 +109,13 @@ export function ImpactSection() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="flex items-end lg:justify-end"
             >
-              <p className="text-gray-600 text-base md:text-lg leading-relaxed max-w-md lg:text-right">
+              <p
+                className="text-gray-600 text-base md:text-lg leading-relaxed max-w-md lg:text-right"
+                style={{ fontFamily: "NewFont, sans-serif" }}
+              >
                 Our structured approach ensures reliable, scalable IT solutions
-                that meet operational goals without sacrificing quality, security,
-                or long-term value.
+                that meet operational goals without sacrificing quality,
+                security, or long-term value.
               </p>
             </motion.div>
           </div>
@@ -124,7 +144,10 @@ export function ImpactSection() {
                 <div className="text-[#ffdf20] mb-8">{card.icon}</div>
 
                 {/* Title */}
-                <h3 className="text-xl md:text-2xl font-normal text-gray-900 leading-snug">
+                <h3
+                  className="text-xl md:text-2xl font-normal text-gray-900 leading-snug"
+                  style={{ fontFamily: "NewFont, sans-serif" }}
+                >
                   {card.title}
                 </h3>
               </div>

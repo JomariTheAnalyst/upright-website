@@ -44,6 +44,24 @@ The company further provides contract programming, IT consultancy, and hardware 
 
   // Legal
   articlesOfIncorporationAmended: "February 1, 2021",
+
+  // Awards & Recognition
+  awards: [
+    {
+      title:
+        "Certificate of Appreciation from the National Task Group for Returning Overseas Filipinos (One Health Pass)",
+      description:
+        "Awarded for vigorous involvement in implementing health and safety measures to contain the spread of COVID-19 through the development and provision of IT systems and protocols at airports, which processed approximately four (4) million passengers, enabling the Philippines to reopen its gates to international travelers during the pandemic.",
+      highlights: [
+        "Processed approximately 4 million passengers",
+        "Enabled the Philippines to reopen its gates to international travelers during the pandemic",
+        "Recognized for compliance with government policies and assistance in the safe management of international arriving passengers",
+      ],
+      issuedDate: "July 2, 2022",
+      issuedLocation: "The Villamor Air Base Golf Club, Pasay City",
+      issuedBy: "National Task Group for Returning Overseas Filipinos",
+    },
+  ],
 };
 
 export type Company = typeof company;

@@ -21,7 +21,10 @@ export function Footer() {
   ];
 
   return (
-    <footer className="w-full bg-white" style={{ fontFamily: "'FooterFont', sans-serif" }}>
+    <footer
+      className="w-full bg-white"
+      style={{ fontFamily: "'FooterFont', sans-serif" }}
+    >
       {/* Main Footer Content with complete outline border - no margins */}
       <div className="border border-gray-300">
         {/* 4 Column Grid with vertical dividers */}
@@ -52,12 +55,18 @@ export function Footer() {
             </h3>
             <ul className="space-y-2 text-sm text-gray-600">
               <li>
-                <a href="tel:+639175551234" className="hover:text-black transition-colors">
+                <a
+                  href="tel:+639175551234"
+                  className="hover:text-black transition-colors"
+                >
                   +63 917 555 1234
                 </a>
               </li>
               <li>
-                <a href="mailto:info@uprightsystems.ph" className="hover:text-black transition-colors">
+                <a
+                  href="mailto:info@uprightsystems.ph"
+                  className="hover:text-black transition-colors"
+                >
                   info@uprightsystems.ph
                 </a>
               </li>
@@ -70,7 +79,8 @@ export function Footer() {
               Main Office
             </h3>
             <p className="text-sm text-gray-600 leading-relaxed mb-6">
-              Elias St., Manila City,<br />
+              Elias St., Manila City,
+              <br />
               Metro Manila 2100, PH
             </p>
 
@@ -78,7 +88,8 @@ export function Footer() {
               Branch Office
             </h3>
             <p className="text-sm text-gray-600 leading-relaxed">
-              Bacoor, Cavite 4102,<br />
+              Bacoor, Cavite 4102,
+              <br />
               Philippines
             </p>
           </div>
@@ -89,7 +100,7 @@ export function Footer() {
               Our Clients
             </h3>
             <div className="flex flex-wrap border-t border-l border-gray-300">
-              {clientLogos.map((client, index) => (
+              {clientLogos.map((client) => (
                 <div
                   key={client.name}
                   className="w-1/2 flex items-center justify-center p-4 border-r border-b border-gray-300 aspect-square"
@@ -101,6 +112,25 @@ export function Footer() {
                   />
                 </div>
               ))}
+            </div>
+
+            {/* Oceanwide Group Banner - inside Our Clients column */}
+            <div className="grid grid-cols-2 mt-4">
+              {/* Left - Text on dark background */}
+              <div className="bg-black px-3 py-4 flex items-center">
+                <p className="text-white text-[10px] font-medium uppercase tracking-wide leading-snug">
+                  Upright Solutions and Systems Consultancy Corp. is under
+                  Oceanwide Group.
+                </p>
+              </div>
+              {/* Right - Logo on light background */}
+              <div className="bg-[#f5f5f3] px-3 py-4 flex items-center justify-center">
+                <img
+                  src="/images/logo/oceanwide GROUP WORD logo (official).png"
+                  alt="Oceanwide Group"
+                  className="h-8 w-auto object-contain"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -140,13 +170,22 @@ export function Footer() {
 
             {/* Right - Legal Links */}
             <div className="flex items-center gap-6 text-xs text-gray-500">
-              <Link href="/privacy-policy" className="hover:text-black transition-colors">
+              <Link
+                href="/privacy-policy"
+                className="hover:text-black transition-colors"
+              >
                 Privacy Policy
               </Link>
-              <Link href="/cookie-policy" className="hover:text-black transition-colors">
+              <Link
+                href="/cookie-policy"
+                className="hover:text-black transition-colors"
+              >
                 Cookie Policy
               </Link>
-              <Link href="/terms" className="hover:text-black transition-colors">
+              <Link
+                href="/terms"
+                className="hover:text-black transition-colors"
+              >
                 Terms and Conditions
               </Link>
             </div>
@@ -168,8 +207,9 @@ export function Footer() {
 
           {/* Copyright / Tagline */}
           <p className="text-[10px] text-gray-400 text-center md:text-right max-w-xl leading-relaxed">
-            Upright Solutions and Systems Consultancy Corp. is a trusted IT consultancy and technology solutions 
-            provider, committed to delivering innovation, reliability, and excellence since 2015.
+            Upright Solutions and Systems Consultancy Corp. is a trusted IT
+            consultancy and technology solutions provider, committed to
+            delivering innovation, reliability, and excellence since 2015.
           </p>
         </div>
       </div>
@@ -177,8 +217,8 @@ export function Footer() {
       {/* Custom Font */}
       <style jsx global>{`
         @font-face {
-          font-family: 'FooterFont';
-          src: url('/fonts/woffwoff.woff2') format('woff2');
+          font-family: "FooterFont";
+          src: url("/fonts/woffwoff.woff2") format("woff2");
           font-weight: normal;
           font-style: normal;
           font-display: swap;

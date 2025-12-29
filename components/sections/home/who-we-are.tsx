@@ -33,7 +33,7 @@ export function WhoWeAreSection() {
             className="px-5 sm:px-8 lg:pl-16 lg:pr-12 py-10 md:py-16 lg:py-20"
           >
             {/* Section Name Pill */}
-            <span className="inline-flex items-center px-3 sm:px-4 py-1.5 mb-6 md:mb-8 text-[10px] sm:text-xs font-medium tracking-wider uppercase border border-white/30 rounded-full text-white/70">
+            <span className="inline-flex items-center px-4 py-1.5 mb-6 md:mb-8 text-xs font-semibold tracking-wider uppercase border-2 border-white rounded-full text-white">
               Who We Are
             </span>
 

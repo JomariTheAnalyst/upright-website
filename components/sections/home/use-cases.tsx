@@ -10,22 +10,28 @@ const sectors = [
   {
     id: 1,
     name: "Maritime",
-    description: "Digital solutions for maritime training, crew management, and regulatory compliance. We support shipping companies and maritime academies with innovative learning platforms.",
-    image: "https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=800&q=80",
+    description:
+      "Digital solutions for maritime training, crew management, and regulatory compliance. We support shipping companies and maritime academies with innovative learning platforms.",
+    image:
+      "https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=800&q=80",
     link: "/use-cases/maritime",
   },
   {
     id: 2,
     name: "Government",
-    description: "Technology solutions for government agencies, including digital health verification systems, citizen services platforms, and secure data management infrastructure.",
-    image: "https://images.unsplash.com/photo-1555848962-6e79363ec58f?w=800&q=80",
+    description:
+      "Technology solutions for government agencies, including digital health verification systems, citizen services platforms, and secure data management infrastructure.",
+    image:
+      "https://images.unsplash.com/photo-1555848962-6e79363ec58f?w=800&q=80",
     link: "/use-cases/government",
   },
   {
     id: 3,
     name: "Logistics",
-    description: "End-to-end digital solutions for logistics operations, supply chain optimization, tracking systems, and workforce training platforms.",
-    image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80",
+    description:
+      "End-to-end digital solutions for logistics operations, supply chain optimization, tracking systems, and workforce training platforms.",
+    image:
+      "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80",
     link: "/use-cases/logistics",
   },
 ];
@@ -36,7 +42,18 @@ export function UseCasesSection() {
 
   return (
     <section className="relative bg-[#ffffff] py-16 md:py-24 lg:py-32">
-      <div className="mx-4 lg:mx-8 px-8 lg:px-16">
+      {/* Custom Font */}
+      <style jsx global>{`
+        @font-face {
+          font-family: "NewFont";
+          src: url("/fonts/newfont.woff2") format("woff2");
+          font-weight: 100 900;
+          font-style: normal;
+          font-display: swap;
+        }
+      `}</style>
+
+      <div className="mx-4 md:mx-6 lg:mx-8 px-5 sm:px-8 lg:px-16">
         {/* Header Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mb-16 lg:mb-20">
           {/* Left - Section Label & Heading */}
@@ -46,13 +63,19 @@ export function UseCasesSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            {/* Section Name Pill - matching who-we-are and our-services */}
-            <span className="inline-flex items-center px-4 py-1.5 mb-8 text-xs font-medium tracking-wider uppercase border border-gray-300 rounded-full text-gray-600">
+            {/* Section Name Pill */}
+            <span
+              className="inline-flex items-center px-4 py-1.5 mb-8 text-xs font-semibold tracking-wider uppercase border-2 border-black rounded-full text-black"
+              style={{ fontFamily: "NewFont, sans-serif" }}
+            >
               Use Cases
             </span>
 
             {/* Main Heading */}
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-gray-900 leading-[1.1]">
+            <h2
+              className="text-4xl md:text-5xl lg:text-6xl font-light text-gray-900 leading-[1.1]"
+              style={{ fontFamily: "NewFont, sans-serif" }}
+            >
               Solving Sector
               <br />
               Challenges At
@@ -69,26 +92,27 @@ export function UseCasesSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="flex flex-col justify-start lg:pt-8"
           >
-            <p className="text-gray-600 text-base md:text-lg leading-relaxed">
-              Upright delivers tailored IT solutions designed for the unique needs of 
-              high-impact sectors. Our approach enables rapid deployment, 
-              consistent quality, and scalable design across diverse industries.
+            <p
+              className="text-gray-600 text-base md:text-lg leading-relaxed"
+              style={{ fontFamily: "NewFont, sans-serif" }}
+            >
+              Upright delivers tailored IT solutions designed for the unique
+              needs of high-impact sectors. Our approach enables rapid
+              deployment, consistent quality, and scalable design across diverse
+              industries.
             </p>
           </motion.div>
         </div>
 
         {/* Content Section - Image and Sectors List */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-          {/* Left - Image */}
+          {/* Left - Image with black border */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="relative aspect-[4/3] overflow-hidden"
-            style={{
-              clipPath: "polygon(0 0, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%)",
-            }}
+            className="relative aspect-[4/3] overflow-hidden border-2 border-black"
           >
             <AnimatePresence mode="wait">
               <motion.div
@@ -136,6 +160,7 @@ export function UseCasesSection() {
                         ? "text-[#ffdf20]"
                         : "text-gray-900 group-hover:text-gray-600"
                     }`}
+                    style={{ fontFamily: "NewFont, sans-serif" }}
                   >
                     {sector.name}
                   </span>
@@ -144,6 +169,7 @@ export function UseCasesSection() {
                     <Link
                       href={sector.link}
                       className="flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+                      style={{ fontFamily: "NewFont, sans-serif" }}
                       onClick={(e) => e.stopPropagation()}
                     >
                       Know More
@@ -164,7 +190,10 @@ export function UseCasesSection() {
                       transition={{ duration: 0.3 }}
                       className="overflow-hidden"
                     >
-                      <p className="pb-5 text-gray-600 text-sm md:text-base leading-relaxed pr-8">
+                      <p
+                        className="pb-5 text-gray-600 text-sm md:text-base leading-relaxed pr-8"
+                        style={{ fontFamily: "NewFont, sans-serif" }}
+                      >
                         {sector.description}
                       </p>
                     </motion.div>

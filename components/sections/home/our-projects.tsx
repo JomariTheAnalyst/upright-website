@@ -34,6 +34,24 @@ const projects = [
       "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80",
     link: "/projects/mycado",
   },
+  {
+    id: 4,
+    title: "Gerry's Restaurant CCTV Installation",
+    shortDescription:
+      "Complete CCTV surveillance system installation for Gerry's Restaurant branches ensuring security and monitoring.",
+    image:
+      "https://images.unsplash.com/photo-1557597774-9d273605dfa9?w=800&q=80",
+    link: "/projects/gerrys-cctv",
+  },
+  {
+    id: 5,
+    title: "LBC CCTV Installation",
+    shortDescription:
+      "Enterprise-grade CCTV security system deployment for LBC Express facilities and branches.",
+    image:
+      "https://images.unsplash.com/photo-1558002038-1055907df827?w=800&q=80",
+    link: "/projects/lbc-cctv",
+  },
 ];
 
 export function OurProjectsSection() {
@@ -55,7 +73,6 @@ export function OurProjectsSection() {
     }
   };
 
-  // Touch/Mouse drag handlers for mobile
   const handleMouseDown = (e: React.MouseEvent) => {
     if (!carouselRef.current) return;
     setIsDragging(true);
@@ -95,6 +112,17 @@ export function OurProjectsSection() {
 
   return (
     <section className="relative bg-[#f5f5f5] py-12 sm:py-16 md:py-20 lg:py-28">
+      {/* Custom Font */}
+      <style jsx global>{`
+        @font-face {
+          font-family: "NewFont";
+          src: url("/fonts/newfont.woff2") format("woff2");
+          font-weight: 100 900;
+          font-style: normal;
+          font-display: swap;
+        }
+      `}</style>
+
       <div className="mx-4 md:mx-6 lg:mx-8">
         {/* Header Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 px-5 sm:px-8 lg:px-16 mb-10 sm:mb-12 lg:mb-20">
@@ -105,11 +133,17 @@ export function OurProjectsSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <span className="inline-flex items-center px-3 sm:px-4 py-1.5 mb-5 sm:mb-8 text-[10px] sm:text-xs font-medium tracking-wider uppercase border border-gray-300 rounded-full text-gray-600">
+            <span
+              className="inline-flex items-center px-4 py-1.5 mb-5 sm:mb-8 text-xs font-semibold tracking-wider uppercase border-2 border-black rounded-full text-black"
+              style={{ fontFamily: "NewFont, sans-serif" }}
+            >
               Our Projects
             </span>
 
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-gray-900 leading-[1.1]">
+            <h2
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-gray-900 leading-[1.1]"
+              style={{ fontFamily: "NewFont, sans-serif" }}
+            >
               Innovative Solutions.
               <br />
               <span className="font-normal">Real-World Impact.</span>
@@ -124,7 +158,10 @@ export function OurProjectsSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="flex flex-col justify-end"
           >
-            <p className="text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed mb-6 sm:mb-8">
+            <p
+              className="text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed mb-6 sm:mb-8"
+              style={{ fontFamily: "NewFont, sans-serif" }}
+            >
               We partner with organizations to deliver technology solutions that
               transform operations and create lasting value. From digital health
               platforms to maritime learning systems, our projects demonstrate
@@ -135,6 +172,7 @@ export function OurProjectsSection() {
               <Link
                 href="/projects"
                 className="inline-flex items-center px-5 sm:px-6 py-2.5 sm:py-3 bg-[#ffdf20] hover:bg-yellow-700 text-black font-medium text-xs sm:text-sm transition-colors duration-300"
+                style={{ fontFamily: "NewFont, sans-serif" }}
               >
                 View All Projects
               </Link>
@@ -169,13 +207,16 @@ export function OurProjectsSection() {
           </div>
 
           {/* Drag hint for mobile */}
-          <p className="lg:hidden text-xs text-gray-500 px-5 sm:px-8 mb-3 flex items-center gap-2">
+          <p
+            className="lg:hidden text-xs text-gray-500 px-5 sm:px-8 mb-3 flex items-center gap-2"
+            style={{ fontFamily: "NewFont, sans-serif" }}
+          >
             <ChevronLeft className="w-3 h-3" />
             Swipe to explore
             <ChevronRight className="w-3 h-3" />
           </p>
 
-          {/* Carousel Container - Touch/Drag enabled */}
+          {/* Carousel Container */}
           <div
             ref={carouselRef}
             className={`flex gap-4 sm:gap-6 overflow-x-auto px-5 sm:px-8 lg:px-16 pb-4 snap-x snap-mandatory select-none ${
@@ -207,11 +248,9 @@ export function OurProjectsSection() {
               >
                 <Link
                   href={project.link}
-                  className="group block relative w-[280px] sm:w-[350px] md:w-[450px] lg:w-[600px] xl:w-[800px] overflow-hidden"
+                  className="group block relative w-[280px] sm:w-[350px] md:w-[450px] lg:w-[600px] xl:w-[800px] overflow-hidden border-2 border-black"
                   style={{
                     aspectRatio: "16/10",
-                    clipPath:
-                      "polygon(0 0, 100% 0, 100% calc(100% - 24px), calc(100% - 24px) 100%, 0 100%)",
                   }}
                   onClick={(e) => isDragging && e.preventDefault()}
                 >
@@ -227,7 +266,10 @@ export function OurProjectsSection() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
 
                   <div className="absolute inset-x-0 bottom-0 p-4 sm:p-6 lg:p-8 pr-12 sm:pr-16">
-                    <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-white leading-tight mb-1 sm:mb-2">
+                    <h3
+                      className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-white leading-tight mb-1 sm:mb-2"
+                      style={{ fontFamily: "NewFont, sans-serif" }}
+                    >
                       {project.title}
                     </h3>
 
@@ -239,6 +281,7 @@ export function OurProjectsSection() {
                       }}
                       transition={{ duration: 0.3 }}
                       className="text-white/80 text-xs sm:text-sm md:text-base leading-relaxed max-w-md hidden sm:block"
+                      style={{ fontFamily: "NewFont, sans-serif" }}
                     >
                       {project.shortDescription}
                     </motion.p>
