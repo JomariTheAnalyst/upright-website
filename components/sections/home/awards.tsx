@@ -22,18 +22,18 @@ export function AwardsSection() {
       `}</style>
 
       <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           {/* Left Column - Stacked Images */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="relative h-[500px] md:h-[620px] lg:h-[700px]"
+            className="relative h-[380px] md:h-[620px] lg:h-[700px] mx-auto w-full max-w-[400px] md:max-w-none"
           >
             {/* First Image - Back (Top Left) - Fully Visible */}
             <div
-              className="absolute top-0 left-0 w-[58%] md:w-[55%] lg:w-[65%] z-10"
+              className="absolute top-0 left-0 w-[55%] md:w-[55%] lg:w-[65%] z-10"
               style={{ transform: "rotate(-3deg)" }}
             >
               <div className="border-2 border-black">
@@ -47,7 +47,7 @@ export function AwardsSection() {
 
             {/* Second Image - Front (Bottom Right) - Minimal Overlap */}
             <div
-              className="absolute bottom-[-70] right-[-70] w-[58%] md:w-[55%] lg:w-[65%] z-20"
+              className="absolute bottom-4 right-0 md:bottom-[-70px] md:right-[-70px] w-[55%] md:w-[55%] lg:w-[65%] z-20"
               style={{ transform: "rotate(7deg)" }}
             >
               <div className="border-2 border-black bg-white">
@@ -61,7 +61,7 @@ export function AwardsSection() {
 
             {/* Decorative Arrow */}
             <svg
-              className="absolute top-[45%] left-[45%] w-7 h-7 text-[#0000ff] z-25"
+              className="absolute top-[45%] left-[45%] w-7 h-7 text-[#0000ff] z-25 hidden md:block"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -77,7 +77,7 @@ export function AwardsSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="space-y-6 pl-20"
+            className="space-y-6 pl-0 lg:pl-20"
           >
             {/* Section Badge */}
             <span
@@ -90,7 +90,11 @@ export function AwardsSection() {
             {/* Subtitle */}
             <p
               className="text-sm  md:text-base font-bold text-black uppercase tracking-wide"
-              style={{ fontFamily: "NewFont, sans-serif", fontWeight: 900, fontSize: "31px" }}
+              style={{
+                fontFamily: "NewFont, sans-serif",
+                fontWeight: 900,
+                fontSize: "31px",
+              }}
             >
               {award.issuedBy}
             </p>

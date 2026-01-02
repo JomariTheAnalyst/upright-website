@@ -100,7 +100,7 @@ export function TransparentNavbar() {
           {/* Desktop Navigation - Right */}
           <div className="hidden lg:flex items-center gap-1">
             <NavLink href="/about" isScrolled={isScrolled}>
-              About us
+              About
             </NavLink>
 
             <NavLink href="/services" isScrolled={isScrolled}>
@@ -109,10 +109,6 @@ export function TransparentNavbar() {
 
             <NavLink href="/projects" isScrolled={isScrolled}>
               Projects
-            </NavLink>
-
-            <NavLink href="/use-cases" isScrolled={isScrolled}>
-              Use Cases
             </NavLink>
 
             {/* Company Dropdown */}
@@ -292,7 +288,6 @@ function MobileNav({ isScrolled }: { isScrolled: boolean }) {
               </AccordionContent>
             </AccordionItem>
           </Accordion>
-
 
           <SheetClose asChild>
             <Link href="/contact" className="mt-4">

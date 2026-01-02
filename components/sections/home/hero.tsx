@@ -53,24 +53,6 @@ export function HeroSection() {
             >
               Contact us
             </Link>
-            <Link
-              href="/services"
-              className="p-3 bg-[#ffdf20] hover:bg-[#ffbf00] text-black rounded-md transition-all duration-300"
-            >
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M7 17L17 7M17 7H7M17 7V17"
-                />
-              </svg>
-            </Link>
           </motion.div>
         </motion.div>
       </div>

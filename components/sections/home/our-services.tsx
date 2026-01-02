@@ -13,7 +13,7 @@ const services = [
     description:
       "Whether it's a web application or a full enterprise solution, our software is built with scalable architecture that's secure, performant & aligned with your business goals.",
     image:
-      "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&q=80",
+      "https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?q=80&w=2670&auto=format&fit=crop",
     link: "/services/software-development",
   },
   {
@@ -23,7 +23,7 @@ const services = [
     description:
       "Whether it's optimizing existing systems or designing new infrastructure, our solutions are based on thorough analysis that's efficient, scalable & compliant with industry standards.",
     image:
-      "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80",
+      "https://images.unsplash.com/photo-1558494949-ef5485037024?q=80&w=2670&auto=format&fit=crop",
     link: "/services/system-integration",
   },
   {
@@ -33,7 +33,7 @@ const services = [
     description:
       "Whether it's interactive courses or comprehensive training platforms, our learning solutions are designed with engaging content that's effective, accessible & tailored to your workforce needs.",
     image:
-      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80",
+      "https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=2574&auto=format&fit=crop",
     link: "/services/learning-content",
   },
   {
@@ -43,7 +43,7 @@ const services = [
     description:
       "Whether it's digital transformation or technology roadmapping, our consultancy services are grounded in deep expertise that's practical, results-driven & focused on maximizing your ROI.",
     image:
-      "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80",
+      "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2670&auto=format&fit=crop",
     link: "/services/it-consultancy",
   },
   {
@@ -53,7 +53,7 @@ const services = [
     description:
       "Whether it's preventive maintenance or emergency support, our hardware services are delivered with technical precision that's reliable, timely & keeps your infrastructure running at peak performance.",
     image:
-      "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80",
+      "https://images.unsplash.com/photo-1597852074816-d933c72c6cf8?q=80&w=2574&auto=format&fit=crop",
     link: "/services/hardware-solutions",
   },
 ];
@@ -180,7 +180,7 @@ export function OurServicesSection() {
             {/* CTA */}
             <div className="mt-6 flex items-center gap-4 md:mt-8 lg:mt-10">
               <Link
-                href={currentService.link}
+                href="/services"
                 className="flex h-11 w-11 items-center justify-center rounded-full border transition-all duration-500 md:h-12 md:w-12 lg:h-14 lg:w-14"
                 style={{
                   borderColor: isHovered ? "hsl(0, 0%, 0%)" : "hsl(0, 0%, 80%)",
@@ -201,7 +201,8 @@ export function OurServicesSection() {
                   }}
                 />
               </Link>
-              <span
+              <Link
+                href="/services"
                 className="text-[10px] font-medium uppercase tracking-widest transition-all duration-700 md:text-xs"
                 style={{
                   fontFamily: "NewFont, sans-serif",
@@ -212,7 +213,7 @@ export function OurServicesSection() {
                 }}
               >
                 Explore
-              </span>
+              </Link>
             </div>
 
             {/* Navigation Controls */}
