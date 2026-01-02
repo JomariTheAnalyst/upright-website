@@ -42,8 +42,8 @@ export function CtaBanner() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="text-white/80 text-base md:text-lg leading-relaxed max-w-2xl mb-10"
         >
-          Share your project details with a timeline, and we will return
-          a customised programme, cost and ROI model within a week.
+          Share your project details with a timeline, and we will return a
+          customised programme, cost and ROI model within a week.
         </motion.p>
 
         {/* CTA Button */}
@@ -56,15 +56,19 @@ export function CtaBanner() {
         >
           <Link
             href="/contact"
-            className="inline-flex items-center px-8 py-4 bg-[#ffdf20] hover:bg-yellow-700 text-black font-medium text-base transition-colors duration-300"
+            className="group relative inline-flex items-center px-8 py-4 bg-[#ffdf20] text-black font-medium text-base overflow-hidden"
           >
-            Contact Us Now
+            <span className="absolute inset-0 bg-[#0000ff] transform origin-top scale-y-0 transition-transform duration-500 ease-out group-hover:scale-y-100" />
+            <span className="relative z-10 transition-colors duration-500 group-hover:text-white">
+              Contact Us Now
+            </span>
           </Link>
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center w-14 h-14 bg-[#ffdf20] hover:bg-yellow-700 text-black transition-colors duration-300"
+            className="group relative inline-flex items-center justify-center w-14 h-14 bg-[#ffdf20] text-black overflow-hidden"
           >
-            <ArrowUpRight className="w-5 h-5" />
+            <span className="absolute inset-0 bg-[#0000ff] transform origin-top scale-y-0 transition-transform duration-500 ease-out group-hover:scale-y-100" />
+            <ArrowUpRight className="relative z-10 w-5 h-5 transition-colors duration-500 group-hover:text-white" />
           </Link>
         </motion.div>
       </div>

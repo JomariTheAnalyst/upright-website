@@ -49,9 +49,12 @@ export function HeroSection() {
           >
             <Link
               href="/contact"
-              className="px-6 py-3 bg-[#ffdf20] hover:bg-[#ffbf00] text-black font-medium rounded-md transition-all duration-300 text-sm uppercase tracking-wider"
+              className="group relative px-6 py-3 bg-[#ffdf20] text-black font-medium rounded-md overflow-hidden text-sm uppercase tracking-wider"
             >
-              Contact us
+              <span className="absolute inset-0 bg-[#0000ff] transform origin-top scale-y-0 transition-transform duration-500 ease-out group-hover:scale-y-100" />
+              <span className="relative z-10 transition-colors duration-500 group-hover:text-white">
+                Contact us
+              </span>
             </Link>
           </motion.div>
         </motion.div>

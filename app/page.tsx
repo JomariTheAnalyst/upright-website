@@ -10,6 +10,7 @@ import { UseCasesSection } from "@/components/sections/home/use-cases";
 import { EventsSection } from "@/components/sections/home/events";
 import { ImpactSection } from "@/components/sections/home/impact";
 import { AwardsSection } from "@/components/sections/home/awards";
+import { OurTeamSection } from "@/components/sections/our-team";
 export default function Home() {
   return (
     <div className="relative min-h-screen overflow-x-hidden">
@@ -18,7 +19,7 @@ export default function Home() {
       <div className="w-full h-2 bg-[#ffe319]" />
       <WhoWeAreSection />
       <VideoSection />
-      <div style={{ backgroundColor: "#fafafa" }}>
+      <div style={{ backgroundColor: "#faf2e8" }}>
         <OurServicesSection />
       </div>
       <OurProjectsSection />
@@ -26,6 +27,7 @@ export default function Home() {
       <ImpactSection />
       <EventsSection />
       <AwardsSection />
+      <OurTeamSection />
       <div style={{ backgroundColor: "#fafafa" }}>
         <CeoQuoteSection />
       </div>

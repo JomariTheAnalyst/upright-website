@@ -4,89 +4,76 @@ import { motion } from "framer-motion";
 
 export function JourneySection() {
   return (
-    <section className="py-20 md:py-28 lg:py-36 px-4 sm:px-6 lg:px-8 bg-[#f8f7f4]">
-      <div className="max-w-7xl mx-auto">
-        {/* Section Title Badge */}
+    <section className="py-20 md:py-28 lg:py-36 px-4 sm:px-6 lg:px-8 bg-white">
+      {/* Custom Font */}
+      <style jsx global>{`
+        @font-face {
+          font-family: "NewFont";
+          src: url("/fonts/newfont.woff2") format("woff2");
+          font-weight: 100 900;
+          font-style: normal;
+          font-display: swap;
+        }
+      `}</style>
+
+      <div className="max-w-6xl mx-auto">
+        {/* Section Badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="flex items-center justify-center mb-12"
+          className="mb-10 md:mb-14"
         >
-          <span className="inline-block px-6 py-2 border-2 border-black rounded-full text-sm font-semibold text-black">
-            Our Journey
+          <span
+            className="inline-flex items-center px-5 py-2 text-xs font-semibold tracking-wider uppercase border-2 border-black rounded-full text-black"
+            style={{ fontFamily: "NewFont, sans-serif" }}
+          >
+            About
           </span>
         </motion.div>
 
-        {/* Main Heading - Upper Left, 3 lines max */}
+        {/* Main Headline */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="max-w-2xl mb-16 md:mb-20"
+          className="mb-10 md:mb-14"
         >
           <h2
-            className="text-[28px] md:text-[32px] lg:text-[38px] leading-[1.2] text-black"
-            style={{ fontFamily: "NewFont, sans-serif", fontWeight: 700 }}
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-[#1a2b4a] leading-[1.05] tracking-tight uppercase italic"
+            style={{ fontFamily: "NewFont, sans-serif" }}
           >
-            Upright was born as a direct response to the evolving needs of
-            businesses in the digital age.
+            AT THE HEART OF YOUR
+            <br />
+            PROJECTS SINCE{" "}
+            <span className="relative inline-block">
+              {/* Blue highlight background */}
+              <span className="absolute inset-0 bg-[#0000ff] -skew-x-3 transform scale-105" />
+              <span className="relative text-white px-3 py-1">2015</span>
+            </span>
           </h2>
         </motion.div>
 
-        {/* Two Columns - Right Aligned Under Heading */}
+        {/* Description Paragraph */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 md:ml-auto md:max-w-[75%] lg:max-w-[65%]"
+          className="max-w-3xl"
         >
-          {/* Column 1 */}
-          <div className="space-y-5">
-            <p
-              className="text-base md:text-[17px] text-gray-700 leading-relaxed"
-              style={{ fontFamily: "NewFont, sans-serif" }}
-            >
-              In the wake of rapid technological advancement and the shift to
-              digital-first operations, we realized something. Traditional
-              approaches to IT and systems management were no longer sufficient
-              for businesses seeking sustainable growth.
-            </p>
-            <p
-              className="text-base md:text-[17px] text-gray-700 leading-relaxed"
-              style={{ fontFamily: "NewFont, sans-serif" }}
-            >
-              There was an opportunity to initiate positive change by
-              reimagining the way organizations integrate technology. We started
-              by supporting impact-driven solutions, while also offering
-              consultancy services that develop operational capabilities,
-              strategic thinking, and digital literacy.
-            </p>
-          </div>
-
-          {/* Column 2 */}
-          <div className="space-y-5">
-            <p
-              className="text-base md:text-[17px] text-gray-700 leading-relaxed"
-              style={{ fontFamily: "NewFont, sans-serif" }}
-            >
-              A collaborative, adaptive, and forward-thinking approach to IT
-              consultancy is the key to addressing the pressing challenges of
-              our time.
-            </p>
-            <p
-              className="text-base md:text-[17px] text-gray-700 leading-relaxed"
-              style={{ fontFamily: "NewFont, sans-serif" }}
-            >
-              Our unwavering commitment to our principles of 'people-first
-              technology' has helped to propel us forward, making Upright a
-              trusted partner in the pursuit of a sustainable and resilient
-              digital future.
-            </p>
-          </div>
+          <p
+            className="text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed"
+            style={{ fontFamily: "NewFont, sans-serif" }}
+          >
+            For nearly a decade, we have built strong relationships with our
+            clients by focusing on reliability, transparency, and quality
+            workmanship. Upright Solutions is a specialized team that
+            understands your challenges, adapts to your needs, and delivers —
+            project after project.
+          </p>
         </motion.div>
       </div>
     </section>

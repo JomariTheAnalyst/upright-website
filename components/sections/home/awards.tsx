@@ -9,7 +9,7 @@ export function AwardsSection() {
   const award = company.awards[0];
 
   return (
-    <section className="py-16 md:py-24 bg-[#f5f5f3]">
+    <section className="py-16 md:py-24 bg-white">
       {/* Custom Font */}
       <style jsx global>{`
         @font-face {

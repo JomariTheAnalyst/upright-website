@@ -181,35 +181,16 @@ export function OurServicesSection() {
             <div className="mt-6 flex items-center gap-4 md:mt-8 lg:mt-10">
               <Link
                 href="/services"
-                className="flex h-11 w-11 items-center justify-center rounded-full border transition-all duration-500 md:h-12 md:w-12 lg:h-14 lg:w-14"
-                style={{
-                  borderColor: isHovered ? "hsl(0, 0%, 0%)" : "hsl(0, 0%, 80%)",
-                  backgroundColor: isHovered ? "#ffdf20" : "transparent",
-                  color: "hsl(0, 0%, 0%)",
-                  transform: isHovered ? "scale(1.05)" : "scale(1)",
-                  boxShadow: isHovered
-                    ? "0 8px 32px rgba(0, 0, 0, 0.15)"
-                    : "0 0 0 transparent",
-                  transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
-                }}
+                className="group relative flex h-11 w-11 items-center justify-center rounded-full border border-[#ffdf20] bg-[#ffdf20] overflow-hidden md:h-12 md:w-12 lg:h-14 lg:w-14"
               >
-                <ArrowUpRight
-                  className="h-4 w-4 transition-transform duration-500 md:h-5 md:w-5"
-                  style={{
-                    transform: isHovered ? "rotate(45deg)" : "rotate(0deg)",
-                    transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
-                  }}
-                />
+                <span className="absolute inset-0 bg-[#0000ff] transform origin-top scale-y-0 transition-transform duration-500 ease-out group-hover:scale-y-100 rounded-full" />
+                <ArrowUpRight className="relative z-10 h-4 w-4 text-black transition-all duration-500 md:h-5 md:w-5 group-hover:text-white group-hover:rotate-45" />
               </Link>
               <Link
                 href="/services"
-                className="text-[10px] font-medium uppercase tracking-widest transition-all duration-700 md:text-xs"
+                className="text-[10px] font-medium uppercase tracking-widest transition-all duration-700 md:text-xs opacity-50 hover:opacity-100"
                 style={{
                   fontFamily: "NewFont, sans-serif",
-                  opacity: isHovered ? 1 : 0.5,
-                  transform: isHovered ? "translateX(0)" : "translateX(-8px)",
-                  transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
-                  transitionDelay: isHovered ? "100ms" : "0ms",
                 }}
               >
                 Explore

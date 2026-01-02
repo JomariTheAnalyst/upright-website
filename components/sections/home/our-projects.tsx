@@ -171,16 +171,20 @@ export function OurProjectsSection() {
             <div className="flex items-center gap-0.5">
               <Link
                 href="/projects"
-                className="inline-flex items-center px-5 sm:px-6 py-2.5 sm:py-3 bg-[#ffdf20] hover:bg-yellow-700 text-black font-medium text-xs sm:text-sm transition-colors duration-300"
+                className="group relative inline-flex items-center px-5 sm:px-6 py-2.5 sm:py-3 bg-[#ffdf20] text-black font-medium text-xs sm:text-sm overflow-hidden"
                 style={{ fontFamily: "NewFont, sans-serif" }}
               >
-                View All Projects
+                <span className="absolute inset-0 bg-[#0000ff] transform origin-top scale-y-0 transition-transform duration-500 ease-out group-hover:scale-y-100" />
+                <span className="relative z-10 transition-colors duration-500 group-hover:text-white">
+                  View All Projects
+                </span>
               </Link>
               <Link
                 href="/projects"
-                className="inline-flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 bg-[#ffdf20] hover:bg-yellow-700 text-black transition-colors duration-300"
+                className="group relative inline-flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 bg-[#ffdf20] text-black overflow-hidden"
               >
-                <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />
+                <span className="absolute inset-0 bg-[#0000ff] transform origin-top scale-y-0 transition-transform duration-500 ease-out group-hover:scale-y-100" />
+                <ArrowUpRight className="relative z-10 w-4 h-4 sm:w-5 sm:h-5 transition-colors duration-500 group-hover:text-white" />
               </Link>
             </div>
           </motion.div>
@@ -192,17 +196,19 @@ export function OurProjectsSection() {
           <div className="hidden lg:flex absolute -top-16 right-16 gap-2 z-10">
             <button
               onClick={scrollLeftFn}
-              className="w-12 h-12 flex items-center justify-center border border-gray-300 hover:border-gray-900 hover:bg-gray-900 hover:text-white text-gray-600 transition-all duration-300 rounded-full"
+              className="group relative w-12 h-12 flex items-center justify-center border-2 border-black bg-[#ffdf20] text-black overflow-hidden"
               aria-label="Scroll left"
             >
-              <ChevronLeft className="w-5 h-5" />
+              <span className="absolute inset-0 bg-[#0000ff] transform origin-top scale-y-0 transition-transform duration-500 ease-out group-hover:scale-y-100" />
+              <ChevronLeft className="relative z-10 w-5 h-5 transition-colors duration-500 group-hover:text-white" />
             </button>
             <button
               onClick={scrollRightFn}
-              className="w-12 h-12 flex items-center justify-center border border-gray-300 hover:border-gray-900 hover:bg-gray-900 hover:text-white text-gray-600 transition-all duration-300 rounded-full"
+              className="group relative w-12 h-12 flex items-center justify-center border-2 border-black bg-[#ffdf20] text-black overflow-hidden"
               aria-label="Scroll right"
             >
-              <ChevronRight className="w-5 h-5" />
+              <span className="absolute inset-0 bg-[#0000ff] transform origin-top scale-y-0 transition-transform duration-500 ease-out group-hover:scale-y-100" />
+              <ChevronRight className="relative z-10 w-5 h-5 transition-colors duration-500 group-hover:text-white" />
             </button>
           </div>
 

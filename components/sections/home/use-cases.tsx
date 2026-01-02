@@ -41,7 +41,7 @@ export function UseCasesSection() {
   const activeSector = sectors[activeIndex];
 
   return (
-    <section className="relative bg-[#ffffff] py-16 md:py-24 lg:py-32">
+    <section className="relative bg-white py-16 md:py-24 lg:py-32">
       {/* Custom Font */}
       <style jsx global>{`
         @font-face {
