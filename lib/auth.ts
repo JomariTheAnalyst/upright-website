@@ -1,67 +1,30 @@
-import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
 import bcrypt from "bcryptjs";
+import { sql } from "./db";
 
 // Types
 export type UserRole = "admin" | "staff";
 
 export interface AdminUser {
-  id: string;
+  id: number;
   email: string;
-  name: string;
+  username: string;
   role: UserRole;
-  passwordHash: string;
+  is_active: boolean;
 }
 
 export interface SessionPayload {
-  userId: string;
+  sessionId: string;
+  userId: number;
   email: string;
-  name: string;
+  username: string;
   role: UserRole;
   expiresAt: Date;
 }
 
 // Configuration
 const SESSION_COOKIE_NAME = "admin_session";
-const SESSION_DURATION = 8 * 60 * 60 * 1000; // 8 hours
-
-function getSecretKey(): Uint8Array {
-  const secret = process.env.ADMIN_JWT_SECRET;
-  if (!secret) {
-    throw new Error("ADMIN_JWT_SECRET is not configured");
-  }
-  return new TextEncoder().encode(secret);
-}
-
-// In-memory admin users (in production, use a database)
-// Passwords are hashed versions - generate with: bcrypt.hashSync("password", 10)
-const ADMIN_USERS: AdminUser[] = [
-  {
-    id: "1",
-    email: "admin@upright.ph",
-    name: "Admin User",
-    role: "admin",
-    // Default password: "admin123" - CHANGE IN PRODUCTION
-    passwordHash: "$2a$10$rQZ8K.Nh8YQVqKxLxL8Xz.8YQVqKxLxL8Xz.8YQVqKxLxL8Xz.8Y",
-  },
-  {
-    id: "2",
-    email: "staff@upright.ph",
-    name: "Staff User",
-    role: "staff",
-    // Default password: "staff123" - CHANGE IN PRODUCTION
-    passwordHash: "$2a$10$rQZ8K.Nh8YQVqKxLxL8Xz.8YQVqKxLxL8Xz.8YQVqKxLxL8Xz.8Y",
-  },
-];
-
-// Quick access code for fast login (in production, store securely)
-const ACCESS_CODES: Record<string, string> = {
-  // accessCode: userId
-};
-
-export async function hashPassword(password: string): Promise<string> {
-  return bcrypt.hash(password, 10);
-}
+const SESSION_DURATION_HOURS = 12;
 
 export async function verifyPassword(
   password: string,
@@ -70,58 +33,74 @@ export async function verifyPassword(
   return bcrypt.compare(password, hash);
 }
 
-export async function findUserByEmail(
-  email: string
-): Promise<AdminUser | null> {
-  // Check environment variables for admin credentials first
-  const envAdminEmail = process.env.ADMIN_EMAIL;
-  const envAdminPassword = process.env.ADMIN_PASSWORD_HASH;
+export async function findUserByIdentifier(
+  identifier: string
+): Promise<
+  (AdminUser & { password_hash: string; access_code_hash: string }) | null
+> {
+  const result = await sql`
+    SELECT id, email, username, password_hash, access_code_hash, role, is_active
+    FROM admin_users
+    WHERE (email = ${identifier} OR username = ${identifier})
+    LIMIT 1
+  `;
 
-  if (envAdminEmail && envAdminPassword && email === envAdminEmail) {
-    return {
-      id: "env-admin",
-      email: envAdminEmail,
-      name: "Administrator",
-      role: "admin",
-      passwordHash: envAdminPassword,
-    };
-  }
+  if (result.length === 0) return null;
 
-  return ADMIN_USERS.find((u) => u.email === email) || null;
+  return {
+    id: result[0].id as number,
+    email: result[0].email as string,
+    username: result[0].username as string,
+    password_hash: result[0].password_hash as string,
+    access_code_hash: result[0].access_code_hash as string,
+    role: result[0].role as UserRole,
+    is_active: result[0].is_active as boolean,
+  };
 }
 
 export async function findUserByAccessCode(
-  code: string
+  accessCode: string
 ): Promise<AdminUser | null> {
-  const envAccessCode = process.env.ADMIN_ACCESS_CODE;
-  const envAdminEmail = process.env.ADMIN_EMAIL;
+  const result = await sql`
+    SELECT id, email, username, access_code_hash, role, is_active
+    FROM admin_users
+    WHERE is_active = true
+  `;
 
-  if (envAccessCode && code === envAccessCode && envAdminEmail) {
-    return findUserByEmail(envAdminEmail);
+  for (const row of result) {
+    const isMatch = await verifyPassword(
+      accessCode,
+      row.access_code_hash as string
+    );
+    if (isMatch) {
+      return {
+        id: row.id as number,
+        email: row.email as string,
+        username: row.username as string,
+        role: row.role as UserRole,
+        is_active: row.is_active as boolean,
+      };
+    }
   }
 
-  const userId = ACCESS_CODES[code];
-  if (!userId) return null;
-  return ADMIN_USERS.find((u) => u.id === userId) || null;
+  return null;
 }
 
-export async function createSession(user: AdminUser): Promise<string> {
-  const expiresAt = new Date(Date.now() + SESSION_DURATION);
+export async function createSession(userId: number): Promise<string> {
+  const expiresAt = new Date(
+    Date.now() + SESSION_DURATION_HOURS * 60 * 60 * 1000
+  );
 
-  const token = await new SignJWT({
-    userId: user.id,
-    email: user.email,
-    name: user.name,
-    role: user.role,
-  })
-    .setProtectedHeader({ alg: "HS256" })
-    .setIssuedAt()
-    .setExpirationTime(expiresAt)
-    .sign(getSecretKey());
+  const result = await sql`
+    INSERT INTO admin_sessions (admin_user_id, expires_at)
+    VALUES (${userId}, ${expiresAt.toISOString()})
+    RETURNING id
+  `;
 
-  // Set HTTP-only cookie
+  const sessionId = result[0].id as string;
+
   const cookieStore = await cookies();
-  cookieStore.set(SESSION_COOKIE_NAME, token, {
+  cookieStore.set(SESSION_COOKIE_NAME, sessionId, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "lax",
@@ -129,24 +108,45 @@ export async function createSession(user: AdminUser): Promise<string> {
     path: "/",
   });
 
-  return token;
+  return sessionId;
 }
 
 export async function getSession(): Promise<SessionPayload | null> {
   const cookieStore = await cookies();
-  const token = cookieStore.get(SESSION_COOKIE_NAME)?.value;
+  const sessionId = cookieStore.get(SESSION_COOKIE_NAME)?.value;
 
-  if (!token) return null;
+  if (!sessionId) return null;
 
   try {
-    const { payload } = await jwtVerify(token, getSecretKey());
+    const result = await sql`
+      SELECT 
+        s.id as session_id,
+        s.expires_at,
+        u.id as user_id,
+        u.email,
+        u.username,
+        u.role,
+        u.is_active
+      FROM admin_sessions s
+      JOIN admin_users u ON s.admin_user_id = u.id
+      WHERE s.id = ${sessionId}::uuid
+        AND s.expires_at > NOW()
+        AND u.is_active = true
+      LIMIT 1
+    `;
+
+    if (result.length === 0) {
+      await destroySession();
+      return null;
+    }
 
     return {
-      userId: payload.userId as string,
-      email: payload.email as string,
-      name: payload.name as string,
-      role: payload.role as UserRole,
-      expiresAt: new Date((payload.exp as number) * 1000),
+      sessionId: result[0].session_id as string,
+      userId: result[0].user_id as number,
+      email: result[0].email as string,
+      username: result[0].username as string,
+      role: result[0].role as UserRole,
+      expiresAt: new Date(result[0].expires_at as string),
     };
   } catch {
     return null;
@@ -155,7 +155,21 @@ export async function getSession(): Promise<SessionPayload | null> {
 
 export async function destroySession(): Promise<void> {
   const cookieStore = await cookies();
+  const sessionId = cookieStore.get(SESSION_COOKIE_NAME)?.value;
+
+  if (sessionId) {
+    try {
+      await sql`DELETE FROM admin_sessions WHERE id = ${sessionId}::uuid`;
+    } catch {
+      // Ignore errors during cleanup
+    }
+  }
+
   cookieStore.delete(SESSION_COOKIE_NAME);
+}
+
+export async function cleanupExpiredSessions(): Promise<void> {
+  await sql`DELETE FROM admin_sessions WHERE expires_at < NOW()`;
 }
 
 export function hasPermission(role: UserRole, action: string): boolean {

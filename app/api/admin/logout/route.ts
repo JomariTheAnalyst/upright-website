@@ -8,7 +8,7 @@ export async function POST() {
   } catch (error) {
     console.error("Logout error:", error);
     return NextResponse.json(
-      { success: false, error: "An error occurred during logout" },
+      { success: false, error: "Failed to logout" },
       { status: 500 }
     );
   }
