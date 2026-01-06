@@ -2,11 +2,15 @@
   "name": "upright-systems",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "postinstall": "node -e \"try { require('lightningcss'); } catch(e) { console.log('Rebuilding lightningcss...'); require('child_process').execSync('npm rebuild lightningcss', { stdio: 'inherit' }); }\""
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
