@@ -119,6 +119,20 @@ export default function AboutPage() {
   return (
     <>
       <style jsx global>{`
+        @font-face {
+          font-family: "Graphik";
+          src: url("/fonts/Graphik-Regular.woff2") format("woff2");
+          font-weight: 400;
+          font-style: normal;
+          font-display: swap;
+        }
+        @font-face {
+          font-family: "NeutraText";
+          src: url("/fonts/NeutraTextTF-BoldAlt.woff2") format("woff2");
+          font-weight: 700;
+          font-style: normal;
+          font-display: swap;
+        }
         .perspective-1000 {
           perspective: 1000px;
         }
@@ -138,9 +152,12 @@ export default function AboutPage() {
         </section>
 
         {/* Text Reveal Section - Our Mission */}
-        <section className="relative" style={{ backgroundColor: "#f1f0ee" }}>
+        <section className="relative" style={{ backgroundColor: "#f7f6f1" }}>
           <div className="flex items-center justify-center pt-12 pb-4">
-            <span className="inline-block px-6 py-2 border-2 border-black rounded-full text-sm font-semibold text-black">
+            <span
+              className="inline-block px-6 py-2 border-2 border-black rounded-full text-sm font-semibold text-black"
+              style={{ fontFamily: "Graphik, sans-serif" }}
+            >
               Our Mission
             </span>
           </div>
@@ -172,10 +189,16 @@ export default function AboutPage() {
                   variants={fadeInUp}
                   transition={{ duration: 0.6 }}
                 >
-                  <h2 className="text-5xl md:text-6xl font-bold text-black mb-8">
+                  <h2
+                    className="text-5xl md:text-6xl font-bold text-black mb-8"
+                    style={{ fontFamily: "NeutraText, sans-serif" }}
+                  >
                     The Opportunity
                   </h2>
-                  <p className="text-xl text-gray-700 leading-relaxed">
+                  <p
+                    className="text-xl text-gray-700 leading-relaxed"
+                    style={{ fontFamily: "Graphik, sans-serif" }}
+                  >
                     Upright Systems is here to bridge the gap between businesses
                     and global audiences.
                   </p>
@@ -189,7 +212,10 @@ export default function AboutPage() {
                   variants={fadeInUp}
                   transition={{ duration: 0.6, delay: 0.2 }}
                 >
-                  <p className="text-base text-gray-700 leading-relaxed">
+                  <p
+                    className="text-base text-gray-700 leading-relaxed"
+                    style={{ fontFamily: "Graphik, sans-serif" }}
+                  >
                     We empower you to unlock new markets and monetize
                     international reach without adding extra workload or
                     resource strain. Our team handles everything from
@@ -206,12 +232,15 @@ export default function AboutPage() {
         {/* Our Values Section */}
         <section
           className="py-20 px-4 sm:px-6 lg:px-8"
-          style={{ backgroundColor: "#f1f0ee" }}
+          style={{ backgroundColor: "#f7f6f1" }}
         >
           <div className="max-w-7xl mx-auto mb-16">
             {/* Label */}
             <div className="mb-8">
-              <span className="inline-block px-6 py-2 border-2 border-black rounded-full text-sm font-semibold text-black">
+              <span
+                className="inline-block px-6 py-2 border-2 border-black rounded-full text-sm font-semibold text-black"
+                style={{ fontFamily: "Graphik, sans-serif" }}
+              >
                 Our Core Values
               </span>
             </div>
@@ -224,7 +253,10 @@ export default function AboutPage() {
               transition={{ duration: 0.6 }}
               className="text-left"
             >
-              <h2 className="text-5xl md:text-6xl font-bold text-black mb-4">
+              <h2
+                className="text-5xl md:text-6xl font-bold text-black mb-4"
+                style={{ fontFamily: "NeutraText, sans-serif" }}
+              >
                 Our Core Values.
               </h2>
             </motion.div>
@@ -279,7 +311,7 @@ export default function AboutPage() {
         {/* Our Founder Section */}
         <section
           className="py-20 px-4 sm:px-6 lg:px-8"
-          style={{ backgroundColor: "#f1f0ee" }}
+          style={{ backgroundColor: "#f7f6f1" }}
         >
           <div className="max-w-7xl mx-auto">
             {/* Section Title Badge */}
@@ -291,7 +323,10 @@ export default function AboutPage() {
               transition={{ duration: 0.6 }}
               className="flex items-center justify-center mb-8"
             >
-              <span className="inline-block px-6 py-2 border-2 border-black rounded-full text-sm font-semibold text-black">
+              <span
+                className="inline-block px-6 py-2 border-2 border-black rounded-full text-sm font-semibold text-black"
+                style={{ fontFamily: "Graphik, sans-serif" }}
+              >
                 Our Founder
               </span>
             </motion.div>
@@ -305,7 +340,10 @@ export default function AboutPage() {
               transition={{ duration: 0.6 }}
               className="text-center mb-16"
             >
-              <h2 className="text-5xl md:text-6xl font-bold text-black">
+              <h2
+                className="text-5xl md:text-6xl font-bold text-black"
+                style={{ fontFamily: "NeutraText, sans-serif" }}
+              >
                 Our Founder
               </h2>
             </motion.div>
@@ -321,10 +359,18 @@ export default function AboutPage() {
                 className="space-y-6"
               >
                 <div>
-                  <h3 className="text-3xl md:text-4xl font-bold text-black mb-2">
+                  <h3
+                    className="text-3xl md:text-4xl font-bold text-black mb-2"
+                    style={{ fontFamily: "NeutraText, sans-serif" }}
+                  >
                     {founder.name}
                   </h3>
-                  <p className="text-xl text-gray-600 mb-4">{founder.title}</p>
+                  <p
+                    className="text-xl text-gray-600 mb-4"
+                    style={{ fontFamily: "Graphik, sans-serif" }}
+                  >
+                    {founder.title}
+                  </p>
                   <div className="flex gap-3 mb-6">
                     {founder.socials.linkedin && (
                       <a
@@ -379,7 +425,10 @@ export default function AboutPage() {
                     )}
                   </div>
                 </div>
-                <div className="text-base text-gray-700 leading-relaxed text-justify space-y-4">
+                <div
+                  className="text-base text-gray-700 leading-relaxed text-justify space-y-4"
+                  style={{ fontFamily: "Graphik, sans-serif" }}
+                >
                   {founder.bio.split("\n\n").map((paragraph, index) => (
                     <p key={index}>{paragraph}</p>
                   ))}
@@ -403,7 +452,7 @@ export default function AboutPage() {
         {/* Founder Quote Section with Text Reveal */}
         <section
           className="relative py-16 px-4 sm:px-6 lg:px-8"
-          style={{ backgroundColor: "#f1f0ee" }}
+          style={{ backgroundColor: "#f7f6f1" }}
         >
           <div className="max-w-6xl mx-auto">
             <QuoteReveal

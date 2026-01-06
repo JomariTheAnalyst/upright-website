@@ -319,8 +319,25 @@ export function OurTeamSection() {
   return (
     <section
       className="relative w-full py-16 overflow-hidden"
-      style={{ backgroundColor: "#fafafa" }}
+      style={{ backgroundColor: "#f7f6f1" }}
     >
+      {/* Font Definitions */}
+      <style jsx global>{`
+        @font-face {
+          font-family: "Graphik";
+          src: url("/fonts/Graphik-Regular.woff2") format("woff2");
+          font-weight: 400;
+          font-style: normal;
+          font-display: swap;
+        }
+        @font-face {
+          font-family: "NeutraText";
+          src: url("/fonts/NeutraTextTF-BoldAlt.woff2") format("woff2");
+          font-weight: 700;
+          font-style: normal;
+          font-display: swap;
+        }
+      `}</style>
       {/* Header */}
       <div className="text-center mb-12 px-4">
         <motion.h2
@@ -330,7 +347,7 @@ export function OurTeamSection() {
           transition={{ duration: 0.6 }}
           className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4"
         >
-          Our Team is Your Team
+          Meet the Team
         </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: -10 }}

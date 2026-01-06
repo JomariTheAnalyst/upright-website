@@ -190,23 +190,33 @@ export function TimelineAboutSection() {
   const visibleCards = getVisibleCards();
 
   return (
-    <section className="py-24 md:py-36 overflow-hidden bg-white w-full">
-      {/* Inject custom font */}
+    <section className="py-24 md:py-36 overflow-hidden bg-[#f7f6f1] w-full">
+      {/* Font Definitions */}
       <style jsx global>{`
         @font-face {
-          font-family: "RedExPro";
-          src: url("/fonts/redexpro.woff2") format("woff2");
-          font-weight: normal;
+          font-family: "Graphik";
+          src: url("/fonts/Graphik-Regular.woff2") format("woff2");
+          font-weight: 400;
+          font-style: normal;
+          font-display: swap;
+        }
+        @font-face {
+          font-family: "NeutraText";
+          src: url("/fonts/NeutraTextTF-BoldAlt.woff2") format("woff2");
+          font-weight: 700;
           font-style: normal;
           font-display: swap;
         }
       `}</style>
 
       {/* Full width container */}
-      <div className="w-full px-0 font-redex">
+      <div className="w-full px-0">
         {/* Section Title Badge */}
         <div className="flex items-center justify-center mb-8">
-          <span className="inline-block px-6 py-2 border-2 border-black rounded-full text-sm font-semibold text-black">
+          <span
+            className="inline-block px-6 py-2 border-2 border-black rounded-full text-sm font-semibold text-black"
+            style={{ fontFamily: "Graphik, sans-serif" }}
+          >
             Our Timeline
           </span>
         </div>
@@ -215,7 +225,7 @@ export function TimelineAboutSection() {
         <div className="text-center mb-16 px-6">
           <h2
             className="text-xl md:text-2xl lg:text-3xl font-medium leading-relaxed max-w-5xl mx-auto text-gray-800 tracking-tight"
-            style={{ fontFamily: "'RedExPro', sans-serif" }}
+            style={{ fontFamily: "Graphik, sans-serif" }}
           >
             From its early days as a review center supporting learners and
             professionals, Upright gradually expanded its
@@ -359,7 +369,7 @@ export function TimelineAboutSection() {
                           className="block font-black tracking-tight"
                           style={{
                             textShadow: "1px 1px 0px rgba(0,0,0,0.1)",
-                            fontFamily: "'RedExPro', sans-serif",
+                            fontFamily: "NeutraText, sans-serif",
                             fontSize: "3rem", // Reduced font size to match smaller card
                             color: "#FFD700", // YELLOW as requested
                           }}
@@ -377,13 +387,13 @@ export function TimelineAboutSection() {
                           >
                             <p
                               className="text-sm font-bold text-black leading-tight tracking-wide uppercase"
-                              style={{ fontFamily: "'RedExPro', sans-serif" }}
+                              style={{ fontFamily: "NeutraText, sans-serif" }}
                             >
                               {item.title}
                             </p>
                             <p
                               className="text-xs font-medium text-gray-500 mt-1"
-                              style={{ fontFamily: "'RedExPro', sans-serif" }}
+                              style={{ fontFamily: "Graphik, sans-serif" }}
                             >
                               {item.description}
                             </p>

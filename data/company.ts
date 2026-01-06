@@ -26,11 +26,32 @@ The company further provides contract programming, IT consultancy, and hardware 
     "Hardware Maintenance",
   ],
 
-  // Contact info (placeholders - update with real info)
+  // Contact info
   contact: {
     email: "info@uprightsystems.com",
-    phone: "",
+    phone: "09565134330",
     address: "Bacoor, Cavite 4102, Philippines",
+  },
+
+  // Office locations
+  offices: {
+    main: {
+      name: "Main Office",
+      address:
+        "OCEANWIDE Maritime Services Corp. - Manila Office, 2111 1014, Elias, Santa Cruz, Manila, 1008 Metro Manila",
+      tel: "+63 956 513 4330",
+      email: "info@uprightsystems.com",
+      coordinates: { lng: 120.98794626768314, lat: 14.618820134540577 },
+      googleMapsUrl: "https://maps.app.goo.gl/dEZp72QvCQuZoj2S9",
+    },
+    cavite: {
+      name: "Cavite Office",
+      address: "Oceanwide Maritime Bacoor, Cavite Training Site",
+      tel: "+63 956 513 4330",
+      email: "cavite@uprightsystems.com",
+      coordinates: { lng: 120.93805309176695, lat: 14.46040974826165 },
+      googleMapsUrl: "https://maps.app.goo.gl/BLjvJTaJhA6HCJgY6",
+    },
   },
 
   // Social links (placeholders - update with real links)

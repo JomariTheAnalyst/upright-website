@@ -1,13 +1,31 @@
-"use client"
+"use client";
 
-import createGlobe, { COBEOptions } from "cobe"
-import { useCallback, useEffect, useRef, useState } from "react"
-import { cn } from "@/lib/utils"
-import { motion } from "motion/react"
+import createGlobe, { COBEOptions } from "cobe";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { cn } from "@/lib/utils";
+import { motion } from "motion/react";
 
 export function MissionVisionSection() {
   return (
-    <section className="relative w-full mx-auto overflow-hidden bg-gray-50 dark:bg-gray-900 px-6 py-16 md:px-16 md:py-24">
+    <section className="relative w-full mx-auto overflow-hidden bg-[#f7f6f1] px-6 py-16 md:px-16 md:py-24">
+      {/* Font Definitions */}
+      <style jsx global>{`
+        @font-face {
+          font-family: "Graphik";
+          src: url("/fonts/Graphik-Regular.woff2") format("woff2");
+          font-weight: 400;
+          font-style: normal;
+          font-display: swap;
+        }
+        @font-face {
+          font-family: "NeutraText";
+          src: url("/fonts/NeutraTextTF-BoldAlt.woff2") format("woff2");
+          font-weight: 700;
+          font-style: normal;
+          font-display: swap;
+        }
+      `}</style>
+
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <motion.div
@@ -17,7 +35,10 @@ export function MissionVisionSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+          <h2
+            className="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
+            style={{ fontFamily: "NeutraText, sans-serif" }}
+          >
             Our Mission & Vision
           </h2>
         </motion.div>
@@ -34,25 +55,41 @@ export function MissionVisionSection() {
           >
             {/* Mission */}
             <div className="space-y-4">
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+              <h3
+                className="text-2xl font-bold text-gray-900"
+                style={{ fontFamily: "NeutraText, sans-serif" }}
+              >
                 Our Mission
               </h3>
-              <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
-                To empower businesses across the Philippines with innovative IT solutions that drive growth,
-                efficiency, and digital transformation. We bridge the gap between technology and business success,
-                delivering tailored solutions that meet the unique needs of each client.
+              <p
+                className="text-lg text-gray-600 leading-relaxed"
+                style={{ fontFamily: "Graphik, sans-serif" }}
+              >
+                To empower businesses across the Philippines with innovative IT
+                solutions that drive growth, efficiency, and digital
+                transformation. We bridge the gap between technology and
+                business success, delivering tailored solutions that meet the
+                unique needs of each client.
               </p>
             </div>
 
             {/* Vision */}
             <div className="space-y-4">
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+              <h3
+                className="text-2xl font-bold text-gray-900"
+                style={{ fontFamily: "NeutraText, sans-serif" }}
+              >
                 Our Vision
               </h3>
-              <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
-                To be the leading IT solutions provider in Southeast Asia, recognized for our innovation,
-                reliability, and commitment to client success. We envision a future where every business,
-                regardless of size, has access to world-class technology solutions.
+              <p
+                className="text-lg text-gray-600 leading-relaxed"
+                style={{ fontFamily: "Graphik, sans-serif" }}
+              >
+                To be the leading IT solutions provider in Southeast Asia,
+                recognized for our innovation, reliability, and commitment to
+                client success. We envision a future where every business,
+                regardless of size, has access to world-class technology
+                solutions.
               </p>
             </div>
           </motion.div>
@@ -70,7 +107,7 @@ export function MissionVisionSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 const GLOBE_CONFIG: COBEOptions = {
@@ -99,59 +136,59 @@ const GLOBE_CONFIG: COBEOptions = {
     { location: [3.139, 101.6869], size: 0.05 }, // Kuala Lumpur
     // Other key locations
     { location: [35.6762, 139.6503], size: 0.04 }, // Tokyo
-    { location: [37.5665, 126.9780], size: 0.04 }, // Seoul
+    { location: [37.5665, 126.978], size: 0.04 }, // Seoul
     { location: [22.3193, 114.1694], size: 0.04 }, // Hong Kong
   ],
-}
+};
 
 export function Globe({
   className,
   config = GLOBE_CONFIG,
 }: {
-  className?: string
-  config?: COBEOptions
+  className?: string;
+  config?: COBEOptions;
 }) {
-  let phi = 0
-  let width = 0
-  const canvasRef = useRef<HTMLCanvasElement>(null)
-  const pointerInteracting = useRef<number | null>(null)
-  const pointerInteractionMovement = useRef(0)
-  const [r, setR] = useState(0)
+  let phi = 0;
+  let width = 0;
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const pointerInteracting = useRef<number | null>(null);
+  const pointerInteractionMovement = useRef(0);
+  const [r, setR] = useState(0);
 
   const updatePointerInteraction = (value: number | null) => {
-    pointerInteracting.current = value
+    pointerInteracting.current = value;
     if (canvasRef.current) {
-      canvasRef.current.style.cursor = value !== null ? "grabbing" : "grab"
+      canvasRef.current.style.cursor = value !== null ? "grabbing" : "grab";
     }
-  }
+  };
 
   const updateMovement = (clientX: number) => {
     if (pointerInteracting.current !== null) {
-      const delta = clientX - pointerInteracting.current
-      pointerInteractionMovement.current = delta
-      setR(delta / 200)
+      const delta = clientX - pointerInteracting.current;
+      pointerInteractionMovement.current = delta;
+      setR(delta / 200);
     }
-  }
+  };
 
   const onRender = useCallback(
     (state: Record<string, any>) => {
-      if (!pointerInteracting.current) phi += 0.005
-      state.phi = phi + r
-      state.width = width * 2
-      state.height = width * 2
+      if (!pointerInteracting.current) phi += 0.005;
+      state.phi = phi + r;
+      state.width = width * 2;
+      state.height = width * 2;
     },
     [r]
-  )
+  );
 
   const onResize = () => {
     if (canvasRef.current) {
-      width = canvasRef.current.offsetWidth
+      width = canvasRef.current.offsetWidth;
     }
-  }
+  };
 
   useEffect(() => {
-    window.addEventListener("resize", onResize)
-    onResize()
+    window.addEventListener("resize", onResize);
+    onResize();
 
     if (canvasRef.current) {
       const globe = createGlobe(canvasRef.current, {
@@ -159,17 +196,17 @@ export function Globe({
         width: width * 2,
         height: width * 2,
         onRender,
-      })
+      });
 
       setTimeout(() => {
         if (canvasRef.current) {
-          canvasRef.current.style.opacity = "1"
+          canvasRef.current.style.opacity = "1";
         }
-      }, 100)
+      }, 100);
 
-      return () => globe.destroy()
+      return () => globe.destroy();
     }
-  }, [config, onRender])
+  }, [config, onRender]);
 
   return (
     <div
@@ -196,5 +233,5 @@ export function Globe({
         }
       />
     </div>
-  )
+  );
 }

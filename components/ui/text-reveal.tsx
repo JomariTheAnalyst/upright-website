@@ -27,8 +27,29 @@ const TextRevealByWord: FC<TextRevealByWordProps> = ({ text, className }) => {
         className
       )}
     >
+      {/* Font Definitions */}
+      <style jsx global>{`
+        @font-face {
+          font-family: "Graphik";
+          src: url("/fonts/Graphik-Regular.woff2") format("woff2");
+          font-weight: 400;
+          font-style: normal;
+          font-display: swap;
+        }
+        @font-face {
+          font-family: "NeutraText";
+          src: url("/fonts/NeutraTextTF-BoldAlt.woff2") format("woff2");
+          font-weight: 700;
+          font-style: normal;
+          font-display: swap;
+        }
+      `}</style>
+
       <div className="mx-auto flex max-w-6xl items-center justify-center px-4 sm:px-6 lg:px-8">
-        <p className="flex flex-wrap justify-center text-center text-4xl font-bold text-black/20 md:text-5xl lg:text-6xl xl:text-7xl leading-tight">
+        <p
+          className="flex flex-wrap justify-center text-center text-4xl font-bold text-black/20 md:text-5xl lg:text-6xl xl:text-7xl leading-tight"
+          style={{ fontFamily: "NeutraText, sans-serif" }}
+        >
           {words.map((word, wordIndex) => {
             const letters = word.split("");
             const totalWords = words.length;

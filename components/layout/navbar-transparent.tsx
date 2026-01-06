@@ -51,13 +51,14 @@ function NavLink({
         "relative px-4 py-2 text-sm font-medium transition-colors group",
         isScrolled ? "text-gray-800" : "text-white"
       )}
+      style={{ fontFamily: "Graphik, sans-serif" }}
     >
       {children}
       {/* Sliding underline */}
       <span
         className={cn(
           "absolute bottom-0 left-4 right-4 h-0.5 origin-left scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100",
-          isScrolled ? "bg-gray-800" : "bg-yellow-400"
+          isScrolled ? "bg-gray-800" : "bg-[#ffdf20]"
         )}
       />
     </Link>
@@ -77,121 +78,148 @@ export function TransparentNavbar() {
   }, []);
 
   return (
-    <nav
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled ? "bg-white/95 backdrop-blur-md shadow-lg" : "bg-transparent"
-      )}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo - Left */}
-          <Link href="/" className="flex items-center">
-            <Image
-              src="/images/logo/Upright Logo2.png"
-              alt="Upright Logo"
-              width={150}
-              height={50}
-              className="h-10 md:h-12 w-auto"
-              priority
-            />
-          </Link>
+    <>
+      {/* Font Definitions */}
+      <style jsx global>{`
+        @font-face {
+          font-family: "Graphik";
+          src: url("/fonts/Graphik-Regular.woff2") format("woff2");
+          font-weight: 400;
+          font-style: normal;
+          font-display: swap;
+        }
+        @font-face {
+          font-family: "NeutraText";
+          src: url("/fonts/NeutraTextTF-BoldAlt.woff2") format("woff2");
+          font-weight: 700;
+          font-style: normal;
+          font-display: swap;
+        }
+      `}</style>
 
-          {/* Desktop Navigation - Right */}
-          <div className="hidden lg:flex items-center gap-1">
-            <NavLink href="/about" isScrolled={isScrolled}>
-              About
-            </NavLink>
+      <nav
+        className={cn(
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+          isScrolled
+            ? "bg-white/95 backdrop-blur-md shadow-lg"
+            : "bg-transparent"
+        )}
+      >
+        <div className="w-full px-6 sm:px-8 lg:px-12 xl:px-16">
+          <div className="flex items-center justify-between h-20">
+            {/* Logo - Far Left */}
+            <Link href="/" className="flex items-center flex-shrink-0">
+              <Image
+                src="/images/logo/Upright Logo2.png"
+                alt="Upright Logo"
+                width={150}
+                height={50}
+                className="h-10 md:h-12 w-auto"
+                priority
+              />
+            </Link>
 
-            <NavLink href="/services" isScrolled={isScrolled}>
-              Our Services
-            </NavLink>
+            {/* Desktop Navigation - Far Right */}
+            <div className="hidden lg:flex items-center gap-1">
+              <NavLink href="/about" isScrolled={isScrolled}>
+                About
+              </NavLink>
 
-            <NavLink href="/projects" isScrolled={isScrolled}>
-              Projects
-            </NavLink>
+              <NavLink href="/services" isScrolled={isScrolled}>
+                Our Services
+              </NavLink>
 
-            {/* Company Dropdown */}
-            <div
-              className="relative"
-              onMouseEnter={() => setIsCompanyOpen(true)}
-              onMouseLeave={() => setIsCompanyOpen(false)}
-            >
-              <button
-                className={cn(
-                  "relative flex items-center gap-1 px-4 py-2 text-sm font-medium transition-colors group",
-                  isScrolled ? "text-gray-800" : "text-white"
-                )}
+              <NavLink href="/projects" isScrolled={isScrolled}>
+                Projects
+              </NavLink>
+
+              {/* Company Dropdown */}
+              <div
+                className="relative"
+                onMouseEnter={() => setIsCompanyOpen(true)}
+                onMouseLeave={() => setIsCompanyOpen(false)}
               >
-                Company
-                <ChevronDown
+                <button
                   className={cn(
-                    "w-4 h-4 transition-transform",
-                    isCompanyOpen && "rotate-180"
+                    "relative flex items-center gap-1 px-4 py-2 text-sm font-medium transition-colors group",
+                    isScrolled ? "text-gray-800" : "text-white"
                   )}
-                />
-                {/* Sliding underline */}
-                <span
-                  className={cn(
-                    "absolute bottom-0 left-4 right-4 h-0.5 origin-left scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100",
-                    isScrolled ? "bg-gray-800" : "bg-yellow-400"
-                  )}
-                />
-              </button>
+                  style={{ fontFamily: "Graphik, sans-serif" }}
+                >
+                  Company
+                  <ChevronDown
+                    className={cn(
+                      "w-4 h-4 transition-transform",
+                      isCompanyOpen && "rotate-180"
+                    )}
+                  />
+                  {/* Sliding underline */}
+                  <span
+                    className={cn(
+                      "absolute bottom-0 left-4 right-4 h-0.5 origin-left scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100",
+                      isScrolled ? "bg-gray-800" : "bg-[#ffdf20]"
+                    )}
+                  />
+                </button>
 
-              {/* Dropdown Menu */}
-              {isCompanyOpen && (
-                <div className="absolute top-full left-0 pt-2">
-                  <div className="w-72 bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden">
-                    <div className="p-2">
-                      {companyLinks.map((link) => (
-                        <Link
-                          key={link.href}
-                          href={link.href}
-                          className="block px-4 py-3 rounded-lg hover:bg-gray-50 transition-colors"
-                        >
-                          <p className="text-sm font-semibold text-gray-900">
-                            {link.title}
-                          </p>
-                          <p className="text-xs text-gray-500 mt-0.5">
-                            {link.description}
-                          </p>
-                        </Link>
-                      ))}
+                {/* Dropdown Menu */}
+                {isCompanyOpen && (
+                  <div className="absolute top-full right-0 pt-2">
+                    <div className="w-72 bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden">
+                      <div className="p-2">
+                        {companyLinks.map((link) => (
+                          <Link
+                            key={link.href}
+                            href={link.href}
+                            className="block px-4 py-3 rounded-lg hover:bg-gray-50 transition-colors"
+                          >
+                            <p
+                              className="text-sm font-semibold text-gray-900"
+                              style={{ fontFamily: "Graphik, sans-serif" }}
+                            >
+                              {link.title}
+                            </p>
+                            <p
+                              className="text-xs text-gray-500 mt-0.5"
+                              style={{ fontFamily: "Graphik, sans-serif" }}
+                            >
+                              {link.description}
+                            </p>
+                          </Link>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                </div>
-              )}
+                )}
+              </div>
+
+              {/* Contact Button */}
+              <Link
+                href="/contact"
+                className="group relative inline-flex items-center overflow-hidden ml-6"
+                style={{ fontFamily: "Graphik, sans-serif" }}
+              >
+                <span
+                  className="relative px-6 py-2.5 bg-[#ffdf20] text-black font-medium text-sm"
+                  style={{
+                    clipPath:
+                      "polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 14px) 100%, 0 100%)",
+                  }}
+                >
+                  <span className="absolute inset-0 bg-[#0000ff] transform origin-top scale-y-0 transition-transform duration-500 ease-out group-hover:scale-y-100" />
+                  <span className="relative z-10 transition-colors duration-500 group-hover:text-white">
+                    Contact Us
+                  </span>
+                </span>
+              </Link>
             </div>
 
-            {/* Contact Button */}
-            <Link href="/contact" className="ml-4">
-              <Button className="bg-[#ffdf20] hover:bg-[#ffbf00] text-black px-5 py-2 rounded-md text-sm font-medium flex items-center gap-2">
-                Contact
-                <span className="bg-white/20 rounded p-0.5">
-                  <svg
-                    className="w-3 h-3"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M7 17L17 7M17 7H7M17 7V17"
-                    />
-                  </svg>
-                </span>
-              </Button>
-            </Link>
+            {/* Mobile Menu */}
+            <MobileNav isScrolled={isScrolled} />
           </div>
-
-          {/* Mobile Menu */}
-          <MobileNav isScrolled={isScrolled} />
         </div>
-      </div>
-    </nav>
+      </nav>
+    </>
   );
 }
 
@@ -212,13 +240,19 @@ function MobileNav({ isScrolled }: { isScrolled: boolean }) {
       </SheetTrigger>
       <SheetContent className="bg-white w-full gap-0 p-0">
         <div className="flex h-14 items-center justify-between border-b border-gray-200 px-4 pt-4">
-          <span className="font-semibold text-gray-900">Menu</span>
+          <span
+            className="font-semibold text-gray-900"
+            style={{ fontFamily: "Graphik, sans-serif" }}
+          >
+            Menu
+          </span>
         </div>
         <div className="grid gap-y-2 overflow-y-auto px-4 pt-5 pb-12">
           <SheetClose asChild>
             <Link
               href="/"
               className="hover:bg-gray-100 rounded-lg p-3 text-base font-medium transition-colors text-gray-900"
+              style={{ fontFamily: "Graphik, sans-serif" }}
             >
               Home
             </Link>
@@ -228,6 +262,7 @@ function MobileNav({ isScrolled }: { isScrolled: boolean }) {
             <Link
               href="/about"
               className="hover:bg-gray-100 rounded-lg p-3 text-base font-medium transition-colors text-gray-900"
+              style={{ fontFamily: "Graphik, sans-serif" }}
             >
               About
             </Link>
@@ -237,6 +272,7 @@ function MobileNav({ isScrolled }: { isScrolled: boolean }) {
             <Link
               href="/services"
               className="hover:bg-gray-100 rounded-lg p-3 text-base font-medium transition-colors text-gray-900"
+              style={{ fontFamily: "Graphik, sans-serif" }}
             >
               Services
             </Link>
@@ -246,6 +282,7 @@ function MobileNav({ isScrolled }: { isScrolled: boolean }) {
             <Link
               href="/projects"
               className="hover:bg-gray-100 rounded-lg p-3 text-base font-medium transition-colors text-gray-900"
+              style={{ fontFamily: "Graphik, sans-serif" }}
             >
               Projects
             </Link>
@@ -255,6 +292,7 @@ function MobileNav({ isScrolled }: { isScrolled: boolean }) {
             <Link
               href="/use-cases"
               className="hover:bg-gray-100 rounded-lg p-3 text-base font-medium transition-colors text-gray-900"
+              style={{ fontFamily: "Graphik, sans-serif" }}
             >
               Use Cases
             </Link>
@@ -262,7 +300,10 @@ function MobileNav({ isScrolled }: { isScrolled: boolean }) {
 
           <Accordion type="single" collapsible>
             <AccordionItem value="company" className="border-none">
-              <AccordionTrigger className="hover:no-underline text-gray-900 p-3 hover:bg-gray-100 rounded-lg">
+              <AccordionTrigger
+                className="hover:no-underline text-gray-900 p-3 hover:bg-gray-100 rounded-lg"
+                style={{ fontFamily: "Graphik, sans-serif" }}
+              >
                 Company
               </AccordionTrigger>
               <AccordionContent className="pl-4">
@@ -274,10 +315,16 @@ function MobileNav({ isScrolled }: { isScrolled: boolean }) {
                           href={link.href}
                           className="block p-3 rounded-lg hover:bg-gray-100"
                         >
-                          <p className="text-sm font-medium text-gray-900">
+                          <p
+                            className="text-sm font-medium text-gray-900"
+                            style={{ fontFamily: "Graphik, sans-serif" }}
+                          >
                             {link.title}
                           </p>
-                          <p className="text-xs text-gray-500">
+                          <p
+                            className="text-xs text-gray-500"
+                            style={{ fontFamily: "Graphik, sans-serif" }}
+                          >
                             {link.description}
                           </p>
                         </Link>
@@ -290,10 +337,23 @@ function MobileNav({ isScrolled }: { isScrolled: boolean }) {
           </Accordion>
 
           <SheetClose asChild>
-            <Link href="/contact" className="mt-4">
-              <Button className="w-full bg-[#ffdf20] hover:bg-[#ffbf00] text-black">
-                Contact Us
-              </Button>
+            <Link
+              href="/contact"
+              className="group relative inline-flex items-center justify-center overflow-hidden mt-4 w-full"
+              style={{ fontFamily: "Graphik, sans-serif" }}
+            >
+              <span
+                className="relative w-full px-6 py-3 bg-[#ffdf20] text-black font-medium text-sm text-center"
+                style={{
+                  clipPath:
+                    "polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 14px) 100%, 0 100%)",
+                }}
+              >
+                <span className="absolute inset-0 bg-[#0000ff] transform origin-top scale-y-0 transition-transform duration-500 ease-out group-hover:scale-y-100" />
+                <span className="relative z-10 transition-colors duration-500 group-hover:text-white">
+                  Contact Us
+                </span>
+              </span>
             </Link>
           </SheetClose>
         </div>

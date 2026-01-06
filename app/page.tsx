@@ -11,6 +11,7 @@ import { EventsSection } from "@/components/sections/home/events";
 import { ImpactSection } from "@/components/sections/home/impact";
 import { AwardsSection } from "@/components/sections/home/awards";
 import { OurTeamSection } from "@/components/sections/our-team";
+import { AboutUsTestimonials } from "@/components/sections/about-us-testimonials";
 export default function Home() {
   return (
     <div className="relative min-h-screen overflow-x-hidden">
@@ -31,6 +32,7 @@ export default function Home() {
       <div style={{ backgroundColor: "#fafafa" }}>
         <CeoQuoteSection />
       </div>
+      <AboutUsTestimonials />
       <CtaBanner />
       <Footer />
     </div>

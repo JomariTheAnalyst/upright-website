@@ -7,13 +7,20 @@ import { eventsData } from "@/data/events";
 
 export function EventsSection() {
   return (
-    <section className="py-12 md:py-16 bg-white">
-      {/* Font face */}
+    <section className="py-12 md:py-16 bg-[#f7f6f1]">
+      {/* Font Definitions */}
       <style jsx global>{`
         @font-face {
-          font-family: "NewFont";
-          src: url("/fonts/newfont.woff2") format("woff2");
-          font-weight: 100 900;
+          font-family: "Graphik";
+          src: url("/fonts/Graphik-Regular.woff2") format("woff2");
+          font-weight: 400;
+          font-style: normal;
+          font-display: swap;
+        }
+        @font-face {
+          font-family: "NeutraText";
+          src: url("/fonts/NeutraTextTF-BoldAlt.woff2") format("woff2");
+          font-weight: 700;
           font-style: normal;
           font-display: swap;
         }
@@ -33,7 +40,7 @@ export function EventsSection() {
           </span>
           <h2
             className="text-4xl md:text-5xl lg:text-6xl font-bold text-black uppercase tracking-tight"
-            style={{ fontFamily: "NewFont, sans-serif" }}
+            style={{ fontFamily: "Graphik, sans-serif" }}
           >
             Events We Are Part Of
           </h2>
@@ -65,7 +72,7 @@ export function EventsSection() {
                 <p
                   className="text-sm font-bold mb-4 tracking-wide uppercase"
                   style={{
-                    fontFamily: "NewFont, sans-serif",
+                    fontFamily: "Graphik, sans-serif",
                     color: "#0000ff",
                   }}
                 >
@@ -75,7 +82,7 @@ export function EventsSection() {
                 {/* Title */}
                 <h3
                   className="text-2xl md:text-3xl font-bold text-black mb-6 leading-tight uppercase tracking-tight flex-1"
-                  style={{ fontFamily: "NewFont, sans-serif" }}
+                  style={{ fontFamily: "Graphik, sans-serif" }}
                 >
                   {event.title}
                 </h3>
@@ -87,7 +94,7 @@ export function EventsSection() {
                 <div className="flex-1 px-6 py-4 border-r border-black flex items-center justify-start">
                   <span
                     className="text-xs md:text-sm text-gray-500 uppercase tracking-wider font-bold"
-                    style={{ fontFamily: "NewFont, sans-serif" }}
+                    style={{ fontFamily: "Graphik, sans-serif" }}
                   >
                     READING TIME: {event.readingTime}
                   </span>
@@ -107,7 +114,7 @@ export function EventsSection() {
                   <span
                     className="relative z-10 text-base font-bold uppercase tracking-wide transition-colors duration-300 group-hover/btn:!text-white"
                     style={{
-                      fontFamily: "NewFont, sans-serif",
+                      fontFamily: "Graphik, sans-serif",
                       color: event.color,
                     }}
                   >

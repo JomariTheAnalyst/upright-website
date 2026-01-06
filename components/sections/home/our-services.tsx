@@ -82,13 +82,20 @@ export function OurServicesSection() {
   const currentService = services[currentIndex];
 
   return (
-    <section className="relative bg-white py-12 sm:py-16 md:py-20 lg:py-28">
-      {/* Custom Font */}
+    <section className="relative bg-[#f7f6f1] py-12 sm:py-16 md:py-20 lg:py-28">
+      {/* Font Definitions */}
       <style jsx global>{`
         @font-face {
-          font-family: "NewFont";
-          src: url("/fonts/newfont.woff2") format("woff2");
-          font-weight: 100 900;
+          font-family: "Graphik";
+          src: url("/fonts/Graphik-Regular.woff2") format("woff2");
+          font-weight: 400;
+          font-style: normal;
+          font-display: swap;
+        }
+        @font-face {
+          font-family: "NeutraText";
+          src: url("/fonts/NeutraTextTF-BoldAlt.woff2") format("woff2");
+          font-weight: 700;
           font-style: normal;
           font-display: swap;
         }
@@ -99,7 +106,7 @@ export function OurServicesSection() {
         <div className="mb-10 sm:mb-12 lg:mb-16 px-5 sm:px-8 lg:px-16">
           <span
             className="inline-flex items-center px-4 py-1.5 text-xs font-semibold tracking-wider uppercase border-2 border-black rounded-full text-black"
-            style={{ fontFamily: "NewFont, sans-serif" }}
+            style={{ fontFamily: "Graphik, sans-serif" }}
           >
             Our Services
           </span>
@@ -125,7 +132,7 @@ export function OurServicesSection() {
               <span
                 className="text-[10px] font-medium uppercase tracking-[0.25em] text-black transition-all duration-700 md:text-xs"
                 style={{
-                  fontFamily: "NewFont, sans-serif",
+                  fontFamily: "Graphik, sans-serif",
                   letterSpacing: isHovered ? "0.3em" : "0.25em",
                   transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
                 }}
@@ -148,7 +155,7 @@ export function OurServicesSection() {
                 <span
                   className="block text-4xl font-bold tracking-tight text-black transition-all duration-700 sm:text-5xl md:text-5xl lg:text-6xl"
                   style={{
-                    fontFamily: "NewFont, sans-serif",
+                    fontFamily: "Graphik, sans-serif",
                     transform: isHovered ? "translateY(-2px)" : "translateY(0)",
                     transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
                   }}
@@ -168,7 +175,7 @@ export function OurServicesSection() {
                 transition={{ duration: 0.4, delay: 0.1 }}
                 className="mt-6 max-w-[480px] text-base leading-relaxed text-gray-600 transition-all duration-700 md:mt-8 md:max-w-[450px] md:text-lg lg:mt-10 lg:max-w-[500px]"
                 style={{
-                  fontFamily: "NewFont, sans-serif",
+                  fontFamily: "Graphik, sans-serif",
                   transform: isHovered ? "translateY(-4px)" : "translateY(0)",
                   transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
                 }}
@@ -190,7 +197,7 @@ export function OurServicesSection() {
                 href="/services"
                 className="text-[10px] font-medium uppercase tracking-widest transition-all duration-700 md:text-xs opacity-50 hover:opacity-100"
                 style={{
-                  fontFamily: "NewFont, sans-serif",
+                  fontFamily: "Graphik, sans-serif",
                 }}
               >
                 Explore
@@ -329,7 +336,7 @@ export function OurServicesSection() {
             <span
               className="absolute -bottom-8 right-0 font-mono text-sm text-gray-400 transition-all duration-700 md:-bottom-10 md:text-base"
               style={{
-                fontFamily: "NewFont, sans-serif",
+                fontFamily: "Graphik, sans-serif",
                 opacity: isHovered ? 1 : 0.4,
                 transform: isHovered ? "translateY(4px)" : "translateY(0)",
                 transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",

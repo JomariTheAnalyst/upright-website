@@ -1,369 +1,466 @@
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { useImageUpload } from "@/hooks/use-image-upload";
-import { ImagePlus, Upload, Trash2 } from "lucide-react";
-import Image from "next/image";
-import { cn } from "@/lib/utils";
+import Link from "next/link";
+import { Loader2, CheckCircle, AlertCircle } from "lucide-react";
+import HCaptcha from "@hcaptcha/react-hcaptcha";
 
 interface ContactSectionProps {
   title?: string;
-  mainMessage?: string;
-  contactEmail?: string;
-  backgroundImageSrc?: string;
-  onSubmit?: (data: any) => void;
 }
 
+interface ContactFormData {
+  name: string;
+  company: string;
+  email: string;
+  phone: string;
+  message: string;
+  consent: boolean;
+}
+
+type SubmitStatus = "idle" | "loading" | "success" | "error";
+
+const HCAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY || "";
+
 export function ContactSection({
-  title = "Let's Build Your Digital Future Together",
-  mainMessage = "Get in Touch",
-  contactEmail = "info@uprightsystems.com",
-  backgroundImageSrc = "https://cdn.builder.io/api/v1/image/assets%2Fdf86a2c927524359b1806962d7ea4653%2F2f74933077d44b579526c57579ed8294",
-  onSubmit,
+  title = "We are always here to help",
 }: ContactSectionProps) {
-  const [formData, setFormData] = React.useState({
+  const [formData, setFormData] = React.useState<ContactFormData>({
     name: "",
     company: "",
     email: "",
     phone: "",
-    inquiryType: "",
     message: "",
-    attachment: null as File | null,
+    consent: false,
   });
-
-  const [isDragging, setIsDragging] = React.useState(false);
-
-  const {
-    previewUrl,
-    fileName,
-    fileInputRef,
-    handleThumbnailClick,
-    handleFileChange: handleImageChange,
-    handleRemove,
-  } = useImageUpload({
-    onUpload: (url) => console.log("Uploaded image URL:", url),
-  });
+  const [submitStatus, setSubmitStatus] = React.useState<SubmitStatus>("idle");
+  const [errorMessage, setErrorMessage] = React.useState<string>("");
+  const [hcaptchaToken, setHcaptchaToken] = React.useState<string | null>(null);
+  const hcaptchaRef = useRef<HCaptcha>(null);
 
   const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    const { name, value, type } = e.target;
+    const checked = (e.target as HTMLInputElement).checked;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0] || null;
-    setFormData((prev) => ({ ...prev, attachment: file }));
-    handleImageChange(e);
+  const handleHCaptchaVerify = (token: string) => {
+    setHcaptchaToken(token);
+    setErrorMessage("");
   };
 
-  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+  const handleHCaptchaExpire = () => {
+    setHcaptchaToken(null);
+  };
+
+  const handleHCaptchaError = () => {
+    setHcaptchaToken(null);
+    setErrorMessage("Verification failed. Please try again.");
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    e.stopPropagation();
-  };
 
-  const handleDragEnter = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsDragging(true);
-  };
+    if (!formData.consent) {
+      setErrorMessage("Please accept the privacy policy to continue.");
+      setSubmitStatus("error");
+      return;
+    }
 
-  const handleDragLeave = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsDragging(false);
-  };
+    if (!hcaptchaToken) {
+      setErrorMessage("Please complete the verification.");
+      setSubmitStatus("error");
+      return;
+    }
 
-  const handleDrop = React.useCallback(
-    (e: React.DragEvent<HTMLDivElement>) => {
-      e.preventDefault();
-      e.stopPropagation();
-      setIsDragging(false);
+    setSubmitStatus("loading");
+    setErrorMessage("");
 
-      const file = e.dataTransfer.files?.[0];
-      if (file && fileInputRef.current) {
-        const dataTransfer = new DataTransfer();
-        dataTransfer.items.add(file);
-        fileInputRef.current.files = dataTransfer.files;
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          company: formData.company,
+          email: formData.email,
+          phone: formData.phone,
+          message: formData.message,
+          hcaptchaToken: hcaptchaToken,
+        }),
+      });
 
-        const fakeEvent = {
-          target: fileInputRef.current,
-        } as React.ChangeEvent<HTMLInputElement>;
-        handleFileChange(fakeEvent);
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.errors?.[0] || "Failed to send message");
       }
-    },
-    [handleFileChange, fileInputRef]
-  );
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    onSubmit?.(formData);
-    console.log("Form submitted:", formData);
+      setSubmitStatus("success");
+      // Reset form after success
+      setFormData({
+        name: "",
+        company: "",
+        email: "",
+        phone: "",
+        message: "",
+        consent: false,
+      });
+      setHcaptchaToken(null);
+      hcaptchaRef.current?.resetCaptcha();
+    } catch (error) {
+      setSubmitStatus("error");
+      setErrorMessage(
+        error instanceof Error ? error.message : "An unexpected error occurred"
+      );
+      // Reset captcha on error so user can try again
+      setHcaptchaToken(null);
+      hcaptchaRef.current?.resetCaptcha();
+    }
   };
+
+  const isSubmitDisabled =
+    submitStatus === "loading" || !hcaptchaToken || !formData.consent;
 
   return (
-    <section className="relative min-h-screen w-full overflow-hidden">
-      {/* Background Image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${backgroundImageSrc})` }}
-      >
-        {/* Dark overlay for better text readability */}
-        <div className="absolute inset-0 bg-black/40" />
-      </div>
+    <section className="relative min-h-screen overflow-hidden">
+      {/* Custom Font */}
+      <style jsx global>{`
+        @font-face {
+          font-family: "NewFont";
+          src: url("/fonts/newfont.woff2") format("woff2");
+          font-weight: 100 900;
+          font-style: normal;
+          font-display: swap;
+        }
+      `}</style>
 
-      <div className="relative z-10 flex flex-col items-center justify-center w-full min-h-screen p-4 md:p-8 lg:p-16">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 w-full max-w-7xl">
-          <div className="flex flex-col justify-center space-y-8">
-            <div className="space-y-4">
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight drop-shadow-lg">
-                {title}
-              </h1>
-              <p className="text-xl text-white/90 max-w-lg leading-relaxed drop-shadow-md">
-                Upright Solutions and Systems Consultancy Corp. has been
-                delivering enterprise-scale IT solutions since 2015. Let us help
-                transform your business with cutting-edge technology.
-              </p>
-            </div>
+      {/* Content */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-16 md:py-24 lg:py-32">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+          {/* Left Column - Title & Contact Info */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="flex flex-col justify-between"
+          >
+            {/* Title */}
+            <h1
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light text-[#1a2b4a] leading-[1.1] mb-12 lg:mb-0"
+              style={{ fontFamily: "NewFont, sans-serif" }}
+            >
+              {title}
+            </h1>
 
-            <div className="space-y-6 pt-8">
-              <div className="space-y-2">
-                <p className="text-sm text-white/80 uppercase tracking-wider">
-                  Email
-                </p>
+            {/* Contact Information */}
+            <div
+              className="space-y-8"
+              style={{ fontFamily: "NewFont, sans-serif" }}
+            >
+              {/* General Enquiries */}
+              <div>
+                <h3 className="text-sm font-bold text-[#1a2b4a] mb-2">
+                  General Enquiries
+                </h3>
                 <a
-                  href={`mailto:${contactEmail}`}
-                  className="text-2xl text-white hover:text-yellow-400 transition-colors font-medium drop-shadow-md"
+                  href="mailto:info@upright.ph"
+                  className="block text-sm text-[#1a2b4a]/80 hover:text-[#0000ff] transition-colors"
                 >
-                  {contactEmail}
+                  info@upright.ph
                 </a>
+                <p className="text-sm text-[#1a2b4a]/80">+63 917 123 4567</p>
               </div>
 
-              <div className="space-y-2"></div>
+              {/* Customer Support */}
+              <div>
+                <h3 className="text-sm font-bold text-[#1a2b4a] mb-2">
+                  Customer Support
+                </h3>
+                <a
+                  href="mailto:support@upright.ph"
+                  className="block text-sm text-[#1a2b4a]/80 hover:text-[#0000ff] transition-colors"
+                >
+                  support@upright.ph
+                </a>
+                <p className="text-sm text-[#1a2b4a]/80">+63 917 765 4321</p>
+              </div>
+
+              {/* Address */}
+              <div>
+                <h3 className="text-sm font-bold text-[#1a2b4a] mb-2">
+                  Address
+                </h3>
+                <p className="text-sm text-[#1a2b4a]/80 leading-relaxed">
+                  Upright Solutions and Systems
+                  <br />
+                  Consultancy Corp.
+                  <br />
+                  Manila, Philippines
+                </p>
+              </div>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="bg-white/95 dark:bg-gray-800/95 backdrop-blur-md p-8 md:p-12 rounded-2xl shadow-2xl border-2 border-yellow-400/50">
-            <h2 className="text-3xl font-bold text-foreground mb-8">
-              {mainMessage}
-            </h2>
-
-            <form onSubmit={handleSubmit} className="space-y-5">
-              {/* Full Name */}
-              <div className="space-y-2">
-                <Label
-                  htmlFor="name"
-                  className="text-sm font-medium text-gray-700 dark:text-gray-300"
+          {/* Right Column - Form */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="bg-white rounded-lg p-6 md:p-8 shadow-sm"
+          >
+            {submitStatus === "success" ? (
+              <div className="flex flex-col items-center justify-center py-12 text-center">
+                <CheckCircle className="w-16 h-16 text-green-500 mb-4" />
+                <h3
+                  className="text-xl font-semibold text-[#1a2b4a] mb-2"
+                  style={{ fontFamily: "NewFont, sans-serif" }}
                 >
-                  Full Name
-                </Label>
-                <Input
-                  id="name"
-                  name="name"
-                  placeholder="Enter your full name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  className="h-12 text-base rounded-md border-gray-300 shadow-sm transition-all duration-200 hover:border-gray-400 focus-visible:border-[#3FC2C2] focus-visible:ring-[#3FC2C2] focus-visible:ring-2 focus-visible:shadow-[0_0_10px_rgba(63,194,194,0.3)]"
-                  required
-                />
+                  Message Sent Successfully!
+                </h3>
+                <p
+                  className="text-sm text-gray-600 mb-6"
+                  style={{ fontFamily: "NewFont, sans-serif" }}
+                >
+                  Thank you for reaching out. We've sent a confirmation to your
+                  email.
+                  <br />
+                  Our team will get back to you within 1–2 business days.
+                </p>
+                <Button
+                  onClick={() => setSubmitStatus("idle")}
+                  className="h-10 px-6 text-sm font-medium bg-[#1a2b4a] text-white hover:bg-[#0f1a2e] rounded-full transition-colors"
+                  style={{ fontFamily: "NewFont, sans-serif" }}
+                >
+                  Send Another Message
+                </Button>
               </div>
-
-              {/* Company Name */}
-              <div className="space-y-2">
-                <Label
-                  htmlFor="company"
-                  className="text-sm font-medium text-gray-700 dark:text-gray-300"
-                >
-                  Company Name <span className="text-gray-400">(optional)</span>
-                </Label>
-                <Input
-                  id="company"
-                  name="company"
-                  placeholder="Your company name"
-                  value={formData.company}
-                  onChange={handleChange}
-                  className="h-12 text-base rounded-md border-gray-300 shadow-sm transition-all duration-200 hover:border-gray-400 focus-visible:border-[#3FC2C2] focus-visible:ring-[#3FC2C2] focus-visible:ring-2 focus-visible:shadow-[0_0_10px_rgba(63,194,194,0.3)]"
-                />
-              </div>
-
-              {/* Email Address */}
-              <div className="space-y-2">
-                <Label
-                  htmlFor="email"
-                  className="text-sm font-medium text-gray-700 dark:text-gray-300"
-                >
-                  Email Address
-                </Label>
-                <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  placeholder="your.email@example.com"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="h-12 text-base rounded-md border-gray-300 shadow-sm transition-all duration-200 hover:border-gray-400 focus-visible:border-[#3FC2C2] focus-visible:ring-[#3FC2C2] focus-visible:ring-2 focus-visible:shadow-[0_0_10px_rgba(63,194,194,0.3)]"
-                  required
-                />
-              </div>
-
-              {/* Contact Number */}
-              <div className="space-y-2">
-                <Label
-                  htmlFor="phone"
-                  className="text-sm font-medium text-gray-700 dark:text-gray-300"
-                >
-                  Contact Number
-                </Label>
-                <Input
-                  id="phone"
-                  name="phone"
-                  type="tel"
-                  placeholder="+63 XXX XXX XXXX"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  className="h-12 text-base rounded-md border-gray-300 shadow-sm transition-all duration-200 hover:border-gray-400 focus-visible:border-[#3FC2C2] focus-visible:ring-[#3FC2C2] focus-visible:ring-2 focus-visible:shadow-[0_0_10px_rgba(63,194,194,0.3)]"
-                  required
-                />
-              </div>
-
-              {/* Inquiry Type */}
-              <div className="space-y-2">
-                <Label
-                  htmlFor="inquiryType"
-                  className="text-sm font-medium text-gray-700 dark:text-gray-300"
-                >
-                  Inquiry Type
-                </Label>
-                <select
-                  id="inquiryType"
-                  name="inquiryType"
-                  value={formData.inquiryType}
-                  onChange={handleChange}
-                  className="w-full h-12 px-3 text-base rounded-md border border-gray-300 shadow-sm transition-all duration-200 hover:border-gray-400 focus:border-[#3FC2C2] focus:ring-[#3FC2C2] focus:ring-2 focus:shadow-[0_0_10px_rgba(63,194,194,0.3)] focus:outline-none bg-white dark:bg-gray-800"
-                  required
-                >
-                  <option value="">Select inquiry type</option>
-                  <option value="general">General Inquiry</option>
-                  <option value="technical">Technical Support</option>
-                  <option value="partnership">Partnership</option>
-                  <option value="careers">Careers</option>
-                  <option value="others">Others</option>
-                </select>
-              </div>
-
-              {/* Message */}
-              <div className="space-y-2">
-                <Label
-                  htmlFor="message"
-                  className="text-sm font-medium text-gray-700 dark:text-gray-300"
-                >
-                  Message
-                </Label>
-                <Textarea
-                  id="message"
-                  name="message"
-                  placeholder="Tell us about your inquiry..."
-                  className="min-h-[140px] text-base rounded-md border-gray-300 shadow-sm transition-all duration-200 hover:border-gray-400 focus-visible:border-[#3FC2C2] focus-visible:ring-[#3FC2C2] focus-visible:ring-2 focus-visible:shadow-[0_0_10px_rgba(63,194,194,0.3)]"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-
-              {/* Attachment */}
-              <div className="space-y-2">
-                <Label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                  Attachment <span className="text-gray-400">(optional)</span>
-                </Label>
-                <Input
-                  type="file"
-                  accept="image/*"
-                  className="hidden"
-                  ref={fileInputRef}
-                  onChange={handleFileChange}
-                />
-                {!previewUrl ? (
-                  <div
-                    onClick={handleThumbnailClick}
-                    onDragOver={handleDragOver}
-                    onDragEnter={handleDragEnter}
-                    onDragLeave={handleDragLeave}
-                    onDrop={handleDrop}
-                    className={cn(
-                      "flex h-32 cursor-pointer flex-col items-center justify-center gap-3 rounded-md border-2 border-dashed border-gray-300 bg-gray-50/50 transition-all duration-200 hover:bg-gray-100/50 hover:border-[#3FC2C2]",
-                      isDragging && "border-[#3FC2C2] bg-[#3FC2C2]/5"
-                    )}
-                  >
-                    <div className="rounded-full bg-white p-2 shadow-sm">
-                      <ImagePlus className="h-5 w-5 text-gray-400" />
-                    </div>
-                    <div className="text-center">
-                      <p className="text-sm font-medium text-gray-700">
-                        Click to select
-                      </p>
-                      <p className="text-xs text-gray-500">
-                        or drag and drop file here
-                      </p>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="relative">
-                    <div className="group relative h-32 overflow-hidden rounded-md border border-gray-300">
-                      <Image
-                        src={previewUrl}
-                        alt="Preview"
-                        fill
-                        className="object-cover transition-transform duration-300 group-hover:scale-105"
-                        sizes="(max-width: 768px) 100vw, 400px"
-                      />
-                      <div className="absolute inset-0 bg-black/40 opacity-0 transition-opacity group-hover:opacity-100" />
-                      <div className="absolute inset-0 flex items-center justify-center gap-2 opacity-0 transition-opacity group-hover:opacity-100">
-                        <Button
-                          type="button"
-                          size="sm"
-                          variant="secondary"
-                          onClick={handleThumbnailClick}
-                          className="h-8 w-8 p-0"
-                        >
-                          <Upload className="h-4 w-4" />
-                        </Button>
-                        <Button
-                          type="button"
-                          size="sm"
-                          variant="destructive"
-                          onClick={handleRemove}
-                          className="h-8 w-8 p-0"
-                        >
-                          <Trash2 className="h-4 w-4" />
-                        </Button>
-                      </div>
-                    </div>
-                    {fileName && (
-                      <p className="mt-2 text-sm text-gray-600 dark:text-gray-400 truncate">
-                        {fileName}
-                      </p>
-                    )}
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-5">
+                {/* Error Message */}
+                {submitStatus === "error" && errorMessage && (
+                  <div className="flex items-center gap-2 p-3 bg-red-50 border border-red-200 rounded-md">
+                    <AlertCircle className="w-4 h-4 text-red-500 flex-shrink-0" />
+                    <p
+                      className="text-sm text-red-600"
+                      style={{ fontFamily: "NewFont, sans-serif" }}
+                    >
+                      {errorMessage}
+                    </p>
                   </div>
                 )}
-              </div>
 
-              <Button
-                type="submit"
-                className="w-full h-12 text-base bg-[#3FC2C2] hover:bg-[#35a8a8] text-white font-semibold rounded-md shadow-md transition-all duration-200 hover:shadow-lg"
-                size="lg"
-              >
-                Send Message
-              </Button>
-            </form>
-          </div>
+                {/* Name & Company Row */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {/* Name */}
+                  <div className="space-y-1.5">
+                    <Label
+                      htmlFor="name"
+                      className="text-xs text-gray-500"
+                      style={{ fontFamily: "NewFont, sans-serif" }}
+                    >
+                      Your name<span className="text-red-500">*</span>
+                    </Label>
+                    <Input
+                      id="name"
+                      name="name"
+                      placeholder="Juan Dela Cruz"
+                      value={formData.name}
+                      onChange={handleChange}
+                      className="h-11 text-sm border border-gray-200 bg-gray-50 focus:bg-white focus:border-[#1a2b4a] focus:ring-0 transition-colors rounded-md"
+                      style={{ fontFamily: "NewFont, sans-serif" }}
+                      required
+                      disabled={submitStatus === "loading"}
+                    />
+                  </div>
+
+                  {/* Company */}
+                  <div className="space-y-1.5">
+                    <Label
+                      htmlFor="company"
+                      className="text-xs text-gray-500"
+                      style={{ fontFamily: "NewFont, sans-serif" }}
+                    >
+                      Company
+                    </Label>
+                    <Input
+                      id="company"
+                      name="company"
+                      placeholder=""
+                      value={formData.company}
+                      onChange={handleChange}
+                      className="h-11 text-sm border border-gray-200 bg-gray-50 focus:bg-white focus:border-[#1a2b4a] focus:ring-0 transition-colors rounded-md"
+                      style={{ fontFamily: "NewFont, sans-serif" }}
+                      disabled={submitStatus === "loading"}
+                    />
+                  </div>
+                </div>
+
+                {/* Email */}
+                <div className="space-y-1.5">
+                  <Label
+                    htmlFor="email"
+                    className="text-xs text-gray-500"
+                    style={{ fontFamily: "NewFont, sans-serif" }}
+                  >
+                    Email Address<span className="text-red-500">*</span>
+                  </Label>
+                  <Input
+                    id="email"
+                    name="email"
+                    type="email"
+                    placeholder="juandelacruz@email.com"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="h-11 text-sm border border-gray-200 bg-gray-50 focus:bg-white focus:border-[#1a2b4a] focus:ring-0 transition-colors rounded-md"
+                    style={{ fontFamily: "NewFont, sans-serif" }}
+                    required
+                    disabled={submitStatus === "loading"}
+                  />
+                </div>
+
+                {/* Phone */}
+                <div className="space-y-1.5">
+                  <Label
+                    htmlFor="phone"
+                    className="text-xs text-gray-500"
+                    style={{ fontFamily: "NewFont, sans-serif" }}
+                  >
+                    Phone Number
+                  </Label>
+                  <Input
+                    id="phone"
+                    name="phone"
+                    type="tel"
+                    placeholder="+63 912 3456 789"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    className="h-11 text-sm border border-gray-200 bg-gray-50 focus:bg-white focus:border-[#1a2b4a] focus:ring-0 transition-colors rounded-md"
+                    style={{ fontFamily: "NewFont, sans-serif" }}
+                    disabled={submitStatus === "loading"}
+                  />
+                </div>
+
+                {/* Message */}
+                <div className="space-y-1.5">
+                  <Label
+                    htmlFor="message"
+                    className="text-xs text-gray-500"
+                    style={{ fontFamily: "NewFont, sans-serif" }}
+                  >
+                    How can we help?<span className="text-red-500">*</span>
+                  </Label>
+                  <Textarea
+                    id="message"
+                    name="message"
+                    placeholder="Enquiry details"
+                    value={formData.message}
+                    onChange={handleChange}
+                    className="min-h-[120px] text-sm border border-gray-200 bg-gray-50 focus:bg-white focus:border-[#1a2b4a] focus:ring-0 transition-colors resize-none rounded-md"
+                    style={{ fontFamily: "NewFont, sans-serif" }}
+                    required
+                    disabled={submitStatus === "loading"}
+                  />
+                </div>
+
+                {/* hCaptcha */}
+                <div className="space-y-2">
+                  <p
+                    className="text-xs font-semibold text-[#1a2b4a]"
+                    style={{ fontFamily: "NewFont, sans-serif" }}
+                  >
+                    Verification<span className="text-red-500">*</span>
+                  </p>
+                  {HCAPTCHA_SITE_KEY && (
+                    <HCaptcha
+                      ref={hcaptchaRef}
+                      sitekey={HCAPTCHA_SITE_KEY}
+                      onVerify={handleHCaptchaVerify}
+                      onExpire={handleHCaptchaExpire}
+                      onError={handleHCaptchaError}
+                    />
+                  )}
+                  {hcaptchaToken && (
+                    <p className="text-xs text-green-600 flex items-center gap-1">
+                      <CheckCircle className="w-3 h-3" />
+                      Verified
+                    </p>
+                  )}
+                </div>
+
+                {/* Consent */}
+                <div className="space-y-2">
+                  <p
+                    className="text-xs font-semibold text-[#1a2b4a]"
+                    style={{ fontFamily: "NewFont, sans-serif" }}
+                  >
+                    Consent
+                  </p>
+                  <div className="flex items-start gap-2">
+                    <input
+                      type="checkbox"
+                      id="consent"
+                      name="consent"
+                      checked={formData.consent}
+                      onChange={handleChange}
+                      className="mt-0.5 w-4 h-4 border border-gray-300 rounded accent-[#1a2b4a] cursor-pointer"
+                      required
+                      disabled={submitStatus === "loading"}
+                    />
+                    <label
+                      htmlFor="consent"
+                      className="text-xs text-gray-600 leading-relaxed cursor-pointer"
+                      style={{ fontFamily: "NewFont, sans-serif" }}
+                    >
+                      I agree to the{" "}
+                      <Link
+                        href="/privacy-policy"
+                        className="text-[#1a2b4a] underline hover:no-underline"
+                      >
+                        privacy policy
+                      </Link>
+                      .
+                    </label>
+                  </div>
+                </div>
+
+                {/* Submit Button */}
+                <Button
+                  type="submit"
+                  disabled={isSubmitDisabled}
+                  className="h-10 px-6 text-sm font-medium bg-[#1a2b4a] text-white hover:bg-[#0f1a2e] rounded-full transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  style={{ fontFamily: "NewFont, sans-serif" }}
+                >
+                  {submitStatus === "loading" ? (
+                    <>
+                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      Sending...
+                    </>
+                  ) : (
+                    "Submit"
+                  )}
+                </Button>
+              </form>
+            )}
+          </motion.div>
         </div>
       </div>
     </section>
   );
 }
+
+export default ContactSection;

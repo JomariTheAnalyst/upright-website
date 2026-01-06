@@ -5,58 +5,24 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { projectsData } from "@/data/projects-data";
 
-const projects = [
-  {
-    id: 1,
-    title: "One Health Pass",
-    shortDescription:
-      "Digital health verification for international travelers entering the Philippines.",
-    image:
-      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80",
-    link: "/projects/one-health-pass",
-  },
-  {
-    id: 2,
-    title: "MyAvior",
-    shortDescription:
-      "Digital learning platforms and learning content development solutions.",
-    image:
-      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&q=80",
-    link: "/projects/myavior",
-  },
-  {
-    id: 3,
-    title: "MyCado",
-    shortDescription:
-      "Maritime learning solutions for onboard and shore-based staff training.",
-    image:
-      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80",
-    link: "/projects/mycado",
-  },
-  {
-    id: 4,
-    title: "Gerry's Restaurant CCTV Installation",
-    shortDescription:
-      "Complete CCTV surveillance system installation for Gerry's Restaurant branches ensuring security and monitoring.",
-    image:
-      "https://images.unsplash.com/photo-1557597774-9d273605dfa9?w=800&q=80",
-    link: "/projects/gerrys-cctv",
-  },
-  {
-    id: 5,
-    title: "LBC CCTV Installation",
-    shortDescription:
-      "Enterprise-grade CCTV security system deployment for LBC Express facilities and branches.",
-    image:
-      "https://images.unsplash.com/photo-1558002038-1055907df827?w=800&q=80",
-    link: "/projects/lbc-cctv",
-  },
-];
+// Map projects data for the carousel (excluding Avior LMS to avoid duplicate)
+const projects = projectsData
+  .filter((p) => p.slug !== "/projects/avior-lms")
+  .map((project, index) => ({
+    id: index + 1,
+    title: project.title,
+    shortDescription: project.shortDescription,
+    image: project.image,
+    link: project.slug,
+    client: project.client,
+    partner: project.partner,
+    category: project.category,
+  }));
 
 export function OurProjectsSection() {
   const carouselRef = useRef<HTMLDivElement>(null);
-  const [hoveredId, setHoveredId] = useState<number | null>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
@@ -111,13 +77,20 @@ export function OurProjectsSection() {
   };
 
   return (
-    <section className="relative bg-[#f5f5f5] py-12 sm:py-16 md:py-20 lg:py-28">
-      {/* Custom Font */}
+    <section className="relative bg-[#f7f6f1] py-12 sm:py-16 md:py-20 lg:py-28">
+      {/* Font Definitions */}
       <style jsx global>{`
         @font-face {
-          font-family: "NewFont";
-          src: url("/fonts/newfont.woff2") format("woff2");
-          font-weight: 100 900;
+          font-family: "Graphik";
+          src: url("/fonts/Graphik-Regular.woff2") format("woff2");
+          font-weight: 400;
+          font-style: normal;
+          font-display: swap;
+        }
+        @font-face {
+          font-family: "NeutraText";
+          src: url("/fonts/NeutraTextTF-BoldAlt.woff2") format("woff2");
+          font-weight: 700;
           font-style: normal;
           font-display: swap;
         }
@@ -135,14 +108,14 @@ export function OurProjectsSection() {
           >
             <span
               className="inline-flex items-center px-4 py-1.5 mb-5 sm:mb-8 text-xs font-semibold tracking-wider uppercase border-2 border-black rounded-full text-black"
-              style={{ fontFamily: "NewFont, sans-serif" }}
+              style={{ fontFamily: "Graphik, sans-serif" }}
             >
               Our Projects
             </span>
 
             <h2
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-gray-900 leading-[1.1]"
-              style={{ fontFamily: "NewFont, sans-serif" }}
+              style={{ fontFamily: "Graphik, sans-serif" }}
             >
               Innovative Solutions.
               <br />
@@ -160,7 +133,7 @@ export function OurProjectsSection() {
           >
             <p
               className="text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed mb-6 sm:mb-8"
-              style={{ fontFamily: "NewFont, sans-serif" }}
+              style={{ fontFamily: "Graphik, sans-serif" }}
             >
               We partner with organizations to deliver technology solutions that
               transform operations and create lasting value. From digital health
@@ -171,20 +144,21 @@ export function OurProjectsSection() {
             <div className="flex items-center gap-0.5">
               <Link
                 href="/projects"
-                className="group relative inline-flex items-center px-5 sm:px-6 py-2.5 sm:py-3 bg-[#ffdf20] text-black font-medium text-xs sm:text-sm overflow-hidden"
-                style={{ fontFamily: "NewFont, sans-serif" }}
+                className="group relative inline-flex items-center overflow-hidden"
+                style={{ fontFamily: "Graphik, sans-serif" }}
               >
-                <span className="absolute inset-0 bg-[#0000ff] transform origin-top scale-y-0 transition-transform duration-500 ease-out group-hover:scale-y-100" />
-                <span className="relative z-10 transition-colors duration-500 group-hover:text-white">
-                  View All Projects
+              <span
+                  className="relative px-5 sm:px-6 py-2.5 sm:py-3 bg-[#ffdf20] text-black font-medium text-xs sm:text-sm"
+                  style={{
+                    clipPath:
+                      "polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 14px) 100%, 0 100%)",
+                  }}
+                >
+                  <span className="absolute inset-0 bg-[#0000ff] transform origin-top scale-y-0 transition-transform duration-500 ease-out group-hover:scale-y-100" />
+                  <span className="relative z-10 transition-colors duration-500 group-hover:text-white">
+                    View All Projects
+                  </span>
                 </span>
-              </Link>
-              <Link
-                href="/projects"
-                className="group relative inline-flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 bg-[#ffdf20] text-black overflow-hidden"
-              >
-                <span className="absolute inset-0 bg-[#0000ff] transform origin-top scale-y-0 transition-transform duration-500 ease-out group-hover:scale-y-100" />
-                <ArrowUpRight className="relative z-10 w-4 h-4 sm:w-5 sm:h-5 transition-colors duration-500 group-hover:text-white" />
               </Link>
             </div>
           </motion.div>
@@ -215,7 +189,7 @@ export function OurProjectsSection() {
           {/* Drag hint for mobile */}
           <p
             className="lg:hidden text-xs text-gray-500 px-5 sm:px-8 mb-3 flex items-center gap-2"
-            style={{ fontFamily: "NewFont, sans-serif" }}
+            style={{ fontFamily: "Graphik, sans-serif" }}
           >
             <ChevronLeft className="w-3 h-3" />
             Swipe to explore
@@ -249,48 +223,93 @@ export function OurProjectsSection() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="flex-shrink-0 snap-start"
-                onMouseEnter={() => setHoveredId(project.id)}
-                onMouseLeave={() => setHoveredId(null)}
               >
                 <Link
                   href={project.link}
-                  className="group block relative w-[280px] sm:w-[350px] md:w-[450px] lg:w-[600px] xl:w-[800px] overflow-hidden border-2 border-black"
+                  className="group block relative w-[280px] sm:w-[350px] md:w-[450px] lg:w-[600px] xl:w-[800px] overflow-visible"
                   style={{
                     aspectRatio: "16/10",
                   }}
                   onClick={(e) => isDragging && e.preventDefault()}
                 >
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    sizes="(max-width: 640px) 280px, (max-width: 768px) 350px, (max-width: 1024px) 450px, (max-width: 1280px) 600px, 800px"
-                    draggable={false}
-                  />
+                  {/* Main card with diagonal clip */}
+                  <div
+                    className="absolute inset-0 overflow-hidden"
+                    style={{
+                      clipPath:
+                        "polygon(0 0, 100% 0, 100% calc(100% - 50px), calc(100% - 70px) 100%, 0 100%)",
+                    }}
+                  >
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      sizes="(max-width: 640px) 280px, (max-width: 768px) 350px, (max-width: 1024px) 450px, (max-width: 1280px) 600px, 800px"
+                      draggable={false}
+                    />
+                    <div className="absolute inset-0 bg-black/40 group-hover:bg-black/70 transition-colors duration-500" />
+                  </div>
 
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                  {/* Border with diagonal cut - using SVG for precise control */}
+                  <svg
+                    className="absolute inset-0 w-full h-full pointer-events-none"
+                    preserveAspectRatio="none"
+                    viewBox="0 0 100 100"
+                  >
+                    <path
+                      d="M 0,0 L 100,0 L 100,87.5 L 91.25,100 L 0,100 Z"
+                      fill="none"
+                      stroke="black"
+                      strokeWidth="0.3"
+                      vectorEffect="non-scaling-stroke"
+                    />
+                  </svg>
 
-                  <div className="absolute inset-x-0 bottom-0 p-4 sm:p-6 lg:p-8 pr-12 sm:pr-16">
+                  {/* Content */}
+                  <div
+                    className="absolute inset-0 flex flex-col items-center justify-center p-4 sm:p-6 text-center"
+                    style={{
+                      clipPath:
+                        "polygon(0 0, 100% 0, 100% calc(100% - 50px), calc(100% - 70px) 100%, 0 100%)",
+                    }}
+                  >
                     <h3
-                      className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-white leading-tight mb-1 sm:mb-2"
-                      style={{ fontFamily: "NewFont, sans-serif" }}
+                      className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-white leading-tight mb-3 drop-shadow-lg"
+                      style={{ fontFamily: "Graphik, sans-serif" }}
                     >
                       {project.title}
                     </h3>
 
-                    <motion.p
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{
-                        opacity: hoveredId === project.id ? 1 : 0,
-                        y: hoveredId === project.id ? 0 : 10,
-                      }}
-                      transition={{ duration: 0.3 }}
-                      className="text-white/80 text-xs sm:text-sm md:text-base leading-relaxed max-w-md hidden sm:block"
-                      style={{ fontFamily: "NewFont, sans-serif" }}
+                    {/* Short Description - Shows on hover */}
+                    <p
+                      className="text-white/90 text-xs sm:text-sm md:text-base leading-relaxed max-w-md mb-4 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 hidden sm:block"
+                      style={{ fontFamily: "Graphik, sans-serif" }}
                     >
                       {project.shortDescription}
-                    </motion.p>
+                    </p>
+
+                    {/* Client/Partner Info */}
+                    {(project.client || project.partner) && (
+                      <p
+                        className="text-white/70 text-[10px] sm:text-xs uppercase tracking-wider mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 hidden sm:block"
+                        style={{ fontFamily: "Graphik, sans-serif" }}
+                      >
+                        {project.client
+                          ? `Client: ${project.client}`
+                          : `Partner: ${project.partner}`}
+                      </p>
+                    )}
+
+                    {/* Read More Button */}
+                    <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-150 hidden sm:block">
+                      <div className="relative border border-white overflow-hidden group/btn px-6 py-2 sm:px-8 sm:py-3 cursor-pointer">
+                        <span className="relative z-10 text-white font-bold uppercase tracking-widest text-xs sm:text-sm group-hover/btn:text-white transition-colors duration-300">
+                          Read More
+                        </span>
+                        <div className="absolute inset-0 bg-[#0000ff] transform -translate-y-full transition-transform duration-500 ease-in-out group-hover/btn:translate-y-0" />
+                      </div>
+                    </div>
                   </div>
                 </Link>
               </motion.div>

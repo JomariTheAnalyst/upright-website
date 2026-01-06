@@ -1,3 +1,19 @@
+export interface WorkshopFacilitator {
+  name: string;
+  role: string;
+  workshop: string;
+}
+
+export interface EventStats {
+  speakers: number;
+  talks: number;
+  workshops: number;
+  attendees: number;
+  location: string;
+  eventDate: string;
+  facilitators?: WorkshopFacilitator[];
+}
+
 export interface EventItem {
   id: string;
   slug: string;
@@ -12,6 +28,8 @@ export interface EventItem {
   fullDescription: string;
   highlights?: string[];
   mission?: string;
+  stats?: EventStats;
+  video?: string;
 }
 
 export const eventsData: EventItem[] = [
@@ -53,10 +71,10 @@ Upright handled local coordination and on-site support for the Atria Learning bo
     id: "3",
     slug: "/events/crew-forward-conference",
     title: "Crew Forward Conference",
-    date: "JANUARY 13, 2025",
+    video: "/images/crew-forward-conference/crew-forward2025Q4mp4.mp4",
+    date: "DECEMBER 04, 2025",
     readingTime: "5",
-    image:
-      "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop",
+    image: "/images/crew-forward-conference/DJI_20251204171155_0062_D.JPG",
     color: "#0000ff",
     leadBy: "Atria Learning & Development",
     inCoordinationWith: "Upright Solutions and Systems Consultancy Corp.",
@@ -86,6 +104,26 @@ Together, the team is committed to creating a conference that:
 • Moves crews forward—confident, connected, and prepared
 
 Crew Forward is more than a conference. It is a shared commitment to better leadership, stronger teams, and a more resilient maritime community.`,
+    stats: {
+      speakers: 5,
+      talks: 8,
+      workshops: 3,
+      attendees: 175,
+      location: "Manila",
+      eventDate: "December 04, 2025",
+      facilitators: [
+        {
+          name: "Mikee Leanysse Sevilla",
+          role: "Assistant Learning and Development Coordinator",
+          workshop: "Spot On Learning",
+        },
+        {
+          name: "Ryan Caldoza",
+          role: "Learning and Development Coordinator",
+          workshop: "Support and Connection",
+        },
+      ],
+    },
   },
 ];
 

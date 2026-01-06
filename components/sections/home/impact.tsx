@@ -58,13 +58,20 @@ const impactCards = [
 
 export function ImpactSection() {
   return (
-    <section className="relative bg-white py-16 md:py-24 lg:py-32">
-      {/* Custom Font */}
+    <section className="relative bg-[#f7f6f1] py-16 md:py-24 lg:py-32">
+      {/* Font Definitions */}
       <style jsx global>{`
         @font-face {
-          font-family: "NewFont";
-          src: url("/fonts/newfont.woff2") format("woff2");
-          font-weight: 100 900;
+          font-family: "Graphik";
+          src: url("/fonts/Graphik-Regular.woff2") format("woff2");
+          font-weight: 400;
+          font-style: normal;
+          font-display: swap;
+        }
+        @font-face {
+          font-family: "NeutraText";
+          src: url("/fonts/NeutraTextTF-BoldAlt.woff2") format("woff2");
+          font-weight: 700;
           font-style: normal;
           font-display: swap;
         }
@@ -85,7 +92,7 @@ export function ImpactSection() {
               {/* Section Name Pill */}
               <span
                 className="inline-flex items-center px-4 py-1.5 mb-8 text-xs font-semibold tracking-wider uppercase border-2 border-black rounded-full text-black"
-                style={{ fontFamily: "NewFont, sans-serif" }}
+                style={{ fontFamily: "Graphik, sans-serif" }}
               >
                 Impact & Responsibility
               </span>
@@ -93,7 +100,7 @@ export function ImpactSection() {
               {/* Main Headline */}
               <h2
                 className="text-4xl md:text-5xl lg:text-6xl font-light text-gray-900 leading-[1.1]"
-                style={{ fontFamily: "NewFont, sans-serif" }}
+                style={{ fontFamily: "NeutraText, sans-serif" }}
               >
                 Building Technology
                 <br />
@@ -111,7 +118,7 @@ export function ImpactSection() {
             >
               <p
                 className="text-gray-600 text-base md:text-lg leading-relaxed max-w-md lg:text-right"
-                style={{ fontFamily: "NewFont, sans-serif" }}
+                style={{ fontFamily: "Graphik, sans-serif" }}
               >
                 Our structured approach ensures reliable, scalable IT solutions
                 that meet operational goals without sacrificing quality,
@@ -146,7 +153,7 @@ export function ImpactSection() {
                 {/* Title */}
                 <h3
                   className="text-xl md:text-2xl font-normal text-gray-900 leading-snug"
-                  style={{ fontFamily: "NewFont, sans-serif" }}
+                  style={{ fontFamily: "NeutraText, sans-serif" }}
                 >
                   {card.title}
                 </h3>

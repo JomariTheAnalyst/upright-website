@@ -41,13 +41,20 @@ export function UseCasesSection() {
   const activeSector = sectors[activeIndex];
 
   return (
-    <section className="relative bg-white py-16 md:py-24 lg:py-32">
-      {/* Custom Font */}
+    <section className="relative bg-[#f7f6f1] py-16 md:py-24 lg:py-32">
+      {/* Font Definitions */}
       <style jsx global>{`
         @font-face {
-          font-family: "NewFont";
-          src: url("/fonts/newfont.woff2") format("woff2");
-          font-weight: 100 900;
+          font-family: "Graphik";
+          src: url("/fonts/Graphik-Regular.woff2") format("woff2");
+          font-weight: 400;
+          font-style: normal;
+          font-display: swap;
+        }
+        @font-face {
+          font-family: "NeutraText";
+          src: url("/fonts/NeutraTextTF-BoldAlt.woff2") format("woff2");
+          font-weight: 700;
           font-style: normal;
           font-display: swap;
         }
@@ -66,7 +73,7 @@ export function UseCasesSection() {
             {/* Section Name Pill */}
             <span
               className="inline-flex items-center px-4 py-1.5 mb-8 text-xs font-semibold tracking-wider uppercase border-2 border-black rounded-full text-black"
-              style={{ fontFamily: "NewFont, sans-serif" }}
+              style={{ fontFamily: "Graphik, sans-serif" }}
             >
               Use Cases
             </span>
@@ -74,7 +81,7 @@ export function UseCasesSection() {
             {/* Main Heading */}
             <h2
               className="text-4xl md:text-5xl lg:text-6xl font-light text-gray-900 leading-[1.1]"
-              style={{ fontFamily: "NewFont, sans-serif" }}
+              style={{ fontFamily: "Graphik, sans-serif" }}
             >
               Solving Sector
               <br />
@@ -93,8 +100,8 @@ export function UseCasesSection() {
             className="flex flex-col justify-start lg:pt-8"
           >
             <p
-              className="text-gray-600 text-base md:text-lg leading-relaxed"
-              style={{ fontFamily: "NewFont, sans-serif" }}
+              className="text-gray-600 text-base md:text-lg pt-10 leading-relaxed"
+              style={{ fontFamily: "Graphik, sans-serif" }}
             >
               Upright delivers tailored IT solutions designed for the unique
               needs of high-impact sectors. Our approach enables rapid
@@ -160,7 +167,7 @@ export function UseCasesSection() {
                         ? "text-[#ffdf20]"
                         : "text-gray-900 group-hover:text-gray-600"
                     }`}
-                    style={{ fontFamily: "NewFont, sans-serif" }}
+                    style={{ fontFamily: "Graphik, sans-serif" }}
                   >
                     {sector.name}
                   </span>
@@ -169,7 +176,7 @@ export function UseCasesSection() {
                     <Link
                       href={sector.link}
                       className="flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
-                      style={{ fontFamily: "NewFont, sans-serif" }}
+                      style={{ fontFamily: "Graphik, sans-serif" }}
                       onClick={(e) => e.stopPropagation()}
                     >
                       Know More
@@ -192,7 +199,7 @@ export function UseCasesSection() {
                     >
                       <p
                         className="pb-5 text-gray-600 text-sm md:text-base leading-relaxed pr-8"
-                        style={{ fontFamily: "NewFont, sans-serif" }}
+                        style={{ fontFamily: "Graphik, sans-serif" }}
                       >
                         {sector.description}
                       </p>

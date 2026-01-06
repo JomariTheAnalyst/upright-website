@@ -9,7 +9,25 @@ const fadeInUp = {
 
 export function LeadershipTeamSection() {
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[#f5f5f3]">
+    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[#f7f6f1]">
+      {/* Font Definitions */}
+      <style jsx global>{`
+        @font-face {
+          font-family: "Graphik";
+          src: url("/fonts/Graphik-Regular.woff2") format("woff2");
+          font-weight: 400;
+          font-style: normal;
+          font-display: swap;
+        }
+        @font-face {
+          font-family: "NeutraText";
+          src: url("/fonts/NeutraTextTF-BoldAlt.woff2") format("woff2");
+          font-weight: 700;
+          font-style: normal;
+          font-display: swap;
+        }
+      `}</style>
+
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <motion.div
@@ -20,10 +38,16 @@ export function LeadershipTeamSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <span className="inline-block px-6 py-2 border-2 border-black rounded-full text-sm font-semibold text-black mb-6">
+          <span
+            className="inline-block px-6 py-2 border-2 border-black rounded-full text-sm font-semibold text-black mb-6"
+            style={{ fontFamily: "Graphik, sans-serif" }}
+          >
             Our Team
           </span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black">
+          <h2
+            className="text-4xl md:text-5xl lg:text-6xl font-bold text-black"
+            style={{ fontFamily: "NeutraText, sans-serif" }}
+          >
             Meet the People Behind Upright
           </h2>
         </motion.div>
@@ -67,8 +91,8 @@ export function LeadershipTeamSection() {
           {/* Top row - 4th column */}
           <div className="col-span-1 row-span-1 rounded-3xl overflow-hidden shadow-lg">
             <img
-              src="/images/team/team5.jpg"
-              alt="Team working"
+              src="/images/founders/greg-sevilla.jpg"
+              alt="Cap Servilla"
               className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
             />
           </div>
@@ -104,7 +128,7 @@ export function LeadershipTeamSection() {
           <div>
             <p
               className="text-base md:text-lg text-gray-700 leading-relaxed"
-              style={{ fontFamily: "'NewFont', sans-serif" }}
+              style={{ fontFamily: "Graphik, sans-serif" }}
             >
               At Upright Solutions and Systems Consultancy Corp., our team is
               the foundation of everything we do. We are a diverse group of IT
@@ -118,7 +142,7 @@ export function LeadershipTeamSection() {
           <div>
             <p
               className="text-base md:text-lg text-gray-700 leading-relaxed"
-              style={{ fontFamily: "'NewFont', sans-serif" }}
+              style={{ fontFamily: "Graphik, sans-serif" }}
             >
               Our collaborative culture fosters continuous learning and growth.
               We believe that great solutions come from great teams, and we

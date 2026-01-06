@@ -9,13 +9,20 @@ export function AwardsSection() {
   const award = company.awards[0];
 
   return (
-    <section className="py-16 md:py-24 bg-white">
-      {/* Custom Font */}
+    <section className="py-16 md:py-24 bg-[#f7f6f1]">
+      {/* Font Definitions */}
       <style jsx global>{`
         @font-face {
-          font-family: "NewFont";
-          src: url("/fonts/newfont.woff2") format("woff2");
-          font-weight: 100 900;
+          font-family: "Graphik";
+          src: url("/fonts/Graphik-Regular.woff2") format("woff2");
+          font-weight: 400;
+          font-style: normal;
+          font-display: swap;
+        }
+        @font-face {
+          font-family: "NeutraText";
+          src: url("/fonts/NeutraTextTF-BoldAlt.woff2") format("woff2");
+          font-weight: 700;
           font-style: normal;
           font-display: swap;
         }
@@ -82,7 +89,7 @@ export function AwardsSection() {
             {/* Section Badge */}
             <span
               className="inline-flex items-center px-4 py-1.5 text-xs font-semibold tracking-wider uppercase border-2 border-black rounded-full text-black"
-              style={{ fontFamily: "NewFont, sans-serif" }}
+              style={{ fontFamily: "Graphik, sans-serif" }}
             >
               Awards & Recognition
             </span>
@@ -91,7 +98,7 @@ export function AwardsSection() {
             <p
               className="text-sm  md:text-base font-bold text-black uppercase tracking-wide"
               style={{
-                fontFamily: "NewFont, sans-serif",
+                fontFamily: "Graphik, sans-serif",
                 fontWeight: 900,
                 fontSize: "31px",
               }}
@@ -102,16 +109,16 @@ export function AwardsSection() {
             {/* Description */}
             <p
               className="text-gray-600 text-base md:text-lg leading-relaxed"
-              style={{ fontFamily: "NewFont, sans-serif" }}
+              style={{ fontFamily: "Graphik, sans-serif" }}
             >
               {award.description}
             </p>
 
             {/* CTA Link with underline animation */}
             <Link
-              href="/about"
+              href="/projects/one-health-pass"
               className="group inline-flex items-center gap-2 text-black font-bold uppercase tracking-wide text-sm relative"
-              style={{ fontFamily: "NewFont, sans-serif" }}
+              style={{ fontFamily: "Graphik, sans-serif" }}
             >
               <span className="relative">
                 Learn More About This Award
