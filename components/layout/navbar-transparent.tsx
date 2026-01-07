@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
-import Image from "next/image";
+import NextImage from "next/image";
+import { useRouter } from "next/navigation";
 import { MenuIcon, ChevronDown } from "lucide-react";
 import {
   Sheet,
@@ -19,6 +20,30 @@ import {
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
+// Critical images to warm up on hover for each route
+const ROUTE_ASSETS: Record<string, string[]> = {
+  "/about": [
+    "/images/team/team1.JPG",
+    "/images/founders/capsevilla4.jpg",
+    "/images/team/team2.jpg",
+    "/images/founders/capsevilla.jpg",
+  ],
+  "/services": ["/images/services/hero.jpg"],
+  "/projects": ["/images/projects/hero.jpg"],
+};
+
+// Warm up images on hover (client-side only)
+function warmUpRouteAssets(route: string): void {
+  if (typeof window === "undefined") return;
+  const assets = ROUTE_ASSETS[route];
+  if (!assets) return;
+
+  assets.forEach((src) => {
+    const img = new window.Image();
+    img.src = src;
+  });
+}
+
 type NavItemType = {
   title: string;
   href: string;
@@ -34,7 +59,7 @@ const companyLinks: NavItemType[] = [
   },
 ];
 
-// NavLink component with sliding underline animation
+// NavLink component with sliding underline animation and asset warm-up
 function NavLink({
   href,
   children,
@@ -44,9 +69,20 @@ function NavLink({
   children: React.ReactNode;
   isScrolled: boolean;
 }) {
+  const router = useRouter();
+
+  const handleMouseEnter = useCallback(() => {
+    // Prefetch the route
+    router.prefetch(href);
+    // Warm up critical images for this route
+    warmUpRouteAssets(href);
+  }, [href, router]);
+
   return (
     <Link
       href={href}
+      onMouseEnter={handleMouseEnter}
+      onFocus={handleMouseEnter}
       className={cn(
         "relative px-4 py-2 text-sm font-medium transition-colors group",
         isScrolled ? "text-gray-800" : "text-white"
@@ -109,7 +145,7 @@ export function TransparentNavbar() {
           <div className="flex items-center justify-between h-20">
             {/* Logo - Far Left */}
             <Link href="/" className="flex items-center flex-shrink-0">
-              <Image
+              <NextImage
                 src="/images/logo/Upright Logo2.png"
                 alt="Upright Logo"
                 width={150}

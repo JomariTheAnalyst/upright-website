@@ -126,6 +126,14 @@ export async function getMessageStats(): Promise<{
   };
 }
 
+// Delete message by ID
+export async function deleteMessage(id: number): Promise<boolean> {
+  const result = await sql`
+    DELETE FROM messages WHERE id = ${id} RETURNING id
+  `;
+  return result.length > 0;
+}
+
 // Export messages to CSV format
 export function exportMessagesToCSV(messages: ContactMessage[]): string {
   const headers = [

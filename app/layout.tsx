@@ -8,8 +8,9 @@ import {
 import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
-import { PageTransitionProvider } from "@/components/providers/page-transition-provider";
 import Preloader from "@/components/preloader";
+import { CookieBanner } from "@/components/cookie-banner";
+import { AnalyticsProvider } from "@/components/analytics-provider";
 
 // Sentient Bold for hero heading
 const sentientBold = localFont({
@@ -104,6 +105,25 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Preload critical fonts to prevent FOUT */}
+        <link
+          rel="preload"
+          href="/fonts/Graphik-Regular.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/fonts/NeutraTextTF-BoldAlt.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        {/* Preload logo for faster LCP */}
+        <link rel="preload" href="/images/logo/Upright Logo2.png" as="image" />
+      </head>
       <body
         className={`${sentientBold.variable} ${playfairDisplay.variable} ${poppins.variable} ${ebGaramond.variable} ${merriweather.variable} font-body antialiased`}
       >
@@ -113,7 +133,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Preloader>{children}</Preloader>
+          <AnalyticsProvider>
+            <Preloader>{children}</Preloader>
+            <CookieBanner />
+          </AnalyticsProvider>
         </ThemeProvider>
       </body>
     </html>

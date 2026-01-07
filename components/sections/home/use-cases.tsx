@@ -15,6 +15,10 @@ const sectors = [
     image:
       "https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=800&q=80",
     link: "/use-cases/maritime",
+    clients: [
+      { name: "Avior", logo: "/images/logo/client-logos/avior.png" },
+      { name: "Mycado", logo: "/images/logo/client-logos/mycado.png" },
+    ],
   },
   {
     id: 2,
@@ -24,6 +28,7 @@ const sectors = [
     image:
       "https://images.unsplash.com/photo-1555848962-6e79363ec58f?w=800&q=80",
     link: "/use-cases/government",
+    clients: [{ name: "BOQ", logo: "/images/logo/client-logos/BOQ.png" }],
   },
   {
     id: 3,
@@ -33,6 +38,10 @@ const sectors = [
     image:
       "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80",
     link: "/use-cases/logistics",
+    clients: [
+      { name: "Gerrys", logo: "/images/logo/client-logos/gerrys.png" },
+      { name: "LBC", logo: "/images/logo/client-logos/lbc.png" },
+    ],
   },
 ];
 
@@ -113,7 +122,7 @@ export function UseCasesSection() {
 
         {/* Content Section - Image and Sectors List */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-          {/* Left - Image with black border */}
+          {/* Left - Image with black border and client logos */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -138,6 +147,38 @@ export function UseCasesSection() {
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   priority
                 />
+
+                {/* Gradient overlay at bottom for logo visibility */}
+                <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-white via-white/90 to-transparent" />
+
+                {/* Client Logos Section - Centered */}
+                <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 flex flex-col items-center">
+                  <p
+                    className="text-gray-600 text-xs uppercase tracking-wider mb-4"
+                    style={{ fontFamily: "Graphik, sans-serif" }}
+                  >
+                    Clients in this industry
+                  </p>
+                  <div className="flex items-center justify-center gap-6 md:gap-10">
+                    {activeSector.clients.map((client, index) => (
+                      <motion.div
+                        key={client.name}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.3, delay: index * 0.1 }}
+                        className="relative h-12 md:h-16 w-auto"
+                      >
+                        <Image
+                          src={client.logo}
+                          alt={client.name}
+                          width={160}
+                          height={64}
+                          className="h-full w-auto object-contain"
+                        />
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
               </motion.div>
             </AnimatePresence>
           </motion.div>

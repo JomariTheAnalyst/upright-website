@@ -5,36 +5,43 @@ import Image from "next/image";
 
 // Grid images - 16 cells (4x4) using all team images + 3 founder images
 const gridImages = [
-  // Row 1
-  { src: "/images/team/team1.JPG", alt: "Team member" },
-  { src: "/images/founders/capsevilla4.jpg", alt: "Founder" },
-  { src: "/images/team/team2.jpg", alt: "Team member" },
-  { src: "/images/team/team3.jpeg", alt: "Team member" },
-  // Row 2
-  { src: "/images/team/team4.JPG", alt: "Team member" },
-  { src: "/images/founders/capsevilla5.jpg", alt: "Founder" },
-  { src: "/images/team/team5.jpg", alt: "Team member" },
-  { src: "/images/founders/capsevilla.jpg", alt: "CEO" },
+  // Row 1 - Priority images (above the fold)
+  { src: "/images/team/team1.JPG", alt: "Team member", priority: true },
+  { src: "/images/founders/capsevilla4.jpg", alt: "Founder", priority: true },
+  { src: "/images/team/team2.jpg", alt: "Team member", priority: true },
+  { src: "/images/team/team3.jpeg", alt: "Team member", priority: true },
+  // Row 2 - Priority images (above the fold)
+  { src: "/images/team/team4.JPG", alt: "Team member", priority: true },
+  { src: "/images/founders/capsevilla5.jpg", alt: "Founder", priority: true },
+  { src: "/images/team/team5.jpg", alt: "Team member", priority: true },
+  { src: "/images/founders/capsevilla.jpg", alt: "CEO", priority: true },
 
-  // Row 3
-  { src: "/images/team/team3.jpeg", alt: "Team member" },
-  { src: "/images/team/team2.jpg", alt: "Team member" },
-  { src: "/images/team/team1.JPG", alt: "Team member" },
-  { src: "/images/team/team6.jpg", alt: "Team member" },
-  { src: "/images/crew-forward-conference/capgreg.jpg", alt: "Founder" },
-  // Row 4
-  { src: "/images/team/IMG_5908.JPG", alt: "Team member" },
+  // Row 3 - Below fold, lazy load
+  { src: "/images/team/team3.jpeg", alt: "Team member", priority: false },
+  { src: "/images/team/team2.jpg", alt: "Team member", priority: false },
+  { src: "/images/team/team1.JPG", alt: "Team member", priority: false },
+  { src: "/images/team/team6.jpg", alt: "Team member", priority: false },
+  {
+    src: "/images/crew-forward-conference/capgreg.jpg",
+    alt: "Founder",
+    priority: false,
+  },
+  // Row 4 - Below fold, lazy load
+  { src: "/images/team/IMG_5908.JPG", alt: "Team member", priority: false },
   {
     src: "/images/team/6087042e-8544-4b7b-9a55-162b3493f503.jpg",
     alt: "Team member",
+    priority: false,
   },
   {
     src: "/images/team/70c47189-96e2-4326-ae64-b789bf65c1cf.jpg",
     alt: "Team member",
+    priority: false,
   },
   {
     src: "/images/team/att.f77iwkFfmm0oB8X2Kq1vKI5vG7enjMjo8M-duCkY7jc.jpg",
     alt: "Team member",
+    priority: false,
   },
 ];
 
@@ -68,8 +75,10 @@ export function AboutHeroSection() {
               alt={image.alt}
               fill
               className="object-cover"
-              sizes="25vw"
-              priority={index < 8}
+              sizes="(max-width: 768px) 50vw, 25vw"
+              priority={image.priority}
+              loading={image.priority ? "eager" : "lazy"}
+              quality={image.priority ? 85 : 75}
             />
           </div>
         ))}

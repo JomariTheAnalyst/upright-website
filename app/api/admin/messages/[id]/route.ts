@@ -1,6 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSession, hasPermission } from "@/lib/auth";
-import { getMessageById, updateMessageStatus, MessageStatus } from "@/lib/db";
+import {
+  getMessageById,
+  updateMessageStatus,
+  deleteMessage,
+  MessageStatus,
+} from "@/lib/db";
 
 export const dynamic = "force-dynamic";
 
@@ -93,6 +98,47 @@ export async function PATCH(
     return NextResponse.json({ success: true, message });
   } catch (error) {
     console.error("Update message error:", error);
+    return NextResponse.json(
+      { success: false, error: "An error occurred" },
+      { status: 500 }
+    );
+  }
+}
+
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  try {
+    const session = await getSession();
+    if (!session) {
+      return NextResponse.json(
+        { success: false, error: "Unauthorized" },
+        { status: 401 }
+      );
+    }
+
+    // Only admin can delete messages
+    if (session.role !== "admin") {
+      return NextResponse.json(
+        { success: false, error: "Only admins can delete messages" },
+        { status: 403 }
+      );
+    }
+
+    const { id } = await params;
+    const deleted = await deleteMessage(parseInt(id, 10));
+
+    if (!deleted) {
+      return NextResponse.json(
+        { success: false, error: "Message not found" },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error("Delete message error:", error);
     return NextResponse.json(
       { success: false, error: "An error occurred" },
       { status: 500 }

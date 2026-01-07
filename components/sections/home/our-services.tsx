@@ -4,6 +4,17 @@ import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
+import dynamic from "next/dynamic";
+
+// Dynamically import Lottie to avoid SSR issues
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
+
+// Import Lottie animation data
+import webDevelopmentAnimation from "@/public/animations/Web Development.json";
+import codingAnimation from "@/public/animations/Coding.json";
+import expertiseAnimation from "@/public/animations/expertise.json";
+import onlineAnimation from "@/public/animations/Online.json";
+import technologyAnimation from "@/public/animations/Technologyy.json";
 
 const services = [
   {
@@ -12,8 +23,7 @@ const services = [
     title: "From Custom Apps To Enterprise Systems, All Tailor-Made.",
     description:
       "Whether it's a web application or a full enterprise solution, our software is built with scalable architecture that's secure, performant & aligned with your business goals.",
-    image:
-      "https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?q=80&w=2670&auto=format&fit=crop",
+    animation: webDevelopmentAnimation,
     link: "/services/software-development",
   },
   {
@@ -22,8 +32,7 @@ const services = [
     title: "From Architecture To Implementation, All Strategically Planned.",
     description:
       "Whether it's optimizing existing systems or designing new infrastructure, our solutions are based on thorough analysis that's efficient, scalable & compliant with industry standards.",
-    image:
-      "https://images.unsplash.com/photo-1558494949-ef5485037024?q=80&w=2670&auto=format&fit=crop",
+    animation: codingAnimation,
     link: "/services/system-integration",
   },
   {
@@ -32,8 +41,7 @@ const services = [
     title: "From E-Learning To Training Systems, All Expertly Crafted.",
     description:
       "Whether it's interactive courses or comprehensive training platforms, our learning solutions are designed with engaging content that's effective, accessible & tailored to your workforce needs.",
-    image:
-      "https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=2574&auto=format&fit=crop",
+    animation: expertiseAnimation,
     link: "/services/learning-content",
   },
   {
@@ -42,8 +50,7 @@ const services = [
     title: "From Strategy To Execution, All Expert-Guided.",
     description:
       "Whether it's digital transformation or technology roadmapping, our consultancy services are grounded in deep expertise that's practical, results-driven & focused on maximizing your ROI.",
-    image:
-      "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2670&auto=format&fit=crop",
+    animation: onlineAnimation,
     link: "/services/it-consultancy",
   },
   {
@@ -52,8 +59,7 @@ const services = [
     title: "From Repairs To Upgrades, All Professionally Handled.",
     description:
       "Whether it's preventive maintenance or emergency support, our hardware services are delivered with technical precision that's reliable, timely & keeps your infrastructure running at peak performance.",
-    image:
-      "https://images.unsplash.com/photo-1597852074816-d933c72c6cf8?q=80&w=2574&auto=format&fit=crop",
+    animation: technologyAnimation,
     link: "/services/hardware-solutions",
   },
 ];
@@ -238,7 +244,7 @@ export function OurServicesSection() {
             </div>
           </div>
 
-          {/* Right: Image Block - Reduced width */}
+          {/* Right: Lottie Animation Block */}
           <div
             className="relative transition-all duration-700 w-full md:w-[55%] lg:w-[50%] md:ml-auto"
             style={{
@@ -258,40 +264,38 @@ export function OurServicesSection() {
               }}
             />
 
-            {/* Image container - landscape aspect ratio for reduced height */}
+            {/* Animation container */}
             <div
-              className="relative overflow-hidden border-2 border-black"
+              className="relative overflow-hidden border-2 border-black bg-gradient-to-br from-gray-50 to-gray-100"
               style={{ aspectRatio: "4/3" }}
             >
               <AnimatePresence mode="wait">
-                <motion.img
-                  key={`img-${currentIndex}`}
-                  src={currentService.image}
-                  alt={currentService.label}
+                <motion.div
+                  key={`animation-${currentIndex}`}
                   initial={{ opacity: 0, scale: 1.05 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.5 }}
-                  className="h-full w-full object-cover transition-all duration-1000"
+                  className="h-full w-full flex items-center justify-center p-4 md:p-6"
                   style={{
                     transform: isHovered ? "scale(1.03)" : "scale(1)",
                     transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
+                    transitionDuration: "1000ms",
                   }}
-                />
+                >
+                  <Lottie
+                    animationData={currentService.animation}
+                    loop={true}
+                    autoplay={true}
+                    className="w-full h-full"
+                    style={{ maxWidth: "100%", maxHeight: "100%" }}
+                  />
+                </motion.div>
               </AnimatePresence>
-
-              {/* Gradient overlay */}
-              <div
-                className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent transition-opacity duration-700"
-                style={{
-                  opacity: isHovered ? 1 : 0,
-                  transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
-                }}
-              />
 
               {/* Corner accents */}
               <div
-                className="absolute left-3 top-3 h-6 w-px bg-white/80 transition-all duration-500 md:left-4 md:top-4 md:h-8"
+                className="absolute left-3 top-3 h-6 w-px bg-black/40 transition-all duration-500 md:left-4 md:top-4 md:h-8"
                 style={{
                   opacity: isHovered ? 1 : 0,
                   transform: isHovered ? "scaleY(1)" : "scaleY(0)",
@@ -301,7 +305,7 @@ export function OurServicesSection() {
                 }}
               />
               <div
-                className="absolute left-3 top-3 h-px w-6 bg-white/80 transition-all duration-500 md:left-4 md:top-4 md:w-8"
+                className="absolute left-3 top-3 h-px w-6 bg-black/40 transition-all duration-500 md:left-4 md:top-4 md:w-8"
                 style={{
                   opacity: isHovered ? 1 : 0,
                   transform: isHovered ? "scaleX(1)" : "scaleX(0)",
@@ -311,7 +315,7 @@ export function OurServicesSection() {
                 }}
               />
               <div
-                className="absolute bottom-3 right-3 h-6 w-px bg-white/80 transition-all duration-500 md:bottom-4 md:right-4 md:h-8"
+                className="absolute bottom-3 right-3 h-6 w-px bg-black/40 transition-all duration-500 md:bottom-4 md:right-4 md:h-8"
                 style={{
                   opacity: isHovered ? 1 : 0,
                   transform: isHovered ? "scaleY(1)" : "scaleY(0)",
@@ -321,7 +325,7 @@ export function OurServicesSection() {
                 }}
               />
               <div
-                className="absolute bottom-3 right-3 h-px w-6 bg-white/80 transition-all duration-500 md:bottom-4 md:right-4 md:w-8"
+                className="absolute bottom-3 right-3 h-px w-6 bg-black/40 transition-all duration-500 md:bottom-4 md:right-4 md:w-8"
                 style={{
                   opacity: isHovered ? 1 : 0,
                   transform: isHovered ? "scaleX(1)" : "scaleX(0)",
