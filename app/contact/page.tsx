@@ -1,20 +1,11 @@
-"use client";
+import { ContactPageContent } from "@/components/sections/contact/contact-page-content";
 
-import { TransparentNavbar } from "@/components/layout/navbar-transparent";
-import { ContactSection } from "@/components/sections/contact";
-import { MapSection } from "@/components/sections/map";
-import { Footer } from "@/components/layout/footer";
+export const metadata = {
+  title: "Contact",
+  description:
+    "Get in touch with Upright Solutions and Systems Consultancy Corp. Contact us for IT solutions, system integration, and enterprise technology services.",
+};
 
 export default function ContactPage() {
-  return (
-    <div
-      className="relative min-h-screen"
-      style={{ backgroundColor: "#fafafa" }}
-    >
-      <TransparentNavbar />
-      <ContactSection />
-      <MapSection />
-      <Footer />
-    </div>
-  );
+  return <ContactPageContent />;
 }

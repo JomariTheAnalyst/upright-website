@@ -8,7 +8,7 @@ import { WorkplaceSection } from "@/components/sections/careers/workplace";
 import { JobsSection } from "@/components/sections/careers/jobs";
 
 export const metadata = {
-  title: "Careers - Upright Solutions and Systems Consultancy Corp.",
+  title: "Careers",
   description:
     "Join our team at Upright Solutions and Systems Consultancy Corp. and build your career in IT solutions and enterprise technology.",
 };

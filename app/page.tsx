@@ -12,6 +12,11 @@ import { ImpactSection } from "@/components/sections/home/impact";
 import { AwardsSection } from "@/components/sections/home/awards";
 import { OurTeamSection } from "@/components/sections/our-team";
 import { AboutUsTestimonials } from "@/components/sections/about-us-testimonials";
+
+export const metadata = {
+  title: "Home",
+};
+
 export default function Home() {
   return (
     <div className="relative min-h-screen overflow-x-hidden">

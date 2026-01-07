@@ -4,7 +4,7 @@ import { FAQsHeroSection } from "@/components/sections/faqs/faqs-hero";
 import { FAQSection } from "@/components/sections/faq";
 
 export const metadata = {
-  title: "FAQs - Upright Solutions and Systems Consultancy Corp.",
+  title: "FAQs",
   description:
     "Frequently asked questions about our IT solutions, services, pricing, and support. Get answers to common questions about working with Upright Solutions and Systems Consultancy Corp.",
   keywords: [

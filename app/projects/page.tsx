@@ -5,8 +5,9 @@ import { HeroProjects } from "@/components/sections/projects/hero-projects";
 import { ProjectShowcase } from "@/components/sections/projects/project-showcase";
 
 export const metadata = {
-  title: "Projects | Upright Solutions",
-  description: "Explore our portfolio of maritime, software, and hardware solutions.",
+  title: "Projects",
+  description:
+    "Explore our portfolio of maritime, software, and hardware solutions.",
 };
 
 export default function ProjectsPage() {

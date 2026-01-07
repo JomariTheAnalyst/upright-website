@@ -52,8 +52,10 @@ const merriweather = Merriweather({
 });
 
 export const metadata: Metadata = {
-  title:
-    "Upright Solutions and Systems Consultancy corp. | IT Solutions & System Integration",
+  title: {
+    default: "Upright",
+    template: "%s – Upright",
+  },
   description:
     "Leading Philippine IT solutions provider specializing in system integration, software development, and professional services across multiple industries.",
   keywords: [
