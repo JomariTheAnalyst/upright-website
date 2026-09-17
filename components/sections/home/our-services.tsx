@@ -88,7 +88,10 @@ export function OurServicesSection() {
   const currentService = services[currentIndex];
 
   return (
-    <section className="relative bg-[#f7f6f1] py-12 sm:py-16 md:py-20 lg:py-28">
+    <section
+      id="services"
+      className="relative scroll-mt-20 bg-[#f7f6f1] py-12 sm:py-16 md:py-20 lg:py-28"
+    >
       {/* Font Definitions */}
       <style jsx global>{`
         @font-face {

@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { projectsData } from "@/data/projects-data";
 
 // Map projects data for the carousel (excluding Avior LMS to avoid duplicate)
@@ -199,6 +199,7 @@ export function OurProjectsSection() {
           {/* Carousel Container */}
           <div
             ref={carouselRef}
+            data-lenis-prevent-horizontal
             className={`flex gap-4 sm:gap-6 overflow-x-auto px-5 sm:px-8 lg:px-16 pb-4 snap-x snap-mandatory select-none ${
               isDragging ? "cursor-grabbing" : "cursor-grab"
             }`}

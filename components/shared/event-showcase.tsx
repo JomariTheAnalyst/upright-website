@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { ArrowUpRight, X, Play } from "lucide-react";
+import { useLenisScrollLock } from "@/components/providers/smooth-scroll-provider";
 
 // Local Images Base Path
 const BASE_PATH = "/images/crew-forward-conference";
@@ -119,6 +120,18 @@ export function EventShowcase({
   subtitle = "AT LAST YEAR'S EDITION",
 }: EventShowcaseProps) {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
+  useLenisScrollLock(isVideoOpen);
+
+  useEffect(() => {
+    if (!isVideoOpen) return;
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsVideoOpen(false);
+    };
+
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [isVideoOpen]);
 
   return (
     <section className="py-16 md:py-24 bg-[#1e1e30]">
@@ -197,6 +210,7 @@ export function EventShowcase({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            data-lenis-prevent
             className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 p-4 md:p-8"
             onClick={() => setIsVideoOpen(false)}
           >

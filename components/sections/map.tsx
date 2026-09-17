@@ -93,6 +93,7 @@ export function MapSection() {
               activeOffice.coordinates.lat,
             ]}
             zoom={activeOffice.zoom}
+            scrollZoom={false}
             styles={{
               light:
                 "https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json",

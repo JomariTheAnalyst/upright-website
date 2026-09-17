@@ -1,6 +1,7 @@
 import { cookies } from "next/headers";
 import bcrypt from "bcryptjs";
 import { sql } from "./db";
+import { env } from "@/lib/env/server";
 
 // Types
 export type UserRole = "admin" | "staff" | "viewer";
@@ -111,7 +112,7 @@ export async function createSession(userId: number): Promise<string> {
   const cookieStore = await cookies();
   cookieStore.set(SESSION_COOKIE_NAME, sessionId, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
+    secure: env.NODE_ENV === "production",
     sameSite: "lax",
     expires: expiresAt,
     path: "/",

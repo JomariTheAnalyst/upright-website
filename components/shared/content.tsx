@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Play, X, Pause, Volume2, VolumeX, Maximize } from "lucide-react";
 import { EventItem } from "@/data/events";
+import { useLenisScrollLock } from "@/components/providers/smooth-scroll-provider";
 
 // Vimeo Video ID
 const VIMEO_VIDEO_ID = "1151792250";
@@ -125,6 +126,18 @@ export function Content({ event }: ContentProps) {
 
 function VideoPlayer({ src }: { src: string }) {
   const [isPlaying, setIsPlaying] = useState(false);
+  useLenisScrollLock(isPlaying);
+
+  useEffect(() => {
+    if (!isPlaying) return;
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsPlaying(false);
+    };
+
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [isPlaying]);
 
   return (
     <>
@@ -169,6 +182,7 @@ function VideoPlayer({ src }: { src: string }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            data-lenis-prevent
             className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 p-4 md:p-8"
             onClick={() => setIsPlaying(false)}
           >

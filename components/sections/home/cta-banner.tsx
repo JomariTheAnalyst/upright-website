@@ -7,7 +7,10 @@ import { ArrowUpRight } from "lucide-react";
 
 export function CtaBanner() {
   return (
-    <section className="relative w-full h-[60vh] md:h-[70vh] lg:h-[80vh]">
+    <section
+      id="contact"
+      className="relative w-full scroll-mt-20 h-[60vh] md:h-[70vh] lg:h-[80vh]"
+    >
       {/* Font Definitions */}
       <style jsx global>{`
         @font-face {
@@ -50,7 +53,7 @@ export function CtaBanner() {
           className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light text-white leading-tight max-w-4xl mb-6"
           style={{ fontFamily: "NeutraText, sans-serif" }}
         >
-          Unlock Your Project's Potential
+          Unlock Your Project&apos;s Potential
         </motion.h2>
 
         {/* Supporting Text */}

@@ -9,8 +9,9 @@ import {
 import { verifyHCaptcha } from "@/lib/hcaptcha";
 import { checkRateLimit, getClientIp } from "@/lib/rate-limiter";
 import { createMessage } from "@/lib/db";
+import { env } from "@/lib/env/server";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend(env.RESEND_API_KEY);
 
 // Rate limit configuration
 const MAX_REQUESTS = 5;
@@ -163,12 +164,8 @@ export async function POST(request: NextRequest) {
     }
 
     // Step 5: Send auto-reply email via Resend
-    const fromEmail =
-      process.env.RESEND_FROM_EMAIL ||
-      "Upright Solutions <no-reply@upright.ph>";
-
     const { data, error } = await resend.emails.send({
-      from: fromEmail,
+      from: env.RESEND_FROM_EMAIL,
       to: formData.email,
       subject: emailSubject,
       html: getAutoReplyEmailHtml(formData.name),

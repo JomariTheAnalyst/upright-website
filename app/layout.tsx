@@ -7,8 +7,9 @@ import {
 } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
+import "lenis/dist/lenis.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
-import Preloader from "@/components/preloader";
+import { SmoothScrollProvider } from "@/components/providers/smooth-scroll-provider";
 import { CookieBanner } from "@/components/cookie-banner";
 import { AnalyticsProvider } from "@/components/analytics-provider";
 
@@ -135,10 +136,12 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <AnalyticsProvider>
-            <Preloader>{children}</Preloader>
-            <CookieBanner />
-          </AnalyticsProvider>
+          <SmoothScrollProvider>
+            <AnalyticsProvider>
+              {children}
+              <CookieBanner />
+            </AnalyticsProvider>
+          </SmoothScrollProvider>
         </ThemeProvider>
       </body>
     </html>

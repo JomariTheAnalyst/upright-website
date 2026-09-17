@@ -1,131 +1,510 @@
 "use client";
 
-import { motion } from "framer-motion";
-import Link from "next/link";
+import { useCallback, useRef, useState, type KeyboardEvent } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { CustomEase } from "gsap/CustomEase";
+import { SplitText } from "gsap/SplitText";
+import Image from "next/image";
+
 import { TransparentNavbar } from "@/components/layout/navbar-transparent";
+import { useLenisScrollLock } from "@/components/providers/smooth-scroll-provider";
+
+import styles from "./hero.module.css";
+
+gsap.registerPlugin(useGSAP, SplitText, CustomEase);
+CustomEase.create("upright-slideshow-wipe", "0.625, 0.05, 0, 1");
+
+const SLIDES = [
+  {
+    src: "/images/services-tabs/building-upright.png",
+    alt: "Upright headquarters concept overlooking a city skyline",
+    label: "Upright headquarters",
+    position: "center center",
+  },
+  {
+    src: "/images/services-tabs/itconsultancy.jpg",
+    alt: "IT professional planning a digital product with research and diagrams",
+    label: "IT consultancy",
+    position: "center center",
+  },
+  {
+    src: "/images/services-tabs/systemdesign.jpg",
+    alt: "System design roadmap arranged across a planning wall",
+    label: "System design",
+    position: "center center",
+  },
+  {
+    src: "/images/homepage/team.jpg",
+    alt: "A diverse team joining hands in a circle",
+    label: "People working together",
+    position: "center center",
+  },
+  {
+    src: "/images/services-tabs/learningcontentdevelopment.jpg",
+    alt: "Learning tiles spelling lifelong learning beside a word game",
+    label: "Learning content development",
+    position: "center center",
+  },
+] as const;
+
+const LOADER_ORDER = [3, 4, 0, 1, 2] as const;
+
+function HeroImage({
+  slide,
+  className,
+  priority = false,
+}: {
+  slide: (typeof SLIDES)[number];
+  className: string;
+  priority?: boolean;
+}) {
+  return (
+    <Image
+      src={slide.src}
+      alt={slide.alt}
+      fill
+      priority={priority}
+      unoptimized
+      draggable={false}
+      sizes="100vw"
+      className={className}
+      style={{ objectPosition: slide.position }}
+    />
+  );
+}
 
 export function HeroSection() {
+  const heroRef = useRef<HTMLElement>(null);
+  const currentSlideRef = useRef(0);
+  const isAnimatingRef = useRef(false);
+  const slideshowReadyRef = useRef(false);
+  const slideshowTimelineRef = useRef<gsap.core.Timeline | null>(null);
+  const [introActive, setIntroActive] = useState(true);
+
+  useLenisScrollLock(introActive);
+
+  useGSAP(
+    () => {
+      const hero = heroRef.current;
+      if (!hero) return;
+
+      const loader = hero.querySelector<HTMLElement>("[data-hero-loader]");
+      const loaderTiles = gsap.utils.toArray<HTMLElement>(
+        "[data-loader-tile]",
+        hero
+      );
+      const loaderMedia = gsap.utils.toArray<HTMLElement>(
+        "[data-loader-media]",
+        hero
+      );
+      const scaleDownTargets = gsap.utils.toArray<HTMLElement>(
+        "[data-scale-down]",
+        hero
+      );
+      const currentLoaderTile = hero.querySelector<HTMLElement>(
+        "[data-loader-current]"
+      );
+      const heading = hero.querySelector<HTMLElement>("[data-hero-heading]");
+      const eyebrow = hero.querySelector<HTMLElement>("[data-hero-eyebrow]");
+      const nav = hero.querySelector<HTMLElement>("[data-hero-nav]");
+      const support = hero.querySelector<HTMLElement>("[data-hero-support]");
+      const thumbnails = gsap.utils.toArray<HTMLElement>(
+        "[data-hero-thumbnail]",
+        hero
+      );
+      const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+
+      if (reduceMotion) {
+        gsap.set(loader, { display: "none" });
+        gsap.set([heading, eyebrow, nav, support, ...thumbnails], {
+          autoAlpha: 1,
+          yPercent: 0,
+          pointerEvents: "auto",
+        });
+        hero.dataset.introComplete = "true";
+        slideshowReadyRef.current = true;
+        setIntroActive(false);
+        return () => {
+          slideshowTimelineRef.current?.kill();
+          slideshowTimelineRef.current = null;
+          slideshowReadyRef.current = false;
+        };
+      }
+
+      if (
+        !loader ||
+        !currentLoaderTile ||
+        !heading
+      ) {
+        return;
+      }
+
+      const split = SplitText.create(heading, {
+        type: "words",
+        mask: "words",
+        wordsClass: styles.headingWord,
+      });
+
+      gsap.set(split.words, { yPercent: 110 });
+      gsap.set(heading, { autoAlpha: 1 });
+      gsap.set([eyebrow, nav, support], { autoAlpha: 0 });
+      gsap.set(nav, { pointerEvents: "none" });
+      gsap.set(thumbnails, { autoAlpha: 0, yPercent: 150 });
+
+      const timeline = gsap.timeline({
+        defaults: { ease: "expo.inOut" },
+        onComplete: () => {
+          gsap.set(loader, { display: "none" });
+          hero.dataset.introComplete = "true";
+          slideshowReadyRef.current = true;
+          setIntroActive(false);
+        },
+      });
+
+      timeline
+        .fromTo(
+          loaderTiles,
+          { xPercent: 500 },
+          { xPercent: -500, duration: 2.5, stagger: 0.05 }
+        )
+        .to(
+          scaleDownTargets,
+          {
+            scale: 0.5,
+            duration: 2,
+            stagger: {
+              each: 0.05,
+              from: "edges",
+              ease: "none",
+            },
+            onComplete: () => {
+              currentLoaderTile.classList.remove(styles.loaderMediaRadius);
+            },
+          },
+          "-=0.1"
+        )
+        .fromTo(
+          loaderMedia,
+          { width: "10em", height: "10em" },
+          { width: "100vw", height: "100dvh", duration: 2 },
+          "<0.5"
+        )
+        .to(
+          thumbnails,
+          {
+            autoAlpha: 1,
+            yPercent: 0,
+            stagger: 0.05,
+            ease: "expo.out",
+            duration: 1,
+          },
+          "-=0.9"
+        )
+        .to(
+          split.words,
+          {
+            yPercent: 0,
+            stagger: 0.075,
+            ease: "expo.out",
+            duration: 1,
+          },
+          "<0.1"
+        )
+        .to(
+          eyebrow,
+          { autoAlpha: 1, ease: "power1.inOut", duration: 0.2 },
+          "<"
+        )
+        .to(
+          nav,
+          {
+            autoAlpha: 1,
+            pointerEvents: "auto",
+            ease: "power1.inOut",
+            duration: 0.2,
+          },
+          "<0.15"
+        )
+        .to(
+          support,
+          { autoAlpha: 1, ease: "power1.inOut", duration: 0.2 },
+          "<0.15"
+        )
+        .to(loader, { autoAlpha: 0, duration: 0.15, ease: "power1.out" }, "+=0.3");
+
+      return () => {
+        timeline.kill();
+        slideshowTimelineRef.current?.kill();
+        slideshowTimelineRef.current = null;
+        split.revert();
+        slideshowReadyRef.current = false;
+      };
+    },
+    { scope: heroRef }
+  );
+
+  const navigateToSlide = useCallback((targetIndex: number) => {
+    const hero = heroRef.current;
+    if (
+      !hero ||
+      !slideshowReadyRef.current ||
+      isAnimatingRef.current ||
+      targetIndex === currentSlideRef.current
+    ) {
+      return;
+    }
+
+    const slides = Array.from(
+      hero.querySelectorAll<HTMLElement>("[data-hero-slide]")
+    );
+    const inners = Array.from(
+      hero.querySelectorAll<HTMLElement>("[data-slide-inner]")
+    );
+    const thumbnails = Array.from(
+      hero.querySelectorAll<HTMLButtonElement>("[data-hero-thumbnail]")
+    );
+    const previousIndex = currentSlideRef.current;
+    const direction = targetIndex > previousIndex ? 1 : -1;
+    const outgoingSlide = slides[previousIndex];
+    const outgoingInner = inners[previousIndex];
+    const incomingSlide = slides[targetIndex];
+    const incomingInner = inners[targetIndex];
+
+    if (!outgoingSlide || !outgoingInner || !incomingSlide || !incomingInner) {
+      return;
+    }
+
+    isAnimatingRef.current = true;
+    currentSlideRef.current = targetIndex;
+
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    slideshowTimelineRef.current = gsap
+      .timeline({
+        defaults: {
+          duration: reduceMotion ? 0.01 : 1.5,
+          ease: "upright-slideshow-wipe",
+        },
+        onStart: () => {
+          incomingSlide.dataset.active = "true";
+          incomingSlide.removeAttribute("aria-hidden");
+          gsap.set(outgoingSlide, { zIndex: 1 });
+          gsap.set(incomingSlide, { zIndex: 2 });
+
+          thumbnails.forEach((thumbnail, index) => {
+            const active = index === targetIndex;
+            thumbnail.dataset.active = active ? "true" : "false";
+            if (active) {
+              thumbnail.setAttribute("aria-current", "true");
+            } else {
+              thumbnail.removeAttribute("aria-current");
+            }
+          });
+        },
+        onComplete: () => {
+          outgoingSlide.dataset.active = "false";
+          outgoingSlide.setAttribute("aria-hidden", "true");
+          gsap.set(outgoingSlide, { zIndex: 0 });
+          gsap.set(incomingSlide, { zIndex: 1 });
+          isAnimatingRef.current = false;
+        },
+        onInterrupt: () => {
+          isAnimatingRef.current = false;
+        },
+      })
+      .to(outgoingSlide, { xPercent: -direction * 100 }, 0)
+      .to(outgoingInner, { xPercent: direction * 75 }, 0)
+      .fromTo(
+        incomingSlide,
+        { xPercent: direction * 100 },
+        { xPercent: 0 },
+        0
+      )
+      .fromTo(
+        incomingInner,
+        { xPercent: -direction * 75 },
+        { xPercent: 0 },
+        0
+      );
+  }, []);
+
+  const handleThumbnailKeyDown = (
+    event: KeyboardEvent<HTMLButtonElement>,
+    index: number
+  ) => {
+    let targetIndex: number | null = null;
+
+    if (event.key === "ArrowRight") {
+      targetIndex = (index + 1) % SLIDES.length;
+    } else if (event.key === "ArrowLeft") {
+      targetIndex = (index - 1 + SLIDES.length) % SLIDES.length;
+    } else if (event.key === "Home") {
+      targetIndex = 0;
+    } else if (event.key === "End") {
+      targetIndex = SLIDES.length - 1;
+    }
+
+    if (targetIndex === null) return;
+
+    event.preventDefault();
+    const buttons = heroRef.current?.querySelectorAll<HTMLButtonElement>(
+      "[data-hero-thumbnail]"
+    );
+    buttons?.[targetIndex]?.focus();
+    navigateToSlide(targetIndex);
+  };
+
   return (
-    <section className="relative w-full min-h-screen overflow-hidden">
-      {/* Font Definitions */}
-      <style jsx global>{`
-        @font-face {
-          font-family: "Graphik";
-          src: url("/fonts/Graphik-Regular.woff2") format("woff2");
-          font-weight: 400;
-          font-style: normal;
-          font-display: swap;
-        }
-        @font-face {
-          font-family: "NeutraText";
-          src: url("/fonts/NeutraTextTF-BoldAlt.woff2") format("woff2");
-          font-weight: 700;
-          font-style: normal;
-          font-display: swap;
-        }
-      `}</style>
-
-      {/* Transparent Navbar */}
-      <TransparentNavbar />
-
-      {/* Static Background Image */}
-      <div className="absolute inset-0">
-        <div
-          className="w-full h-full bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage:
-              "url('https://cdn.builder.io/api/v1/image/assets%2Fdf86a2c927524359b1806962d7ea4653%2Fb261f7095ab74ea484cc4cf493b21031')",
-          }}
-        />
-        {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-black/40" />
+    <section
+      ref={heroRef}
+      className={styles.hero}
+      aria-label="Upright introduction"
+    >
+      <div className={styles.slideshow} aria-live="polite">
+        {SLIDES.map((slide, index) => (
+          <div
+            key={slide.src}
+            className={styles.slide}
+            data-hero-slide
+            data-active={index === 0 ? "true" : "false"}
+            aria-hidden={index === 0 ? undefined : true}
+          >
+            <div className={styles.slideInner} data-slide-inner>
+              <HeroImage
+                slide={slide}
+                className={styles.coverImage}
+                priority={index === 0}
+              />
+            </div>
+          </div>
+        ))}
       </div>
 
-      {/* Hero Content - Left Aligned */}
-      <div className="relative z-20 flex flex-col justify-center min-h-screen px-6 sm:px-8 lg:px-12 xl:px-16 pt-20">
-        <div className="max-w-3xl">
-          {/* Subtitle */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-white/70 text-sm md:text-base tracking-wide mb-4"
-            style={{ fontFamily: "Graphik, sans-serif" }}
-          >
+      <div className={styles.scrim} aria-hidden="true" />
+
+      <div className={styles.navReveal} data-hero-nav>
+        <TransparentNavbar />
+      </div>
+
+      <div className={styles.content}>
+        <div className={styles.centerContent}>
+          <p className={styles.eyebrow} data-hero-eyebrow>
             Philippine-Based IT Solutions Company
-          </motion.p>
-
-          {/* Main Heading */}
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="mb-6"
-          >
-            <span
-              className="block text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] tracking-tight"
-              style={{ fontFamily: "NeutraText, sans-serif" }}
-            >
-              Transforming
-            </span>
-            <span
-              className="block text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-[#ffdf20] leading-[1.1] tracking-tight italic"
-              style={{ fontFamily: "NeutraText, sans-serif" }}
-            >
-              Businesses
-            </span>
-          </motion.h1>
-
-          {/* CTA Button */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="mb-16 md:mb-24"
-          >
-            <Link
-              href="/contact"
-              className="group relative inline-flex items-center overflow-hidden"
-              style={{ fontFamily: "Graphik, sans-serif" }}
-            >
-              {/* Button with diagonal clip */}
-              <span
-                className="relative px-8 py-3 bg-[#ffdf20] text-black font-medium text-sm"
-                style={{
-                  clipPath:
-                    "polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 16px) 100%, 0 100%)",
-                }}
-              >
-                {/* Blue fill overlay */}
-                <span className="absolute inset-0 bg-[#0000ff] transform origin-top scale-y-0 transition-transform duration-500 ease-out group-hover:scale-y-100" />
-                <span className="relative z-10 transition-colors duration-500 group-hover:text-white">
-                  Contact Us
-                </span>
-              </span>
-            </Link>
-          </motion.div>
+          </p>
+          <h1 className={styles.heading} data-hero-heading>
+            <span>Transforming</span>{" "}
+            <span className={styles.headingAccent}>Businesses</span>
+          </h1>
         </div>
 
-        {/* Bottom Left Description */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.7 }}
-          className="absolute bottom-12 md:bottom-16 left-6 sm:left-8 lg:left-12 xl:left-16 max-w-md"
-        >
-          <p
-            className="text-white font-semibold text-base md:text-lg mb-1"
-            style={{ fontFamily: "NeutraText, sans-serif" }}
+        <div className={styles.bottomContent}>
+          <div
+            className={styles.thumbnailRow}
+            role="group"
+            aria-label="Choose a hero image"
           >
-            Providing World-class Solutions
+            {SLIDES.map((slide, index) => (
+              <button
+                key={slide.src}
+                type="button"
+                className={styles.thumbnailButton}
+                data-hero-thumbnail
+                data-active={index === 0 ? "true" : "false"}
+                aria-label={`Show ${slide.label}`}
+                aria-current={index === 0 ? "true" : undefined}
+                onClick={() => navigateToSlide(index)}
+                onKeyDown={(event) => handleThumbnailKeyDown(event, index)}
+              >
+                <span className={styles.thumbnailImage}>
+                  <HeroImage slide={slide} className={styles.coverImage} />
+                </span>
+              </button>
+            ))}
+          </div>
+
+          <p className={styles.support} data-hero-support>
+            <span>Providing World-class Solutions</span>
+            <span>Fueled by Local Insights.</span>
           </p>
-          <p
-            className="text-white/70 text-sm md:text-base"
-            style={{ fontFamily: "Graphik, sans-serif" }}
-          >
-            Fueled by Local Insights.
-          </p>
-        </motion.div>
+        </div>
+      </div>
+
+      <div className={styles.loader} data-hero-loader aria-hidden="true">
+        <div className={styles.loaderWrap}>
+          <div className={styles.loaderGroups} data-loader-groups>
+            <div className={`${styles.loaderGroup} ${styles.loaderDuplicate}`}>
+              {LOADER_ORDER.map((slideIndex) => {
+                const slide = SLIDES[slideIndex];
+                return (
+                  <div
+                    className={styles.loaderSingle}
+                    data-loader-tile
+                    key={`duplicate-${slide.src}`}
+                  >
+                    <div className={styles.loaderMedia} data-loader-media>
+                      <HeroImage slide={slide} className={styles.coverImage} />
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className={`${styles.loaderGroup} ${styles.loaderRelative}`}>
+              {LOADER_ORDER.map((slideIndex, position) => {
+                const slide = SLIDES[slideIndex];
+                const current = position === 2;
+                return (
+                  <div
+                    className={styles.loaderSingle}
+                    data-loader-tile
+                    key={`primary-${slide.src}`}
+                  >
+                    <div
+                      className={`${styles.loaderMedia} ${
+                        current
+                          ? `${styles.loaderMediaCurrent} ${styles.loaderMediaRadius}`
+                          : ""
+                      }`}
+                      data-loader-media
+                      data-loader-current={current ? "true" : undefined}
+                    >
+                      {current ? (
+                        <HeroImage
+                          slide={slide}
+                          className={styles.coverImage}
+                        />
+                      ) : (
+                        <span
+                          className={styles.loaderImageScale}
+                          data-scale-down
+                        >
+                          <HeroImage
+                            slide={slide}
+                            className={styles.coverImage}
+                          />
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          <div
+            className={`${styles.loaderFade} ${styles.loaderFadeStart}`}
+            data-loader-fade
+          />
+          <div
+            className={`${styles.loaderFade} ${styles.loaderFadeEnd}`}
+            data-loader-fade
+          />
+        </div>
       </div>
     </section>
   );

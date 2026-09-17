@@ -2,9 +2,11 @@
 
 import { motion } from "motion/react";
 import Image from "next/image";
-import Link from "next/link";
+import { useLenis } from "@/components/providers/smooth-scroll-provider";
 
 export function CareersHeroSection() {
+  const lenis = useLenis();
+
   return (
     <section className="relative w-full h-screen overflow-hidden">
       {/* Background Image */}
@@ -32,16 +34,19 @@ export function CareersHeroSection() {
                 Working At Upright
               </h1>
               <p className="text-sm md:text-base text-white/90 mb-6 leading-relaxed max-w-lg drop-shadow-lg">
-                We're leading the way in fintech — join our team of innovators,
+                We&apos;re leading the way in fintech — join our team of innovators,
                 building solutions with impact for Upright customers worldwide.
               </p>
               <motion.button
                 onClick={() => {
                   const jobsSection = document.getElementById("jobs-section");
-                  jobsSection?.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start",
-                  });
+                  if (!jobsSection) return;
+
+                  if (lenis) {
+                    lenis.scrollTo(jobsSection, { offset: -80 });
+                  } else {
+                    jobsSection.scrollIntoView({ block: "start" });
+                  }
                 }}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}

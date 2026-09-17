@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react";
 import Image from "next/image";
+import { useLenis } from "@/components/providers/smooth-scroll-provider";
 
 const cultureItems = [
   {
@@ -43,6 +44,8 @@ const cultureItems = [
 ];
 
 export function CultureSection() {
+  const lenis = useLenis();
+
   return (
     <section className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -55,10 +58,10 @@ export function CultureSection() {
           className="text-center mb-20 space-y-8"
         >
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-            What it's like working at Upright
+            What it&apos;s like working at Upright
           </h1>
           <p className="text-lg md:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-            We cultivate an environment of ambition and excellence. You'll
+            We cultivate an environment of ambition and excellence. You&apos;ll
             collaborate with exceptional global talent, tackle exciting
             challenges, and help drive the evolution of fintech. We prioritise
             flexibility to support your success.
@@ -66,10 +69,13 @@ export function CultureSection() {
           <motion.button
             onClick={() => {
               const jobsSection = document.getElementById("jobs-section");
-              jobsSection?.scrollIntoView({
-                behavior: "smooth",
-                block: "start",
-              });
+              if (!jobsSection) return;
+
+              if (lenis) {
+                lenis.scrollTo(jobsSection, { offset: -80 });
+              } else {
+                jobsSection.scrollIntoView({ block: "start" });
+              }
             }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}

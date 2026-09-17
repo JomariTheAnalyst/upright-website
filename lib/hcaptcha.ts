@@ -1,3 +1,5 @@
+import { env } from "@/lib/env/server";
+
 interface HCaptchaVerifyResponse {
   success: boolean;
   challenge_ts?: string;
@@ -12,13 +14,6 @@ export interface HCaptchaResult {
 }
 
 export async function verifyHCaptcha(token: string): Promise<HCaptchaResult> {
-  const secretKey = process.env.HCAPTCHA_SECRET_KEY;
-
-  if (!secretKey) {
-    console.error("HCAPTCHA_SECRET_KEY is not configured");
-    return { success: false, error: "Server configuration error" };
-  }
-
   if (!token) {
     return { success: false, error: "Verification token is missing" };
   }
@@ -30,7 +25,7 @@ export async function verifyHCaptcha(token: string): Promise<HCaptchaResult> {
         "Content-Type": "application/x-www-form-urlencoded",
       },
       body: new URLSearchParams({
-        secret: secretKey,
+        secret: env.HCAPTCHA_SECRET_KEY,
         response: token,
       }),
     });

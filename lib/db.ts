@@ -1,7 +1,8 @@
 import { neon } from "@neondatabase/serverless";
+import { env } from "@/lib/env/server";
 
 // Single source of truth for database connection
-export const sql = neon(process.env.DATABASE_URL!);
+export const sql = neon(env.DATABASE_URL);
 
 // Types
 export type MessageStatus = "New" | "Read" | "Replied" | "Archived";

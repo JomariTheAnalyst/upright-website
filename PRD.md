@@ -309,7 +309,7 @@ Deliver a high-performance, accessible, and conversion-optimized website that:
 
 #### Development Tools
 
-- **Package Manager**: npm
+- **Package Manager**: Bun
 - **Linting**: ESLint
 - **Type Checking**: TypeScript compiler
 - **Build Tool**: Turbopack

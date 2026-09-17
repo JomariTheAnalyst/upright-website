@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import { Loader2, CheckCircle, AlertCircle } from "lucide-react";
 import HCaptcha from "@hcaptcha/react-hcaptcha";
+import { clientEnv } from "@/lib/env/client";
 
 interface ContactSectionProps {
   title?: string;
@@ -25,7 +26,7 @@ interface ContactFormData {
 
 type SubmitStatus = "idle" | "loading" | "success" | "error";
 
-const HCAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY || "";
+const HCAPTCHA_SITE_KEY = clientEnv.NEXT_PUBLIC_HCAPTCHA_SITE_KEY;
 
 export function ContactSection({
   title = "We are always here to help",

@@ -101,7 +101,7 @@ Upright Solutions and Systems Consultancy Corp. website is a production-ready, e
 
 ### Development Tools
 
-- **Package Manager:** npm
+- **Package Manager:** Bun
 - **Linting:** ESLint with Next.js config
 - **Type Checking:** TypeScript compiler
 - **Build Tool:** Turbopack (Next.js 16)
@@ -129,7 +129,7 @@ Upright Solutions and Systems Consultancy Corp. website is a production-ready, e
 ### Prerequisites
 
 - Node.js 18.x or higher
-- npm 9.x or higher
+- Bun 1.4.2 or higher
 - Git
 
 ### Installation
@@ -144,7 +144,7 @@ cd upright-website
 2. **Install dependencies**
 
 ```bash
-npm install
+bun install
 ```
 
 3. **Set up environment variables**
@@ -159,7 +159,7 @@ NEXT_PUBLIC_SITE_NAME="Upright Solutions and Systems Consultancy Corp."
 4. **Run the development server**
 
 ```bash
-npm run dev
+bun run dev
 ```
 
 5. **Open your browser**
@@ -169,11 +169,11 @@ Navigate to [http://localhost:3000](http://localhost:3000)
 ### Available Scripts
 
 ```bash
-npm run dev          # Start development server (localhost:3000)
-npm run build        # Build for production
-npm start            # Start production server
-npm run lint         # Run ESLint
-npm run type-check   # Run TypeScript compiler check
+bun run dev          # Start development server (localhost:3000)
+bun run build        # Build for production
+bun run start        # Start production server
+bun run lint         # Run ESLint
+bunx tsc --noEmit    # Run TypeScript compiler check
 ```
 
 ---
@@ -197,13 +197,13 @@ cd upright-systems
 2. **Install dependencies:**
 
 ```bash
-npm install
+bun install
 ```
 
 3. **Run development server:**
 
 ```bash
-npm run dev
+bun run dev
 ```
 
 4. **Open browser:**
@@ -301,17 +301,17 @@ git push origin main
 ### Build for Production
 
 ```bash
-npm run build
-npm start
+bun run build
+bun run start
 ```
 
 ## 📝 Available Scripts
 
 ```bash
-npm run dev          # Start development server
-npm run build        # Build for production
-npm start            # Start production server
-npm run lint         # Run ESLint
+bun run dev          # Start development server
+bun run build        # Build for production
+bun run start        # Start production server
+bun run lint         # Run ESLint
 ```
 
 ## 🎯 Customization
@@ -468,8 +468,8 @@ git push origin main
 ### Build for Production
 
 ```bash
-npm run build
-npm start
+bun run build
+bun run start
 ```
 
 ---

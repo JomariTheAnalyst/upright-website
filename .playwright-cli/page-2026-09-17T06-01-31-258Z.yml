@@ -1,0 +1,816 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e6]:
+      - generic [ref=e7]: Code
+      - generic [ref=e9]:
+        - generic [ref=e10]: C
+        - generic [ref=e11]: o
+        - generic [ref=e12]: d
+        - generic [ref=e13]: e
+    - paragraph [ref=e15]: 90%
+  - generic [ref=e18]:
+    - generic [ref=e19]:
+      - navigation [ref=e20]:
+        - generic [ref=e22]:
+          - link [ref=e23] [cursor=pointer]:
+            - /url: /
+            - img "Upright Logo" [ref=e24]
+          - generic [ref=e25]:
+            - link "About" [ref=e26] [cursor=pointer]:
+              - /url: /about
+            - link "Our Services" [ref=e27] [cursor=pointer]:
+              - /url: /services
+            - link "Projects" [ref=e28] [cursor=pointer]:
+              - /url: /projects
+            - button "Company" [ref=e30]
+            - link "Contact Us" [ref=e33] [cursor=pointer]:
+              - /url: /contact
+      - generic [ref=e38]:
+        - generic [ref=e39]:
+          - paragraph [ref=e40]: Philippine-Based IT Solutions Company
+          - heading "Transforming Businesses" [level=1] [ref=e41]:
+            - generic [ref=e42]: Transforming
+            - generic [ref=e43]: Businesses
+          - link "Contact Us" [ref=e45] [cursor=pointer]:
+            - /url: /contact
+        - generic [ref=e47]:
+          - paragraph [ref=e48]: Providing World-class Solutions
+          - paragraph [ref=e49]: Fueled by Local Insights.
+    - generic [ref=e55]:
+      - generic [ref=e56]:
+        - generic [ref=e57]: Who We Are
+        - heading "10 Years of. Excellence." [level=2] [ref=e58]:
+          - generic [ref=e59]: 10 Years of
+          - text: .Excellence.
+        - generic [ref=e60]:
+          - generic [ref=e61]:
+            - generic [ref=e63]:
+              - generic [ref=e64]: "10"
+              - generic [ref=e65]: Years
+            - img [ref=e67]:
+              - generic [ref=e68]: • Since October 2015 • Trusted Partner •
+          - generic [ref=e70]:
+            - img "Philippine Flag" [ref=e72]
+            - generic [ref=e73]:
+              - generic [ref=e74]: Based in
+              - generic [ref=e75]: Philippines
+      - generic [ref=e83]:
+        - heading "Delivering Integrated IT Solutions and Professional Technology Services" [level=3] [ref=e84]
+        - paragraph [ref=e85]: Upright Solutions and Systems Consultancy Corp., established on October 30, 2015, has built over a decade of experience in the IT industry. Originally known as Upright Maritime Learning and Review Center Corp., the company evolved to meet the growing demands of digital transformation across industries.
+        - paragraph [ref=e86]: As part of the Oceanwide Group, Upright specializes in system design and integration, software development, data processing, and professional IT services—including digital learning platform and content development that supports training and professional growth initiatives.
+        - generic [ref=e92]:
+          - heading "Nationally Recognized" [level=4] [ref=e93]
+          - paragraph [ref=e94]: Awarded a Certificate of Appreciation by the National Task Group for Returning Overseas Filipinos for the One Health Pass system, which processed approximately 4 million passengers and helped reopen the Philippines to international travelers during the pandemic.
+        - generic [ref=e95]:
+          - link "About Us" [ref=e96] [cursor=pointer]:
+            - /url: /about
+          - link "Our Projects" [ref=e98] [cursor=pointer]:
+            - /url: /projects
+    - generic [ref=e100] [cursor=pointer]: Unmute
+    - generic [ref=e103]:
+      - generic [ref=e104]: Our Services
+      - generic [ref=e106] [cursor=pointer]:
+        - generic [ref=e107]:
+          - generic [ref=e108]: 01 / 05
+          - heading "Software Development" [level=2] [ref=e111]
+          - paragraph [ref=e113]: Whether it's a web application or a full enterprise solution, our software is built with scalable architecture that's secure, performant & aligned with your business goals.
+          - generic [ref=e114]:
+            - link [ref=e115]:
+              - /url: /services
+            - link "Explore" [ref=e119]:
+              - /url: /services
+          - generic [ref=e120]:
+            - button "Previous service" [ref=e121]
+            - button "Next service" [ref=e124]
+            - generic [ref=e127]:
+              - button "Go to service 1" [ref=e128]
+              - button "Go to service 2" [ref=e129]
+              - button "Go to service 3" [ref=e130]
+              - button "Go to service 4" [ref=e131]
+              - button "Go to service 5" [ref=e132]
+        - generic [ref=e133]: "01"
+    - generic [ref=e1160]:
+      - generic [ref=e1161]:
+        - generic [ref=e1162]:
+          - generic [ref=e1163]: Our Projects
+          - heading "Innovative Solutions. Real-World Impact." [level=2] [ref=e1164]: Innovative Solutions.Real-World Impact.
+        - generic [ref=e1165]:
+          - paragraph [ref=e1166]: We partner with organizations to deliver technology solutions that transform operations and create lasting value. From digital health platforms to maritime learning systems, our projects demonstrate our commitment to excellence and innovation.
+          - link "View All Projects" [ref=e1168] [cursor=pointer]:
+            - /url: /projects
+      - generic [ref=e1170]:
+        - generic [ref=e1171]:
+          - button "Scroll left" [ref=e1172]
+          - button "Scroll right" [ref=e1175]
+        - generic [ref=e1178]:
+          - link [ref=e1180] [cursor=pointer]:
+            - /url: /projects/mycado
+            - img "MyCaDO" [ref=e1182]
+            - generic [ref=e1184]:
+              - heading "MyCaDO" [level=3] [ref=e1185]
+              - paragraph [ref=e1186]: Maritime learning solutions for onboard and shore-based staff training.
+              - paragraph [ref=e1187]: "Partner: Atria Learning and Development"
+              - generic [ref=e1188]: Read More
+          - link [ref=e1192] [cursor=pointer]:
+            - /url: /projects/myavior
+            - img "MyAvior" [ref=e1194]
+            - generic [ref=e1196]:
+              - heading "MyAvior" [level=3] [ref=e1197]
+              - paragraph [ref=e1198]: Digital learning platforms and learning content development solutions for maritime professionals.
+              - paragraph [ref=e1199]: "Client: Avior Marine"
+              - generic [ref=e1200]: Read More
+          - link [ref=e1204] [cursor=pointer]:
+            - /url: /projects/one-health-pass
+            - img "One Health Pass" [ref=e1206]
+            - generic [ref=e1208]:
+              - heading "One Health Pass" [level=3] [ref=e1209]
+              - paragraph [ref=e1210]: Digital health verification for international travelers entering the Philippines.
+              - paragraph [ref=e1211]: "Client: Bureau of Quarantine (BOQ), Department of Health (Philippines)"
+              - generic [ref=e1212]: Read More
+          - link [ref=e1216] [cursor=pointer]:
+            - /url: /projects/gerrys-cctv
+            - img "Gerry's Restaurant CCTV Installation" [ref=e1218]
+            - generic [ref=e1220]:
+              - heading "Gerry's Restaurant CCTV Installation" [level=3] [ref=e1221]
+              - paragraph [ref=e1222]: Complete CCTV surveillance system installation for Gerry's Restaurant branches ensuring security and monitoring.
+              - paragraph [ref=e1223]: "Client: Gerry's Restaurant"
+              - generic [ref=e1224]: Read More
+          - link [ref=e1228] [cursor=pointer]:
+            - /url: /projects/lbc-cctv
+            - img "LBC CCTV Installation" [ref=e1230]
+            - generic [ref=e1232]:
+              - heading "LBC CCTV Installation" [level=3] [ref=e1233]
+              - paragraph [ref=e1234]: Enterprise-grade CCTV security system deployment for LBC Express facilities and branches.
+              - paragraph [ref=e1235]: "Client: LBC Express"
+              - generic [ref=e1236]: Read More
+    - generic [ref=e1240]:
+      - generic [ref=e1241]:
+        - generic [ref=e1242]:
+          - generic [ref=e1243]: Use Cases
+          - heading "Solving Sector Challenges At Scale." [level=2] [ref=e1244]: Solving SectorChallenges AtScale.
+        - paragraph [ref=e1246]: Upright delivers tailored IT solutions designed for the unique needs of high-impact sectors. Our approach enables rapid deployment, consistent quality, and scalable design across diverse industries.
+      - generic [ref=e1247]:
+        - generic [ref=e1249]:
+          - img "Maritime" [ref=e1250]
+          - generic [ref=e1252]:
+            - paragraph [ref=e1253]: Clients in this industry
+            - generic [ref=e1254]:
+              - img "Avior" [ref=e1256]
+              - img "Mycado" [ref=e1258]
+        - generic [ref=e1259]:
+          - generic [ref=e1260]:
+            - button "Maritime Know More" [ref=e1261]:
+              - generic [ref=e1262]: Maritime
+              - link "Know More" [ref=e1263] [cursor=pointer]:
+                - /url: /use-cases/maritime
+            - paragraph [ref=e1268]: Digital solutions for maritime training, crew management, and regulatory compliance. We support shipping companies and maritime academies with innovative learning platforms.
+          - button "Government" [ref=e1270]
+          - button "Logistics" [ref=e1276]
+    - generic [ref=e1283]:
+      - generic [ref=e1284]:
+        - generic [ref=e1285]:
+          - generic [ref=e1286]: Impact & Responsibility
+          - heading "Building Technology That Matters." [level=2] [ref=e1287]: Building TechnologyThat Matters.
+        - paragraph [ref=e1289]: Our structured approach ensures reliable, scalable IT solutions that meet operational goals without sacrificing quality, security, or long-term value.
+      - generic [ref=e1291]:
+        - heading "Streamlined operations for maximum efficiency" [level=3] [ref=e1298]
+        - heading "Complete visibility across all systems and processes" [level=3] [ref=e1305]
+        - heading "Built for long-term sustainability and growth" [level=3] [ref=e1312]
+    - generic [ref=e1314]:
+      - generic [ref=e1315]:
+        - generic [ref=e1316]: Events
+        - heading "Events We Are Part Of" [level=2] [ref=e1317]
+      - generic [ref=e1318]:
+        - article [ref=e1319]:
+          - img "Avior Forward Program" [ref=e1321]
+          - generic [ref=e1322]:
+            - paragraph [ref=e1323]: MARCH 25, 2025
+            - heading "Avior Forward Program" [level=3] [ref=e1324]
+          - generic [ref=e1325]:
+            - generic [ref=e1326]: "READING TIME: 4"
+            - link "READ MORE" [ref=e1328] [cursor=pointer]:
+              - /url: /events/avior-forward-program
+        - article [ref=e1333]:
+          - img "Seatrade Maritime Crew Connect Global 2025" [ref=e1335]
+          - generic [ref=e1336]:
+            - paragraph [ref=e1337]: FEBRUARY 11, 2025
+            - heading "Seatrade Maritime Crew Connect Global 2025" [level=3] [ref=e1338]
+          - generic [ref=e1339]:
+            - generic [ref=e1340]: "READING TIME: 3"
+            - link "READ MORE" [ref=e1342] [cursor=pointer]:
+              - /url: /events/seatrade-maritime-crew-connect-global-2025
+        - article [ref=e1347]:
+          - img "Crew Forward Conference" [ref=e1349]
+          - generic [ref=e1350]:
+            - paragraph [ref=e1351]: DECEMBER 04, 2025
+            - heading "Crew Forward Conference" [level=3] [ref=e1352]
+          - generic [ref=e1353]:
+            - generic [ref=e1354]: "READING TIME: 5"
+            - link "READ MORE" [ref=e1356] [cursor=pointer]:
+              - /url: /events/crew-forward-conference
+    - generic [ref=e1363]:
+      - generic [ref=e1364]:
+        - img "Certificate of Appreciation" [ref=e1367]
+        - img "Award Recognition" [ref=e1370]
+      - generic [ref=e1373]:
+        - generic [ref=e1374]: Awards & Recognition
+        - paragraph [ref=e1375]: National Task Group for Returning Overseas Filipinos
+        - paragraph [ref=e1376]: Awarded for vigorous involvement in implementing health and safety measures to contain the spread of COVID-19 through the development and provision of IT systems and protocols at airports, which processed approximately four (4) million passengers, enabling the Philippines to reopen its gates to international travelers during the pandemic.
+        - link "Learn More About This Award" [ref=e1377] [cursor=pointer]:
+          - /url: /projects/one-health-pass
+    - generic [ref=e1381]:
+      - generic [ref=e1382]:
+        - heading "Meet the Team" [level=2] [ref=e1383]
+        - paragraph [ref=e1384]: Dedicated Professionals Working For Your Success
+      - generic [ref=e1386]:
+        - generic [ref=e1388]:
+          - generic [ref=e1389]:
+            - heading "10+" [level=3] [ref=e1390]
+            - paragraph [ref=e1391]: YEARS OF INDUSTRY EXPERIENCE
+          - generic [ref=e1392]:
+            - img "Team Member" [ref=e1393]
+            - generic [ref=e1395]:
+              - heading "Team Member" [level=3] [ref=e1396]
+              - generic [ref=e1397]: Development
+        - generic [ref=e1400]:
+          - img "Team Member" [ref=e1401]
+          - generic [ref=e1403]:
+            - heading "Team Member" [level=3] [ref=e1404]
+            - generic [ref=e1405]: Operations
+        - generic [ref=e1407]:
+          - generic [ref=e1408]:
+            - img "Team Member" [ref=e1409]
+            - generic [ref=e1411]:
+              - heading "Team Member" [level=3] [ref=e1412]
+              - generic [ref=e1413]: Engineering
+          - generic [ref=e1414]:
+            - heading "50+" [level=3] [ref=e1415]
+            - paragraph [ref=e1416]: SUCCESSFUL PROJECTS DELIVERED
+        - generic [ref=e1419]:
+          - img "Team Member" [ref=e1420]
+          - generic [ref=e1422]:
+            - heading "Team Member" [level=3] [ref=e1423]
+            - generic [ref=e1424]: Design
+        - generic [ref=e1426]:
+          - generic [ref=e1427]:
+            - heading "100+" [level=3] [ref=e1428]
+            - paragraph [ref=e1429]: CLIENTS SERVED ACROSS INDUSTRIES
+          - generic [ref=e1430]:
+            - img "Team Member" [ref=e1431]
+            - generic [ref=e1433]:
+              - heading "Team Member" [level=3] [ref=e1434]
+              - generic [ref=e1435]: Support
+        - generic [ref=e1438]:
+          - img "Team Member" [ref=e1439]
+          - generic [ref=e1441]:
+            - heading "Team Member" [level=3] [ref=e1442]
+            - generic [ref=e1443]: Management
+        - generic [ref=e1445]:
+          - generic [ref=e1446]:
+            - img "Team Member" [ref=e1447]
+            - generic [ref=e1449]:
+              - heading "Team Member" [level=3] [ref=e1450]
+              - generic [ref=e1451]: Technical Lead
+          - generic [ref=e1452]:
+            - heading "24/7" [level=3] [ref=e1453]
+            - paragraph [ref=e1454]: DEDICATED SUPPORT AVAILABLE
+        - generic [ref=e1457]:
+          - img "Team Member" [ref=e1458]
+          - generic [ref=e1460]:
+            - heading "Team Member" [level=3] [ref=e1461]
+            - generic [ref=e1462]: Project Manager
+        - generic [ref=e1464]:
+          - generic [ref=e1465]:
+            - heading "15+" [level=3] [ref=e1466]
+            - paragraph [ref=e1467]: EXPERT TEAM MEMBERS
+          - generic [ref=e1468]:
+            - img "Team Member" [ref=e1469]
+            - generic [ref=e1471]:
+              - heading "Team Member" [level=3] [ref=e1472]
+              - generic [ref=e1473]: Solutions Architect
+        - generic [ref=e1476]:
+          - img "Team Member" [ref=e1477]
+          - generic [ref=e1479]:
+            - heading "Team Member" [level=3] [ref=e1480]
+            - generic [ref=e1481]: Quality Assurance
+        - generic [ref=e1483]:
+          - generic [ref=e1484]:
+            - img "Team Member" [ref=e1485]
+            - generic [ref=e1487]:
+              - heading "Team Member" [level=3] [ref=e1488]
+              - generic [ref=e1489]: Business Analyst
+          - generic [ref=e1490]:
+            - heading "99%" [level=3] [ref=e1491]
+            - paragraph [ref=e1492]: CLIENT SATISFACTION RATE
+        - generic [ref=e1495]:
+          - img "Team Member" [ref=e1496]
+          - generic [ref=e1498]:
+            - heading "Team Member" [level=3] [ref=e1499]
+            - generic [ref=e1500]: IT Specialist
+        - generic [ref=e1502]:
+          - generic [ref=e1503]:
+            - heading "5+" [level=3] [ref=e1504]
+            - paragraph [ref=e1505]: INDUSTRIES WE SERVE
+          - generic [ref=e1506]:
+            - img "Team Member" [ref=e1507]
+            - generic [ref=e1509]:
+              - heading "Team Member" [level=3] [ref=e1510]
+              - generic [ref=e1511]: Systems Engineer
+        - generic [ref=e1514]:
+          - img "Team Member" [ref=e1515]
+          - generic [ref=e1517]:
+            - heading "Team Member" [level=3] [ref=e1518]
+            - generic [ref=e1519]: Developer
+        - generic [ref=e1521]:
+          - generic [ref=e1522]:
+            - heading "10+" [level=3] [ref=e1523]
+            - paragraph [ref=e1524]: YEARS OF INDUSTRY EXPERIENCE
+          - generic [ref=e1525]:
+            - img "Team Member" [ref=e1526]
+            - generic [ref=e1528]:
+              - heading "Team Member" [level=3] [ref=e1529]
+              - generic [ref=e1530]: Development
+        - generic [ref=e1533]:
+          - img "Team Member" [ref=e1534]
+          - generic [ref=e1536]:
+            - heading "Team Member" [level=3] [ref=e1537]
+            - generic [ref=e1538]: Operations
+        - generic [ref=e1540]:
+          - generic [ref=e1541]:
+            - img "Team Member" [ref=e1542]
+            - generic [ref=e1544]:
+              - heading "Team Member" [level=3] [ref=e1545]
+              - generic [ref=e1546]: Engineering
+          - generic [ref=e1547]:
+            - heading "50+" [level=3] [ref=e1548]
+            - paragraph [ref=e1549]: SUCCESSFUL PROJECTS DELIVERED
+        - generic [ref=e1552]:
+          - img "Team Member" [ref=e1553]
+          - generic [ref=e1555]:
+            - heading "Team Member" [level=3] [ref=e1556]
+            - generic [ref=e1557]: Design
+        - generic [ref=e1559]:
+          - generic [ref=e1560]:
+            - heading "100+" [level=3] [ref=e1561]
+            - paragraph [ref=e1562]: CLIENTS SERVED ACROSS INDUSTRIES
+          - generic [ref=e1563]:
+            - img "Team Member" [ref=e1564]
+            - generic [ref=e1566]:
+              - heading "Team Member" [level=3] [ref=e1567]
+              - generic [ref=e1568]: Support
+        - generic [ref=e1571]:
+          - img "Team Member" [ref=e1572]
+          - generic [ref=e1574]:
+            - heading "Team Member" [level=3] [ref=e1575]
+            - generic [ref=e1576]: Management
+        - generic [ref=e1578]:
+          - generic [ref=e1579]:
+            - img "Team Member" [ref=e1580]
+            - generic [ref=e1582]:
+              - heading "Team Member" [level=3] [ref=e1583]
+              - generic [ref=e1584]: Technical Lead
+          - generic [ref=e1585]:
+            - heading "24/7" [level=3] [ref=e1586]
+            - paragraph [ref=e1587]: DEDICATED SUPPORT AVAILABLE
+        - generic [ref=e1590]:
+          - img "Team Member" [ref=e1591]
+          - generic [ref=e1593]:
+            - heading "Team Member" [level=3] [ref=e1594]
+            - generic [ref=e1595]: Project Manager
+        - generic [ref=e1597]:
+          - generic [ref=e1598]:
+            - heading "15+" [level=3] [ref=e1599]
+            - paragraph [ref=e1600]: EXPERT TEAM MEMBERS
+          - generic [ref=e1601]:
+            - img "Team Member" [ref=e1602]
+            - generic [ref=e1604]:
+              - heading "Team Member" [level=3] [ref=e1605]
+              - generic [ref=e1606]: Solutions Architect
+        - generic [ref=e1609]:
+          - img "Team Member" [ref=e1610]
+          - generic [ref=e1612]:
+            - heading "Team Member" [level=3] [ref=e1613]
+            - generic [ref=e1614]: Quality Assurance
+        - generic [ref=e1616]:
+          - generic [ref=e1617]:
+            - img "Team Member" [ref=e1618]
+            - generic [ref=e1620]:
+              - heading "Team Member" [level=3] [ref=e1621]
+              - generic [ref=e1622]: Business Analyst
+          - generic [ref=e1623]:
+            - heading "99%" [level=3] [ref=e1624]
+            - paragraph [ref=e1625]: CLIENT SATISFACTION RATE
+        - generic [ref=e1628]:
+          - img "Team Member" [ref=e1629]
+          - generic [ref=e1631]:
+            - heading "Team Member" [level=3] [ref=e1632]
+            - generic [ref=e1633]: IT Specialist
+        - generic [ref=e1635]:
+          - generic [ref=e1636]:
+            - heading "5+" [level=3] [ref=e1637]
+            - paragraph [ref=e1638]: INDUSTRIES WE SERVE
+          - generic [ref=e1639]:
+            - img "Team Member" [ref=e1640]
+            - generic [ref=e1642]:
+              - heading "Team Member" [level=3] [ref=e1643]
+              - generic [ref=e1644]: Systems Engineer
+        - generic [ref=e1647]:
+          - img "Team Member" [ref=e1648]
+          - generic [ref=e1650]:
+            - heading "Team Member" [level=3] [ref=e1651]
+            - generic [ref=e1652]: Developer
+    - generic [ref=e1655]:
+      - paragraph [ref=e1659]:
+        - generic [ref=e1660]:
+          - generic [ref=e1661]:
+            - generic [ref=e1662]: "\""
+            - text: "\""
+          - generic [ref=e1663]:
+            - generic [ref=e1664]: T
+            - text: T
+          - generic [ref=e1665]:
+            - generic [ref=e1666]: r
+            - text: r
+          - generic [ref=e1667]:
+            - generic [ref=e1668]: u
+            - text: u
+          - generic [ref=e1669]:
+            - generic [ref=e1670]: e
+            - text: e
+        - generic [ref=e1671]:
+          - generic [ref=e1672]:
+            - generic [ref=e1673]: p
+            - text: p
+          - generic [ref=e1674]:
+            - generic [ref=e1675]: r
+            - text: r
+          - generic [ref=e1676]:
+            - generic [ref=e1677]: o
+            - text: o
+          - generic [ref=e1678]:
+            - generic [ref=e1679]: g
+            - text: g
+          - generic [ref=e1680]:
+            - generic [ref=e1681]: r
+            - text: r
+          - generic [ref=e1682]:
+            - generic [ref=e1683]: e
+            - text: e
+          - generic [ref=e1684]:
+            - generic [ref=e1685]: s
+            - text: s
+          - generic [ref=e1686]:
+            - generic [ref=e1687]: s
+            - text: s
+        - generic [ref=e1688]:
+          - generic [ref=e1689]:
+            - generic [ref=e1690]: i
+            - text: i
+          - generic [ref=e1691]:
+            - generic [ref=e1692]: s
+            - text: s
+          - generic [ref=e1693]:
+            - generic [ref=e1694]: "n"
+            - text: "n"
+          - generic [ref=e1695]:
+            - generic [ref=e1696]: "'"
+            - text: "'"
+          - generic [ref=e1697]:
+            - generic [ref=e1698]: t
+            - text: t
+        - generic [ref=e1699]:
+          - generic [ref=e1700]:
+            - generic [ref=e1701]: j
+            - text: j
+          - generic [ref=e1702]:
+            - generic [ref=e1703]: u
+            - text: u
+          - generic [ref=e1704]:
+            - generic [ref=e1705]: s
+            - text: s
+          - generic [ref=e1706]:
+            - generic [ref=e1707]: t
+            - text: t
+        - generic [ref=e1708]:
+          - generic [ref=e1709]:
+            - generic [ref=e1710]: m
+            - text: m
+          - generic [ref=e1711]:
+            - generic [ref=e1712]: e
+            - text: e
+          - generic [ref=e1713]:
+            - generic [ref=e1714]: a
+            - text: a
+          - generic [ref=e1715]:
+            - generic [ref=e1716]: s
+            - text: s
+          - generic [ref=e1717]:
+            - generic [ref=e1718]: u
+            - text: u
+          - generic [ref=e1719]:
+            - generic [ref=e1720]: r
+            - text: r
+          - generic [ref=e1721]:
+            - generic [ref=e1722]: e
+            - text: e
+          - generic [ref=e1723]:
+            - generic [ref=e1724]: d
+            - text: d
+        - generic [ref=e1725]:
+          - generic [ref=e1726]:
+            - generic [ref=e1727]: b
+            - text: b
+          - generic [ref=e1728]:
+            - generic [ref=e1729]: "y"
+            - text: "y"
+        - generic [ref=e1730]:
+          - generic [ref=e1731]:
+            - generic [ref=e1732]: w
+            - text: w
+          - generic [ref=e1733]:
+            - generic [ref=e1734]: h
+            - text: h
+          - generic [ref=e1735]:
+            - generic [ref=e1736]: a
+            - text: a
+          - generic [ref=e1737]:
+            - generic [ref=e1738]: t
+            - text: t
+        - generic [ref=e1739]:
+          - generic [ref=e1740]:
+            - generic [ref=e1741]: w
+            - text: w
+          - generic [ref=e1742]:
+            - generic [ref=e1743]: e
+            - text: e
+        - generic [ref=e1744]:
+          - generic [ref=e1745]:
+            - generic [ref=e1746]: b
+            - text: b
+          - generic [ref=e1747]:
+            - generic [ref=e1748]: u
+            - text: u
+          - generic [ref=e1749]:
+            - generic [ref=e1750]: i
+            - text: i
+          - generic [ref=e1751]:
+            - generic [ref=e1752]: l
+            - text: l
+          - generic [ref=e1753]:
+            - generic [ref=e1754]: d
+            - text: d
+          - generic [ref=e1755]:
+            - generic [ref=e1756]: ","
+            - text: ","
+        - generic [ref=e1757]:
+          - generic [ref=e1758]:
+            - generic [ref=e1759]: b
+            - text: b
+          - generic [ref=e1760]:
+            - generic [ref=e1761]: u
+            - text: u
+          - generic [ref=e1762]:
+            - generic [ref=e1763]: t
+            - text: t
+        - generic [ref=e1764]:
+          - generic [ref=e1765]:
+            - generic [ref=e1766]: b
+            - text: b
+          - generic [ref=e1767]:
+            - generic [ref=e1768]: "y"
+            - text: "y"
+        - generic [ref=e1769]:
+          - generic [ref=e1770]:
+            - generic [ref=e1771]: h
+            - text: h
+          - generic [ref=e1772]:
+            - generic [ref=e1773]: o
+            - text: o
+          - generic [ref=e1774]:
+            - generic [ref=e1775]: w
+            - text: w
+        - generic [ref=e1776]:
+          - generic [ref=e1777]:
+            - generic [ref=e1778]: w
+            - text: w
+          - generic [ref=e1779]:
+            - generic [ref=e1780]: e
+            - text: e
+        - generic [ref=e1781]:
+          - generic [ref=e1782]:
+            - generic [ref=e1783]: e
+            - text: e
+          - generic [ref=e1784]:
+            - generic [ref=e1785]: m
+            - text: m
+          - generic [ref=e1786]:
+            - generic [ref=e1787]: p
+            - text: p
+          - generic [ref=e1788]:
+            - generic [ref=e1789]: o
+            - text: o
+          - generic [ref=e1790]:
+            - generic [ref=e1791]: w
+            - text: w
+          - generic [ref=e1792]:
+            - generic [ref=e1793]: e
+            - text: e
+          - generic [ref=e1794]:
+            - generic [ref=e1795]: r
+            - text: r
+        - generic [ref=e1796]:
+          - generic [ref=e1797]:
+            - generic [ref=e1798]: o
+            - text: o
+          - generic [ref=e1799]:
+            - generic [ref=e1800]: t
+            - text: t
+          - generic [ref=e1801]:
+            - generic [ref=e1802]: h
+            - text: h
+          - generic [ref=e1803]:
+            - generic [ref=e1804]: e
+            - text: e
+          - generic [ref=e1805]:
+            - generic [ref=e1806]: r
+            - text: r
+          - generic [ref=e1807]:
+            - generic [ref=e1808]: s
+            - text: s
+        - generic [ref=e1809]:
+          - generic [ref=e1810]:
+            - generic [ref=e1811]: t
+            - text: t
+          - generic [ref=e1812]:
+            - generic [ref=e1813]: o
+            - text: o
+        - generic [ref=e1814]:
+          - generic [ref=e1815]:
+            - generic [ref=e1816]: g
+            - text: g
+          - generic [ref=e1817]:
+            - generic [ref=e1818]: r
+            - text: r
+          - generic [ref=e1819]:
+            - generic [ref=e1820]: o
+            - text: o
+          - generic [ref=e1821]:
+            - generic [ref=e1822]: w
+            - text: w
+        - generic [ref=e1823]:
+          - generic [ref=e1824]:
+            - generic [ref=e1825]: w
+            - text: w
+          - generic [ref=e1826]:
+            - generic [ref=e1827]: i
+            - text: i
+          - generic [ref=e1828]:
+            - generic [ref=e1829]: t
+            - text: t
+          - generic [ref=e1830]:
+            - generic [ref=e1831]: h
+            - text: h
+        - generic [ref=e1832]:
+          - generic [ref=e1833]:
+            - generic [ref=e1834]: i
+            - text: i
+          - generic [ref=e1835]:
+            - generic [ref=e1836]: t
+            - text: t
+          - generic [ref=e1837]:
+            - generic [ref=e1838]: .
+            - text: .
+          - generic [ref=e1839]:
+            - generic [ref=e1840]: "\""
+            - text: "\""
+      - generic [ref=e1841]:
+        - img "Greg Sevilla" [ref=e1845]
+        - generic [ref=e1846]:
+          - generic [ref=e1847]: Capt. Gregory Nick Sevilla
+          - generic [ref=e1848]: CEO & Founder, Upright Solutions and Systems Consultancy Corp.
+    - generic [ref=e1849]:
+      - generic [ref=e1850]:
+        - heading "Client Testimonials" [level=2] [ref=e1851]
+        - paragraph [ref=e1852]: Trusted by leading companies across the Philippines
+      - generic [ref=e1853]:
+        - generic [ref=e1854] [cursor=pointer]:
+          - img "Edgar Saavedra" [ref=e1855]
+          - heading "\"Upright Systems transformed our IT infrastructure. Their expertise in system integration is unmatched in the industry.\"" [level=3] [ref=e1856]
+          - paragraph [ref=e1857]: "- Edgar Saavedra, CEO at Megaworld Corporation"
+        - generic [ref=e1858] [cursor=pointer]:
+          - img "Jaime Augusto Zobel de Ayala" [ref=e1859]
+          - heading "\"Working with Upright Systems has been a game-changer for our digital transformation journey. Highly recommended!\"" [level=3] [ref=e1860]
+          - paragraph [ref=e1861]: "- Jaime Augusto Zobel de Ayala, CEO at Ayala Corporation"
+        - generic [ref=e1862] [cursor=pointer]:
+          - img "Ramon Ang" [ref=e1863]
+          - heading "\"Their professional approach and technical expertise helped us streamline our operations significantly.\"" [level=3] [ref=e1864]
+          - paragraph [ref=e1865]: "- Ramon Ang, President at San Miguel Corporation"
+        - generic [ref=e1866] [cursor=pointer]:
+          - img "Lance Gokongwei" [ref=e1867]
+          - heading "\"Upright Systems delivered beyond our expectations. Their solutions are robust, scalable, and future-proof.\"" [level=3] [ref=e1868]
+          - paragraph [ref=e1869]: "- Lance Gokongwei, President at JG Summit Holdings"
+        - generic [ref=e1870] [cursor=pointer]:
+          - img "Teresita Sy-Coson" [ref=e1871]
+          - heading "\"The team's dedication to excellence and customer satisfaction is truly remarkable. A trusted IT partner.\"" [level=3] [ref=e1872]
+          - paragraph [ref=e1873]: "- Teresita Sy-Coson, Vice Chairperson at SM Investments"
+        - generic [ref=e1874] [cursor=pointer]:
+          - img "Ernest Cu" [ref=e1875]
+          - heading "\"Upright Systems' innovative solutions have given us a competitive edge in the market. Exceptional service!\"" [level=3] [ref=e1876]
+          - paragraph [ref=e1877]: "- Ernest Cu, President at Globe Telecom"
+        - generic [ref=e1878] [cursor=pointer]:
+          - img "Alfredo Ramos" [ref=e1879]
+          - heading "\"Their system integration expertise helped us achieve seamless operations across all our business units.\"" [level=3] [ref=e1880]
+          - paragraph [ref=e1881]: "- Alfredo Ramos, CEO at PLDT Inc."
+        - generic [ref=e1882] [cursor=pointer]:
+          - img "Dennis Uy" [ref=e1883]
+          - heading "\"Upright Systems understands our business needs and delivers solutions that drive real results.\"" [level=3] [ref=e1884]
+          - paragraph [ref=e1885]: "- Dennis Uy, Founder at Udenna Corporation"
+        - generic [ref=e1886]:
+          - button "Previous testimonial" [ref=e1887]
+          - button "Next testimonial" [ref=e1890]
+    - generic [ref=e1893]:
+      - img "CTA Background" [ref=e1894]
+      - generic [ref=e1896]:
+        - heading "Unlock Your Project's Potential" [level=2] [ref=e1897]
+        - paragraph [ref=e1898]: Share your project details with a timeline, and we will return a customised programme, cost and ROI model within a week.
+        - generic [ref=e1899]:
+          - link "Contact Us Now" [ref=e1900] [cursor=pointer]:
+            - /url: /contact
+          - link [ref=e1902] [cursor=pointer]:
+            - /url: /contact
+    - contentinfo [ref=e1906]:
+      - generic [ref=e1907]:
+        - generic [ref=e1908]:
+          - generic [ref=e1909]:
+            - heading "Quick Links" [level=3] [ref=e1910]
+            - list [ref=e1911]:
+              - listitem [ref=e1912]:
+                - link "About Us" [ref=e1913] [cursor=pointer]:
+                  - /url: /about
+              - listitem [ref=e1914]:
+                - link "Our Services" [ref=e1915] [cursor=pointer]:
+                  - /url: /#services
+              - listitem [ref=e1916]:
+                - link "Projects" [ref=e1917] [cursor=pointer]:
+                  - /url: /projects
+              - listitem [ref=e1918]:
+                - link "Careers" [ref=e1919] [cursor=pointer]:
+                  - /url: /careers
+              - listitem [ref=e1920]:
+                - link "Contact" [ref=e1921] [cursor=pointer]:
+                  - /url: /contact
+          - generic [ref=e1922]:
+            - heading "Contact Us" [level=3] [ref=e1923]
+            - list [ref=e1924]:
+              - listitem [ref=e1925]:
+                - link "+63 917 555 1234" [ref=e1926] [cursor=pointer]:
+                  - /url: tel:+639175551234
+              - listitem [ref=e1927]:
+                - link "info@uprightsystems.ph" [ref=e1928] [cursor=pointer]:
+                  - /url: mailto:info@uprightsystems.ph
+          - generic [ref=e1929]:
+            - heading "Main Office" [level=3] [ref=e1930]
+            - paragraph [ref=e1931]: Elias St., Manila City,Metro Manila 2100, PH
+            - heading "Branch Office" [level=3] [ref=e1932]
+            - paragraph [ref=e1933]: Bacoor, Cavite 4102,Philippines
+          - generic [ref=e1934]:
+            - heading "Our Clients" [level=3] [ref=e1935]
+            - generic [ref=e1936]:
+              - img "BOQ" [ref=e1938]
+              - img "Avior" [ref=e1940]
+              - img "Gerrys" [ref=e1942]
+              - img "LBC" [ref=e1944]
+            - generic [ref=e1945]:
+              - paragraph [ref=e1947]: Upright Solutions and Systems Consultancy Corp. is under Oceanwide Group.
+              - img "Oceanwide Group" [ref=e1949]
+        - generic [ref=e1952]:
+          - generic [ref=e1953]:
+            - generic [ref=e1954]: Follow Us
+            - generic [ref=e1955]:
+              - link "LinkedIn" [ref=e1956] [cursor=pointer]:
+                - /url: https://linkedin.com/company/upright-systems
+              - link "Facebook" [ref=e1961] [cursor=pointer]:
+                - /url: https://facebook.com/uprightsystems
+          - generic [ref=e1964]:
+            - link "Privacy Policy" [ref=e1965] [cursor=pointer]:
+              - /url: /privacy-policy
+            - link "Cookie Policy" [ref=e1966] [cursor=pointer]:
+              - /url: /cookie-policy
+            - link "Terms and Conditions" [ref=e1967] [cursor=pointer]:
+              - /url: /terms
+      - generic [ref=e1969]:
+        - img "Upright Systems" [ref=e1971]
+        - paragraph [ref=e1972]: Upright Solutions and Systems Consultancy Corp. is a trusted IT consultancy and technology solutions provider, committed to delivering innovation, reliability, and excellence since 2015.
+  - button "Open Next.js Dev Tools" [ref=e1978] [cursor=pointer]
+  - alert [ref=e1982]
+  - dialog [ref=e1983]:
+    - generic [ref=e1993]:
+      - generic [ref=e1994]:
+        - heading "We value your privacy" [level=2] [ref=e1995]
+        - paragraph [ref=e1996]:
+          - text: We use cookies to improve your experience and analyze site traffic.
+          - link "Learn more" [ref=e1997] [cursor=pointer]:
+            - /url: /privacy-policy
+      - generic [ref=e1998]:
+        - button "Accept cookies" [ref=e1999]: Accept
+        - button "Decline cookies" [ref=e2000]: Decline

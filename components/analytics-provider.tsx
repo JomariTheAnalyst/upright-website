@@ -53,10 +53,10 @@ export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
 function AnalyticsScripts() {
   useEffect(() => {
     // Example: Google Analytics
-    // Uncomment and add your GA ID when ready
+    // Uncomment, add NEXT_PUBLIC_GA_ID to .env.local, and import { clientEnv } from "@/lib/env/client"
     /*
     const script = document.createElement('script');
-    script.src = `https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`;
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${clientEnv.NEXT_PUBLIC_GA_ID}`;
     script.async = true;
     document.head.appendChild(script);
 
@@ -65,7 +65,7 @@ function AnalyticsScripts() {
       window.dataLayer.push(args);
     }
     gtag('js', new Date());
-    gtag('config', process.env.NEXT_PUBLIC_GA_ID);
+    gtag('config', clientEnv.NEXT_PUBLIC_GA_ID);
     */
 
     // Example: Facebook Pixel, Hotjar, etc.
